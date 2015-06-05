@@ -8,4 +8,8 @@
   -->
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
+  <object name="ilo.qa.answer" meta_type="Dexterity FTI" />
+  <object name="ilo.qa.question" meta_type="Dexterity FTI" />
+  <object name="ilo.qa.topic" meta_type="Dexterity FTI" />
+  <object name="ilo.qa.qafacility" meta_type="Dexterity FTI" />
 </object>
