@@ -31,6 +31,11 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     """
     Question
     """
+    topic = schema.TextLine(
+           title=_(u"Topic"),
+           required=True,
+        )
+
     pass
 
 alsoProvides(IQuestion, IFormFieldProvider)

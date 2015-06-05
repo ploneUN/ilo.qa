@@ -5,6 +5,7 @@ from zope import schema
 from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from plone.autoform.interfaces import IFormFieldProvider
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from zope.interface import alsoProvides
 
 from zope.interface import invariant, Invalid
@@ -31,6 +32,10 @@ class IAnswer(form.Schema, IImageScaleTraversable):
     """
     Answer
     """
+
+    form.widget(answer=WysiwygFieldWidget)
+    answer = schema.Text(title=u"Answer")
+
     pass
 
 alsoProvides(IAnswer, IFormFieldProvider)

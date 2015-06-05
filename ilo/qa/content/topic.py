@@ -31,6 +31,27 @@ class ITopic(form.Schema, IImageScaleTraversable):
     """
     Topic
     """
+
+    topic_id = schema.TextLine(
+           title=_(u"ID"),
+           required=True,
+        )
+
+    topic = schema.TextLine(
+           title=_(u"Topic"),
+           required=True,
+        )
+
+    officer = schema.TextLine(
+           title=_(u"Officer"),
+           required=True,
+        )
+
+    officer_email = schema.TextLine(
+           title=_(u"Officer Email"),
+           required=True,
+        )
+
     pass
 
 alsoProvides(ITopic, IFormFieldProvider)
