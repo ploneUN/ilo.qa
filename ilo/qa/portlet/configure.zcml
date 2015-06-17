@@ -5,5 +5,13 @@
 
     <include package="plone.app.portlets" file="permissions.zcml"/>
     <!-- -*- extra stuff goes here -*- -->
-
+    
+	<plone:portlet
+        name="addquestionportlet.portlet"
+        interface=".addquestionportlet.IContentNavigation"
+        assignment=".addquestionportlet.Assignment"
+        renderer=".addquestionportlet.Renderer"
+        addview=".addquestionportlet.AddForm"
+        editview=".addquestionportlet.EditForm"
+        />
 </configure>

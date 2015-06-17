@@ -2,5 +2,9 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
-
+<portlet
+            addview="addquestionportlet.portlet"
+            title="Add Question Button"
+            description=""
+    />
 </portlets>
