@@ -23,7 +23,7 @@
               <a tal:attributes="href python: brain.getPath()"><p tal:content="python: brain.Title"></p></a>
                
             </tal:element>
-      <a tal:condition="python: len(brains) > 10 " tal:attributes="href python: context.absolute_url() +'/selfies_view'">View All Seflies</a>
+      <a tal:condition="python: len(brains) > 10 " tal:attributes="href python: context.absolute_url() +'/bytopic_view'">View By Topic</a>
     </tal:block>
 
    <!--  <tal:block repeat="widget python: view.widgets.values()">

@@ -25,7 +25,7 @@ from collective import dexteritytextindexer
 from ilo.qa import MessageFactory as _
 
 from Products.CMFCore.utils import getToolByName
-
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 
 # Interface class; used to define content-type schema.
 
@@ -54,7 +54,13 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     #        title=_(u"Topic"),
     #        required=True,
     #     )
-    topic = schema.Choice(title = u"Topic",source=topics(), required=True)
+    # topic = schema.Choice(title = u"Topic",source=topics(), required=True)
+    form.widget(topic=CheckBoxFieldWidget)
+    topic = schema.List(
+        title=u'Topic',
+        required=False,
+        value_type=schema.Choice(source=topics())
+    )
     pass
 
 alsoProvides(IQuestion, IFormFieldProvider)
