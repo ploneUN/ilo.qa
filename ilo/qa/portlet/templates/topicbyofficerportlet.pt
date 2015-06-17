@@ -1,0 +1,20 @@
+<div class="side_viewlet state-sign" tal:condition="python: view.contents().title and context.portal_type == 'ilo.qa.qafacility'">
+	<form method='post'>
+    <label>Topic
+      <select name='topic' id='topic' tal:define='val python: view.searchedValue("topic")'>
+        <tal:entry tal:repeat='option  view/topic'>
+           <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
+        </tal:entry>
+      </select>
+</label>
+<input class="small button" type='submit' value='Generate' />
+</form>
+
+ <tal:block tal:define="brains view/contents1">
+            <tal:element tal:repeat="brain python: brains" tal:condition="brains">
+              <a tal:attributes="href python: brain['path']"><p tal:content="python: brain['title']"></p></a>
+            </tal:element>
+    </tal:block>
+
+    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.question'" tal:content="python: view.contents().title">Add a Question</a>
+</div>

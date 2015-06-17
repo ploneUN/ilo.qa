@@ -14,4 +14,13 @@
         addview=".addquestionportlet.AddForm"
         editview=".addquestionportlet.EditForm"
         />
+
+  <plone:portlet
+        name="topicbyofficerportlet.portlet"
+        interface=".topicbyofficerportlet.IContentNavigation"
+        assignment=".topicbyofficerportlet.Assignment"
+        renderer=".topicbyofficerportlet.Renderer"
+        addview=".topicbyofficerportlet.AddForm"
+        editview=".topicbyofficerportlet.EditForm"
+        />
 </configure>
