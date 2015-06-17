@@ -17,13 +17,22 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+
+
+ <form method='post'>
+    <label>Topic
+      <select name='topic' id='topic' tal:define='val python: view.searchedValue("topic")'>
+        <tal:entry tal:repeat='option  view/topic'>
+           <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
+        </tal:entry>
+      </select>
+</label>
+<input class="small button" type='submit' value='Generate' />
+</form>
      <tal:block tal:define="brains view/contents">
-      
-            <tal:element tal:repeat="brain python: brains[:10]" tal:condition="brains">
-              <a tal:attributes="href python: brain.getPath()"><p tal:content="python: brain.Title"></p></a>
-               
+            <tal:element tal:repeat="brain python: brains" tal:condition="brains">
+              <a tal:attributes="href python: brain['path']"><p tal:content="python: brain['title']"></p></a>
             </tal:element>
-      <a tal:condition="python: len(brains) > 10 " tal:attributes="href python: context.absolute_url() +'/bytopic_view'">View By Topic</a>
     </tal:block>
 
    <!--  <tal:block repeat="widget python: view.widgets.values()">
