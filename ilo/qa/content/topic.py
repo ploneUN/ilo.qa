@@ -37,7 +37,7 @@ class ITopic(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-    topic = schema.TextLine(
+    title = schema.TextLine(
            title=_(u"Topic"),
            required=True,
         )
