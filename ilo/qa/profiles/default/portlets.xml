@@ -7,4 +7,10 @@
             title="Add Question Button"
             description=""
     />
+
+<portlet
+            addview="topicbyofficerportlet.portlet"
+            title="Topic By Officer Portlet"
+            description=""
+    />
 </portlets>
