@@ -15,6 +15,4 @@
               <a tal:attributes="href python: brain['path']"><p tal:content="python: brain['title']"></p></a>
             </tal:element>
     </tal:block>
-
-    <a class="button expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.question'" tal:content="python: view.contents().title">Add a Question</a>
 </div>
