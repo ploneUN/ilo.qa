@@ -45,11 +45,12 @@ class bytopic_view(dexterity.DisplayForm):
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='published',sort_on='Date',sort_order='reverse')
         if form:
-            topic = form['topic']
+            topic = form['topic1']
         i = 0
+
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if topic in obj.topic:
+            if topic in self.pledge_id(obj.topic):
                 i = i + 1
                 results.append({'title': brain.Title,
                                 'path':brain.getPath()})
@@ -63,6 +64,15 @@ class bytopic_view(dexterity.DisplayForm):
                     break;
         return results
 
+    def pledge_id(self, uid = None):
+        catalog = self.catalog
+        context = self.context
+        result = ""
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
+        for brain in brains:
+            result = brain.getId
+        return result
 
 
 

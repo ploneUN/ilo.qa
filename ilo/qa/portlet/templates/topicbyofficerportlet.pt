@@ -1,18 +1,30 @@
 <div class="side_viewlet state-sign" tal:condition="python: view.contents().title and context.portal_type == 'ilo.qa.qafacility'">
+
+  <div tal:condition="python: not view.contents1()">
 	<form method='post'>
-    <label>Topic
-      <select name='topic' id='topic' tal:define='val python: view.searchedValue("topic")'>
-        <tal:entry tal:repeat='option  view/topic'>
+    <label>Officer
+      <select name='topicbyofficer' id='topicbyofficer' tal:define='val python: view.searchedValue("topicbyofficer")'>
+        <tal:entry tal:repeat='option  view/officers'>
            <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
-</label>
-<input class="small button" type='submit' value='Generate' />
-</form>
+    </label>
+    <input class="small button" type='submit' value='Generate' />
+    </form>
+  </div>
+
 
  <tal:block tal:define="brains view/contents1">
             <tal:element tal:repeat="brain python: brains" tal:condition="brains">
-              <a tal:attributes="href python: brain['path']"><p tal:content="python: brain['title']"></p></a>
+              <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']+ '&topicbyofficer=' +str(view.searchedValue('topicbyofficer'))"><p tal:content="python: brain['title']"></p></a>
+
+
             </tal:element>
     </tal:block>
+    <br/><br/>
+    <div tal:condition="python: view.contents1()">
+      <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=&topicbyofficer='">
+        <p>Search Another Officer</p>
+      </a>
+    </div>
 </div>

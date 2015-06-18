@@ -18,14 +18,14 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-
  <form method='post'>
     <label>Topic
-      <select name='topic' id='topic' tal:define='val python: view.searchedValue("topic")'>
+      <select name='topic1' id='topic1' tal:define='val python: view.searchedValue("topic1")'>
         <tal:entry tal:repeat='option  view/topic'>
            <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
+      <input type="hidden" name="topicbyofficer1" value="">
 </label>
 <input class="small button" type='submit' value='Generate' />
 </form>
