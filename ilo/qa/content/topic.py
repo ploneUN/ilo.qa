@@ -24,18 +24,32 @@ from collective import dexteritytextindexer
 
 from ilo.qa import MessageFactory as _
 
+from zope.schema import ValidationError
+from Products.CMFDefault.utils import checkEmailAddress
+from Products.CMFDefault.exceptions import EmailAddressInvalid
+
 
 # Interface class; used to define content-type schema.
+
+class InvalidEmailAddress(ValidationError):
+    "Invalid email address"
+
+def validateaddress(value):
+    try:
+        checkEmailAddress(value)
+    except EmailAddressInvalid:
+        raise InvalidEmailAddress(value)
+    return True
 
 class ITopic(form.Schema, IImageScaleTraversable):
     """
     Topic
     """
 
-    topic_id = schema.TextLine(
-           title=_(u"ID"),
-           required=True,
-        )
+    # topic_id = schema.TextLine(
+    #        title=_(u"ID"),
+    #        required=True,
+    #     )
 
     title = schema.TextLine(
            title=_(u"Topic"),
@@ -50,6 +64,7 @@ class ITopic(form.Schema, IImageScaleTraversable):
     officer_email = schema.TextLine(
            title=_(u"Officer Email"),
            required=True,
+           constraint=validateaddress,
         )
 
     pass
