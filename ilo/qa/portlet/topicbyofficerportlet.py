@@ -52,7 +52,7 @@ class Renderer(base.Renderer):
     def catalog(self):
         return getToolByName(self.context, 'portal_catalog')
 
-    def topic(self):
+    def officers(self):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
@@ -78,24 +78,26 @@ class Renderer(base.Renderer):
         request = self.request
         form = request.form
         catalog = self.catalog
-        topic=''
+        officer='None'
         results = []
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published',sort_on='Date',sort_order='reverse')
         if form:
-            topic = form['topic']
+            officer = form['topicbyofficer']
         i = 0
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if topic in obj.officer:
+            if obj.officer in officer :
                 i = i + 1
                 results.append({'title': brain.Title,
+                                'id': brain.getId,
                                 'path':brain.getPath()})
                 if i == 10:
                     break;
-            if topic == 'all':
+            if officer == 'all':
                 i = i + 1
                 results.append({'title': brain.Title,
+                                'id': brain.getId,
                                 'path':brain.getPath()})
                 if i == 10:
                     break;
