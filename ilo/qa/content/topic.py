@@ -88,7 +88,7 @@ def _createObject(context, event):
 
     number = ("%04d") % len(object_Ids)
     if len(object_Ids) > 1000:
-      number = ("%08d") % len(object_Ids)
+      number = len(object_Ids)
     parent.manage_renameObject(id, str(number))
     #exclude from navigation code
     # behavior = IExcludeFromNavigation(context)
