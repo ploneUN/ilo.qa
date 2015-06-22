@@ -31,8 +31,10 @@
           if ($('#topicbyofficer').val() != null){
             topicbyofficer = $('#topicbyofficer').val();
           }
-          window.location = current_URL + '?topic1=' + topic1+ '&topicbyofficer=';
-          alert(window.location);
+          var sURL = current_URL + '?topic1=' + topic1+ '&topicbyofficer=';
+          self.location = sURL;
+         return false;
+         
         });
       });
 </script>
@@ -52,7 +54,7 @@
       </select>
       <input type="hidden" name="topicbyofficer" value="">
 </label>
-<input id='generate' class="small button" type='submit' value='Generate' />
+<button id='generate' class="small button" value='Generate'>Generate</button>
 </form>
      <tal:block tal:define="brains view/contents">
             <tal:element tal:repeat="brain python: brains" tal:condition="brains">
