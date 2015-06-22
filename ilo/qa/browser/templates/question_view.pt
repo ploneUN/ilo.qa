@@ -24,7 +24,16 @@
             <br />
             <div tal:content="structure widget/render" />
         </div>
+
     </tal:block>
+
+    <tal:block>      
+            <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">
+              <a tal:attributes="href python: brain.getPath()"><p tal:content="python: brain._unrestrictedGetObject().answer"></p></a>
+               
+            </tal:element>
+    </tal:block>
+
 
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
