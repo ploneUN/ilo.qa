@@ -1,5 +1,7 @@
 <div class="side_viewlet state-sign" tal:condition="python: view.contents().title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
 
+<h3 tal:content="python:  view.contents().portlet_title"></h3>
+
   <div tal:condition="python: not view.contents1()">
 	<form method='post'>
     <label>Officer
