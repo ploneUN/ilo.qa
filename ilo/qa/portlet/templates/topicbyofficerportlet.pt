@@ -2,7 +2,7 @@
 
 <h3 tal:content="python:  view.contents().portlet_title"></h3>
 
-  <div tal:condition="python: not view.contents1()">
+  <div tal:condition="python: not view.contents1()[0]">
 	<form method='post'>
     <label>Officer
       <select onchange='this.form.submit()' name='topicbyofficer' id='topicbyofficer' tal:define='val python: view.searchedValue("topicbyofficer")'>
@@ -14,14 +14,12 @@
     </form>
   </div>
 
-
- <tal:block tal:define="brains view/contents1">
-            <tal:element tal:repeat="brain python: brains" tal:condition="brains">
-              <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']+ '&topicbyofficer='"><p tal:content="python: brain['title']"></p></a>
-
-
-            </tal:element>
-    </tal:block>
+ <tal:block tal:define="brains python: view.contents1()">
+  <p tal:condition="python: brains[1] and brains[0]" tal:content="python:  'Topics by: '+ view.contents1()[1][0]"></p>
+  <tal:element tal:repeat="brain python: brains[0]" tal:condition="brains">
+    <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']+ '&topicbyofficer='"><p tal:content="python: brain['title']"></p></a>
+   </tal:element>
+  </tal:block>
     <br/><br/>
     <div tal:condition="python: view.contents1()">
       <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=&topicbyofficer='">
