@@ -63,18 +63,30 @@ class bytopic_view(dexterity.DisplayForm):
                                 'path':brain.getPath()})
                 if i == 10:
                     break;
-        return results
+        return (results, self.pledge_title(topic))
 
     def pledge_id(self, uids = None):
         catalog = self.catalog
         context = self.context
         results = []
+       
         path = '/'.join(context.getPhysicalPath())
         for uid in uids:
             brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
             for brain in brains:
                 results.append(brain.getId)
         return results
+
+
+    def pledge_title(self, uid = None):
+        catalog = self.catalog
+        context = self.context
+        title = []
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic', id = uid)
+        for brain in brains:
+            title.append(brain.Title)
+        return title
 
 
 

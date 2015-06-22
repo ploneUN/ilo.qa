@@ -56,8 +56,10 @@
 </label>
 <button id='generate' class="small button" value='Generate'>Generate</button>
 </form>
-     <tal:block tal:define="brains view/contents">
-            <tal:element tal:repeat="brain python: brains" tal:condition="brains">
+<br/>
+     <tal:block tal:define="brains python: view.contents()">  
+      <h2 tal:condition="python: view.contents()[1]" tal:content="python: 'Questions under '+view.contents()[1][0]"></h2>
+            <tal:element tal:repeat="brain python: brains[0]" tal:condition="brains">
               <a tal:attributes="href python: brain['path']"><p tal:content="python: brain['title']"></p></a>
             </tal:element>
     </tal:block>

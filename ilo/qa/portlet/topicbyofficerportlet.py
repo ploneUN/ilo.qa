@@ -56,7 +56,7 @@ class Renderer(base.Renderer):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        results = [{'value':'all', 'name':'All'}]
+        results = [{'value':'all', 'name':''}]
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published',sort_on='Date',sort_order='reverse')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
@@ -101,7 +101,7 @@ class Renderer(base.Renderer):
                                 'path':brain.getPath()})
                 if i == 10:
                     break;
-        return results
+        return (results, officer)
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
