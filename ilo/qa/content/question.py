@@ -26,6 +26,7 @@ from ilo.qa import MessageFactory as _
 
 from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 
 # Interface class; used to define content-type schema.
 
@@ -50,6 +51,8 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     """
     Question
     """
+    form.widget(question=WysiwygFieldWidget)
+    question = schema.Text(title=u"Question")
     # topic = schema.TextLine(
     #        title=_(u"Topic"),
     #        required=True,
