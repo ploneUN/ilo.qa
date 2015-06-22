@@ -22,7 +22,7 @@ class bytopic_view(dexterity.DisplayForm):
         results = [{'value':'all', 'name':'All'}]
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published',sort_on='Date',sort_order='reverse')
         for brain in brains:
-            results.append({'value':brain.UID,
+            results.append({'value':brain.getId,
                             'name':brain.Title})
         return results
 
@@ -50,6 +50,7 @@ class bytopic_view(dexterity.DisplayForm):
 
         for brain in brains:
             obj = brain._unrestrictedGetObject()
+            #import pdb; pdb.set_trace()
             if topic in self.pledge_id(obj.topic):
                 i = i + 1
                 results.append({'title': brain.Title,
@@ -64,15 +65,16 @@ class bytopic_view(dexterity.DisplayForm):
                     break;
         return results
 
-    def pledge_id(self, uid = None):
+    def pledge_id(self, uids = None):
         catalog = self.catalog
         context = self.context
-        result = ""
+        results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
-        for brain in brains:
-            result = brain.getId
-        return result
+        for uid in uids:
+            brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
+            for brain in brains:
+                results.append(brain.getId)
+        return results
 
 
 
