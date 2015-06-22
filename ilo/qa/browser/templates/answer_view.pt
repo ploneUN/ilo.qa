@@ -25,7 +25,7 @@
             <div tal:content="structure widget/render" />
         </div>
     </tal:block>
-
+<a tal:attributes="href python: context.aq_parent.absolute_url()" tal:content="python: 'Go back to the question: ' + context.aq_parent.getId()">Hi</a>
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
         <legend tal:content="group/label" />
