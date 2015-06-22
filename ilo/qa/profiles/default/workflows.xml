@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <property
+    name="title">Contains workflow definitions for your portal</property>
+ <object name="iloquestion_wf" meta_type="Workflow"/>
+ <object name="iloqa_wf" meta_type="Workflow"/>
+ <bindings>
+  <default>
+   <bound-workflow workflow_id="simple_publication_workflow"/>
+  </default>
+  <type type_id="ilo.qa.question">
+   <bound-workflow workflow_id="iloquestion_wf"/>
+  </type>
+  <type type_id="ilo.qa.qafacility">
+   <bound-workflow workflow_id="iloqa_wf"/>
+  </type>
+  <type type_id="ilo.qa.answer">
+   <bound-workflow workflow_id="iloqa_wf"/>
+  </type>
+  <type type_id="ilo.qa.topic">
+   <bound-workflow workflow_id="iloqa_wf"/>
+  </type>
+ </bindings>
+</object>
