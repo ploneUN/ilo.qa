@@ -20,8 +20,8 @@
   <property name="schema">ilo.qa.content.question.IQuestion</property> 
   <property name="klass">plone.dexterity.content.Container</property>
   <property name="behaviors">
-    <!--  <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/> -->
+     <element value="plone.app.content.interfaces.INameFromTitle" />
+     <element value="plone.app.dexterity.behaviors.metadata.IDublinCore"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
     <!--  <element value="plone.multilingualbehavior.interfaces.IDexterityTranslatable"/>
      <element value="plone.app.referenceablebehavior.referenceable.IReferenceable"/>
