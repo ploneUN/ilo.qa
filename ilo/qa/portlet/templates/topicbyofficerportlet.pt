@@ -1,8 +1,8 @@
-<div class="side_viewlet state-sign" tal:define="data view/contents1; contents view/contents" tal:condition="python: contents.title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
+<dl class="portlet" tal:define="data view/contents1; contents view/contents" tal:condition="python: contents.title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
 
-<h3 tal:content="python:  contents.portlet_title"></h3>
+<dt class="portletHeader" tal:content="python:  contents.portlet_title"></dt>
 
-  <div tal:condition="python: not data[0]">
+  <dd class="portletItem lastItem" tal:condition="python: not data[0]">
 	<form method='post'>
     <label>Officer
       <select onchange='this.form.submit()' name='topicbyofficer' id='topicbyofficer' tal:define='val python: view.searchedValue("topicbyofficer")'>
@@ -12,7 +12,7 @@
       </select>
     </label>
     </form>
-  </div>
+  </dd>
 
  <tal:block tal:define="brains data; topic python: brains[1]; officer python: brains[0]">
   <p tal:condition="python: topic and officer and hasattr(topic, 'lower') " tal:content="python:  'Topics by: '+ str((topic))"></p>
@@ -25,18 +25,18 @@
     </a>
   </tal:element>
 
-  <div tal:condition="python: data[0]">
-    <br/>
+  <dd class="portletFooter" tal:condition="python: data[0]">
     <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=&topicbyofficer='">
       <p>Search Another Officer</p>
     </a>
-  </div>
+  </dd>
   </tal:block>
-</div>
+</dl>
 
 
 <div class="side_viewlet state-sign" tal:condition="python: view.contents().title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) == 1">
-  No Officers Yet. 
-  <br/>
-  <a tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
+  <div data-alert class="alert-box info text-center">
+  No Officers Yet.
+</div>
+  <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
 </div>
