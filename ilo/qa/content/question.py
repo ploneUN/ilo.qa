@@ -61,6 +61,16 @@ class IQuestion(form.Schema, IImageScaleTraversable):
         required=False,
         value_type=schema.Choice(source=topics())
     )
+
+    question_creator = schema.TextLine(
+           title=_(u"Question Creator"),
+           required=True,
+        )
+
+    topic_creator = schema.TextLine(
+           title=_(u"Topic Creator"),
+           required=True,
+        )
     pass
 
 alsoProvides(IQuestion, IFormFieldProvider)
