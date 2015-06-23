@@ -2,5 +2,16 @@
 <object name="portal_css" meta_type="Stylesheets Registry">
 
     <!-- -*- extra stuff goes here -*- -->
+    <stylesheet
+        id="++resource++ilo.qa/styles.css"
+        cacheable="True"
+        compression="safe"
+        cookable="True"
+        enabled="1"
+        expression=""
+        media=""
+        rel="stylesheet"
+        rendering="import"
+        insert-after="ploneKss.css" />
 
 </object>
