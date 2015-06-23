@@ -4,7 +4,12 @@
     description="Send Email to Topic Owner"
     enabled="True" event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
     stop-after="False">
-  <conditions/>
+    <conditions>
+            <condition type="plone.conditions.PortalType">
+                <property name="check_types">
+                    <element>ilo.qa.question</element>
+                </property>
+    </condition>
   <actions>
    <action type="collective.easytemplate.actions.Mail">
     <property name="source"/>
