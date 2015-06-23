@@ -42,7 +42,7 @@ class topics(object):
             path = '/'.join(context.getPhysicalPath())
         else:
             path = '/'.join(context.aq_parent.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published')
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()

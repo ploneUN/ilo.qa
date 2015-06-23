@@ -57,7 +57,7 @@ class Renderer(base.Renderer):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = [{'name':''}]
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if not any(d['name'].lower() == obj.officer.lower() for d in results):
