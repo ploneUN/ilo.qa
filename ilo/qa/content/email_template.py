@@ -31,6 +31,11 @@ class IEmailTemplate(form.Schema, IImageScaleTraversable):
     """
     Email Template
     """
+    email_subject = schema.TextLine(
+           title=_(u"Email Subject"),
+           required=True,
+        )
+
     send_to = schema.TextLine(
            title=_(u"Send To"),
            required=True,
