@@ -87,11 +87,14 @@ alsoProvides(IQuestion, IFormFieldProvider)
 def _createObject(context, event):
     catalog = getToolByName(context, 'portal_catalog')
     membership = getToolByName(context, 'portal_membership')
+    topic_creators = []
     if context.topic:
         brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
         for brain in brains:
             if membership.getMemberById(brain.Creator).getProperty('email'):
-                context.topic_creator = membership.getMemberById(brain.Creator).getProperty('email')
+                topic_creators.append(membership.getMemberById(brain.Creator).getProperty('email'))
+    if topic_creators:
+        context.topic_creator = ', '.join(topic_creators)
     
     if membership.getMemberById(context.Creator()).getProperty('email'):
         context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
