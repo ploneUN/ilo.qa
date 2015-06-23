@@ -56,13 +56,12 @@ class Renderer(base.Renderer):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        results = [{'value':'all', 'name':''}]
+        results = [{'name':''}]
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published',sort_on='Date',sort_order='reverse')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if not any(d['name'] == obj.officer for d in results):
-                results.append({'value':obj.officer,
-                                'name':obj.officer})
+            if not any(d['name'].lower() == obj.officer.lower() for d in results):
+                results.append({'name':obj.officer.lower()})
         return results
 
     def searchedValue(self, name=None):
@@ -87,7 +86,7 @@ class Renderer(base.Renderer):
         i = 0
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if obj.officer in officer :
+            if obj.officer.lower() in officer :
                 i = i + 1
                 results.append({'title': brain.Title,
                                 'id': brain.getId,

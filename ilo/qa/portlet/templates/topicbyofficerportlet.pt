@@ -7,7 +7,7 @@
     <label>Officer
       <select onchange='this.form.submit()' name='topicbyofficer' id='topicbyofficer' tal:define='val python: view.searchedValue("topicbyofficer")'>
         <tal:entry tal:repeat='option  view/officers'>
-           <option tal:attributes="selected python: (val == str(option['value'])); value python:option['value'];" tal:content="python: option['name']"></option>
+           <option tal:attributes="selected python: (val == str(option['name'])); value python:option['name'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
     </label>
