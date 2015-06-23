@@ -15,13 +15,13 @@
    <action type="collective.easytemplate.actions.Mail">
     <property name="source"/>
     <property
-       name="message">A site visitor has just submitted a question on your topic. Below are the details of the new signatory.
+       name="message">A site visitor has just submitted a question on your topic. Below are the details of the question.
      
      Name: {{ context.question_creator }}
      Topic: {{ context.topic }}
      Question: {{ context.title }}
      
-     To review the above signature, visit:
+     To review the above question, visit:
      
      {{ context.absolute_url() }}
      
@@ -40,6 +40,64 @@
     <property name="source"/>
     <property
        name="message">This is to confirm that you have posted a question in our portal. You may view your question details from the link below:
+     
+     {{ context.absolute_url() }}
+     
+     We will review your submission and once approved, it will be internally published.
+     
+     If you find that there are errors to your submission, please email afterfive2015@gmail.com
+
+     If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.ilo.org
+     
+     
+     -------------------------
+     ILO Portal
+     http://www.ilo.org</property>
+    <property name="recipients">{{ context.topic_creator }}</property>
+    <property name="subject">Question Received</property>
+   </action>
+  </actions>
+ </rule>
+ <rule name="rule-2" title="Send Email to Questions Owner" cascading="False"
+    description="Send Email to Questions Owner"
+    enabled="True" event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
+    stop-after="False">
+    <conditions>
+            <condition type="plone.conditions.PortalType">
+                <property name="check_types">
+                    <element>ilo.qa.answer</element>
+                </property>
+    </condition>
+    </conditions>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"/>
+    <property
+       name="message">A site visitor has just submitted an answer to your question. Below are the details of the answer.
+     
+     Answer from: {{ context.answer_creator }}
+     Answer: {{ context.answer }}
+     
+     
+     To review the above answer, visit:
+     
+     {{ context.absolute_url() }}
+     
+     To approve the post, click on the link below:
+     
+     {{ context.absolute_url() }}/content_status_modify?workflow_action=internally_publish
+     
+     
+     -------------------------
+     ILO Portal</property>
+    <property name="recipients">{{ context.question_creator }}</property>
+    <property
+       name="subject">Answer Received</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"/>
+    <property
+       name="message">This is to confirm that you have posted an answer in our portal. You may view your answer's details from the link below:
      
      {{ context.absolute_url() }}
      
