@@ -39,6 +39,16 @@ class IAnswer(form.Schema, IImageScaleTraversable):
     form.widget(answer=WysiwygFieldWidget)
     answer = schema.Text(title=u"Answer")
 
+    question_creator = schema.TextLine(
+           title=_(u"Question Creator"),
+           required=True,
+        )
+
+    answer_creator = schema.TextLine(
+           title=_(u"Answer Creator"),
+           required=True,
+        )
+
     pass
 
 alsoProvides(IAnswer, IFormFieldProvider)
