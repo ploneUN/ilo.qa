@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<contentrules>
+ <rule name="rule-1" title="Send Email to Topic Owner" cascading="False"
+    description="Send Email to Topic Owner"
+    enabled="True" event="zope.lifecycleevent.interfaces.IObjectAddedEvent"
+    stop-after="False">
+  <conditions/>
+  <actions>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"/>
+    <property
+       name="message">A site visitor has just submitted a question on your topic. Below are the details of the new signatory.
+     
+     Name: {{ context.question_creator }}
+     Topic: {{ context.topic }}
+     Question: {{ context.title }}
+     
+     To review the above signature, visit:
+     
+     {{ context.absolute_url() }}
+     
+     To approve the post, click on the link below:
+     
+     {{ context.absolute_url() }}/content_status_modify?workflow_action=internally_publish
+     
+     
+     -------------------------
+     ILO Portal</property>
+    <property name="recipients">{{ context.question_creator }}</property>
+    <property
+       name="subject">Question Received</property>
+   </action>
+   <action type="collective.easytemplate.actions.Mail">
+    <property name="source"/>
+    <property
+       name="message">This is to confirm that you have posted a question in our portal. You may view your question details from the link below:
+     
+     {{ context.absolute_url() }}
+     
+     We will review your submission and once approved, it will be internally published.
+     
+     If you find that there are errors to your submission, please email afterfive2015@gmail.com
+
+     If you would like us to keep you up-to-date with the latest information, please sign up for our newsletter at www.ilo.org
+     
+     
+     -------------------------
+     ILO Portal
+     http://www.ilo.org</property>
+    <property name="recipients">{{ context.topic_creator }}</property>
+    <property name="subject">Question Received</property>
+   </action>
+  </actions>
+ </rule>
+</contentrules>
