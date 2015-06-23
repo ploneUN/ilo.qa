@@ -26,6 +26,9 @@ from ilo.qa import MessageFactory as _
 
 from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
+from zope.app.container.interfaces import IObjectAddedEvent
+
 
 # Interface class; used to define content-type schema.
 
@@ -61,16 +64,37 @@ class IQuestion(form.Schema, IImageScaleTraversable):
         required=False,
         value_type=schema.Choice(source=topics())
     )
-
+    
+    dexteritytextindexer.searchable('question_creator')
+    form.mode(question_creator='hidden')
     question_creator = schema.TextLine(
            title=_(u"Question Creator"),
-           required=True,
+           required=False,
         )
 
+    dexteritytextindexer.searchable('topic_creator')
+    form.mode(topic_creator='hidden')
     topic_creator = schema.TextLine(
            title=_(u"Topic Creator"),
-           required=True,
+           required=False,
         )
     pass
 
 alsoProvides(IQuestion, IFormFieldProvider)
+
+
+@grok.subscribe(IQuestion, IObjectAddedEvent)
+def _createObject(context, event):
+    catalog = getToolByName(context, 'portal_catalog')
+    membership = getToolByName(context, 'portal_membership')
+    if context.topic:
+        brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
+        for brain in brains:
+            if membership.getMemberById(brain.Creator).getProperty('email'):
+                context.topic_creator = membership.getMemberById(brain.Creator).getProperty('email')
+    
+    if membership.getMemberById(context.Creator()).getProperty('email'):
+        context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
+        
+    context.reindexObject()
+    return

@@ -27,6 +27,7 @@ from ilo.qa import MessageFactory as _
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
+from z3c.form.interfaces import IEditForm, IAddForm
 
 
 # Interface class; used to define content-type schema.
@@ -35,18 +36,23 @@ class IAnswer(form.Schema, IImageScaleTraversable):
     """
     Answer
     """
-
+    
+    dexteritytextindexer.searchable('answer')
     form.widget(answer=WysiwygFieldWidget)
     answer = schema.Text(title=u"Answer")
-
+    
+    dexteritytextindexer.searchable('question_creator')
+    form.mode(question_creator='hidden')
     question_creator = schema.TextLine(
            title=_(u"Question Creator"),
-           required=True,
+           required=False,
         )
 
+    dexteritytextindexer.searchable('answer_creator')
+    form.mode(answer_creator='hidden')
     answer_creator = schema.TextLine(
            title=_(u"Answer Creator"),
-           required=True,
+           required=False,
         )
 
     pass
@@ -59,6 +65,15 @@ def _createObject(context, event):
     id = context.getId()
     object_Ids = []
     catalog = getToolByName(context, 'portal_catalog')
+    membership = getToolByName(context, 'portal_membership')
+    if parent.portal_type == 'ilo.qa.question':
+        creator = parent.Creator()
+        if membership.getMemberById(creator).getProperty('email'):
+            context.question_creator = membership.getMemberById(creator).getProperty('email')
+    if membership.getMemberById(context.Creator()).getProperty('email'):
+        context.answer_creator = membership.getMemberById(context.Creator()).getProperty('email')
+    
+    
     path = '/'.join(context.aq_parent.getPhysicalPath())
     brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.answer')
     for brain in brains:
