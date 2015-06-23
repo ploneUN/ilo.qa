@@ -6,7 +6,7 @@
  <permission>View</permission>
  <permission>Copy or Move</permission>
  <state state_id="draft" title="Draft">
-  <exit-transition transition_id="internally_published"/>
+  <exit-transition transition_id="internally_publish"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>
