@@ -26,7 +26,7 @@
   </tal:element>
 
   <dd class="portletFooter" tal:condition="python: data[0]">
-    <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=&topicbyofficer='">
+    <a class="button expand" tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=&topicbyofficer='">
       <p>Search Another Officer</p>
     </a>
   </dd>
