@@ -24,7 +24,7 @@
         var current_URL = $("span#current").html()+'/bytopic_view';
 
         var topic1 ='';
-        $("#generate").click(function(){
+        $("form").submit(function(){
           if ($('#topic1').val() != null){
             topic1 = $('#topic1').val();
           }
@@ -39,7 +39,7 @@
       });
 </script>
 </metal:javascript_head>
-
+  
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
@@ -47,14 +47,14 @@
  <form method='post'>
   <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
     <label>Topic
-      <select name='topic1' id='topic1' >
+      <select onchange='this.form.submit()' name='topic1' id='topic1' >
         <tal:entry tal:repeat='option  view/topic'>
            <option tal:attributes="value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
       <input type="hidden" name="topicbyofficer" value="">
 </label>
-<button id='generate' class="small button" value='Generate'>Generate</button>
+
 </form>
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
