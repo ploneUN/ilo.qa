@@ -35,6 +35,7 @@ setup(name='ilo.qa',
 #          'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
           'collective.setuphelpers',
+          'collective.easytemplate',
           # -*- Extra requirements: -*-
       ],
       extras_require={
