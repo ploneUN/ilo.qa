@@ -53,7 +53,7 @@
   </permission-map>
  </state>
  <transition transition_id="internally_publish" title="Internally Publish" new_state="internally_published" trigger="USER" before_script="" after_script="">
-  <action url="%(content_url)s/content_status_modify?workflow_action=publish" category="workflow" icon="">Publish</action>
+  <action url="%(content_url)s/content_status_modify?workflow_action=internally_publish" category="workflow" icon="">Internally Publish</action>
   <guard>
    <guard-permission>Review portal content</guard-permission>
   </guard>
