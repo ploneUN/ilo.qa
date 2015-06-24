@@ -53,7 +53,7 @@
      -------------------------
      ILO Portal
      http://www.ilo.org</property>
-    <property name="recipients">{{ context.topic_creator }}</property>
+    <property name="recipients">{{ context.topic_officer }}</property>
     <property name="subject">Question Received</property>
    </action>
   </actions>
