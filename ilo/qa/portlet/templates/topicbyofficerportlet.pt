@@ -1,7 +1,7 @@
-<dl class="portlet" tal:define="data view/contents1; contents view/contents" tal:condition="python: contents.title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
+<div tal:define="data view/contents1; contents view/contents" tal:condition="python: '/view' in data[2].URL or '/bytopic_view' in data[2].URL ">
 
+<dl class="portlet"  tal:condition="python: contents.title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
 <dt class="portletHeader" tal:content="python:  contents.portlet_title"></dt>
-
   <dd class="portletItem lastItem" tal:condition="python: not data[0]">
 	<form method='post'>
     <label>Officer
@@ -18,8 +18,6 @@
   <br/>
   <p tal:condition="python: topic and officer and hasattr(topic, 'lower') " tal:content="python:  'Topics by: '+ str((topic))"></p>
   <p tal:condition="python: topic and officer and not hasattr(topic, 'lower') " tal:content="python:  'Topics by: '+ str((topic[0]))"></p>
-
-
   <tal:element tal:repeat="brain python: officer" tal:condition="brains">
     <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']+ '&topicbyofficer='">
       <p tal:content="python: brain['title']"></p>
@@ -37,4 +35,6 @@
   No Officers Yet.
 </div>
   <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
+</div>
+
 </div>
