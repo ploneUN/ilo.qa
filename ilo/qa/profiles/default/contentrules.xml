@@ -112,7 +112,7 @@
      ILO Portal
      http://www.ilo.org</property>
     <property name="recipients">{{ context.answer_creator }}</property>
-    <property name="subject">Question Received</property>
+    <property name="subject">Answer Received</property>
    </action>
   </actions>
  </rule>
