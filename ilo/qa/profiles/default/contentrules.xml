@@ -18,7 +18,7 @@
        name="message">A site visitor has just submitted a question on your topic. Below are the details of the question.
      
      Name: {{ context.question_creator }}
-     Topic: {{ context.topic }}
+     Topic: {{ context.topics_str }}
      Question: {{ context.title }}
      
      To review the above question, visit:
