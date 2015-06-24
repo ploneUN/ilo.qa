@@ -16,13 +16,13 @@
 </tal:comment>
 <metal:styleslot fill-slot="style_slot">
       <style type="text/css">
-            div#content-core div:nth-child(2){
+            div#content-core div.field:nth-child(2){
                   display: none;
             }
-            div#content-core div:nth-child(3){
+            div#content-core div.field:nth-child(3){
                   display: none;
             }
-            div#content-core div:nth-child(4){
+            div#content-core div.field:nth-child(4){
                   display: none;
             }
       </style>
