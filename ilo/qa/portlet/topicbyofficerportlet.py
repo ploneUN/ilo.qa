@@ -80,7 +80,7 @@ class Renderer(base.Renderer):
         officer='None'
         results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
         if form:
             officer = form['topicbyofficer']
         i = 0
