@@ -115,3 +115,18 @@ def _createObject(context, event):
     
     context.reindexObject()
     return
+
+@grok.subscribe(IQuestion, IObjectModifiedEvent)
+def _modifyObject(context, event):
+    catalog = getToolByName(context, 'portal_catalog')
+    topic_officer = []
+    topics = []
+    if context.topic:
+        brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
+        for brain in brains:
+            topic_officer.append(brain._unrestrictedGetObject().officer_email)
+            topics.append(brain.Title)
+    if topic_officer:
+        context.topic_officer = ','.join(topic_officer)
+    context.reindexObject()
+    return
