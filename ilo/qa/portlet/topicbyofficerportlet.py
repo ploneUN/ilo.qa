@@ -100,7 +100,7 @@ class Renderer(base.Renderer):
                                 'path':brain.getPath()})
                 if i == 10:
                     break;
-        return (results, officer)
+        return (results, officer, request)
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
