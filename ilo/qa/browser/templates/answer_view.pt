@@ -15,6 +15,17 @@
     if needed.
 </tal:comment>
 
+<metal:styleslot fill-slot="style_slot">
+      <style type="text/css">
+            div#content-core div.field:nth-child(2){
+                  display: none;
+            }
+            div#content-core div.field:nth-child(3){
+                  display: none;
+            }
+      </style>
+</metal:styleslot>
+
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
