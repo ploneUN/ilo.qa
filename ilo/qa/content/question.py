@@ -72,12 +72,19 @@ class IQuestion(form.Schema, IImageScaleTraversable):
            required=False,
         )
 
-    dexteritytextindexer.searchable('topic_creator')
-    form.mode(topic_creator='hidden')
-    topic_creator = schema.TextLine(
+    dexteritytextindexer.searchable('topic_officer')
+    form.mode(topic_officer='hidden')
+    topic_officer = schema.TextLine(
            title=_(u"Topic Creator"),
            required=False,
         )
+    
+    dexteritytextindexer.searchable('topics_str')
+    form.mode(topics_str='hidden')
+    topics_str = schema.TextLine(
+        title = _(u"Topics"),
+        required = False,
+    )
     pass
 
 alsoProvides(IQuestion, IFormFieldProvider)
@@ -87,17 +94,24 @@ alsoProvides(IQuestion, IFormFieldProvider)
 def _createObject(context, event):
     catalog = getToolByName(context, 'portal_catalog')
     membership = getToolByName(context, 'portal_membership')
-    topic_creators = []
+    topic_officer = []
+    topics = []
     if context.topic:
+        
         brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
         for brain in brains:
-            if membership.getMemberById(brain.Creator).getProperty('email'):
-                topic_creators.append(membership.getMemberById(brain.Creator).getProperty('email'))
-    if topic_creators:
-        context.topic_creator = ','.join(topic_creators)
+            #if membership.getMemberById(brain.Creator).getProperty('email'):
+            #    topic_officer.append(membership.getMemberById(brain.Creator).getProperty('email'))
+            topic_officer.append(brain._unrestrictedGetObject().officer_email)
+            topics.append(brain.Title)
+    if topic_officer:
+        context.topic_officer = ','.join(topic_officer)
     
     if membership.getMemberById(context.Creator()).getProperty('email'):
         context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
         
+    if topics:
+        context.topics_str = '\n'.join(topics)
+    
     context.reindexObject()
     return
