@@ -94,7 +94,7 @@ def _createObject(context, event):
             if membership.getMemberById(brain.Creator).getProperty('email'):
                 topic_creators.append(membership.getMemberById(brain.Creator).getProperty('email'))
     if topic_creators:
-        context.topic_creator = ', '.join(topic_creators)
+        context.topic_creator = ','.join(topic_creators)
     
     if membership.getMemberById(context.Creator()).getProperty('email'):
         context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
