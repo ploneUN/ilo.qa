@@ -24,7 +24,7 @@
         var current_URL = $("span#current").html()+'/bytopic_view';
 
         var topic1 ='';
-        $("form").submit(function(){
+         $("#generate").click(function(){
           if ($('#topic1').val() != null){
             topic1 = $('#topic1').val();
           }
@@ -47,7 +47,7 @@
  <form method='post'>
   <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
     <label>Topic
-      <select onchange='this.form.submit()' name='topic1' id='topic1' >
+      <select name='topic1' id='topic1' >
         <tal:entry tal:repeat='option  view/topic'>
            <option tal:attributes="value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
@@ -55,6 +55,7 @@
       <input type="hidden" name="topicbyofficer" value="">
 </label>
 
+<button id='generate' class="small button" value='Generate'>Generate</button>
 </form>
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
