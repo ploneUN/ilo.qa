@@ -31,7 +31,7 @@ class Assignment(base.Assignment):
        
     @property
     def title(self):
-        return "Add Selfie"
+        return "Add Question Portlet"
     
 
 class Renderer(base.Renderer):
