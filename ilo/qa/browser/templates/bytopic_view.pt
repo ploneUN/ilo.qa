@@ -28,10 +28,8 @@
           if ($('#topic1').val() != null){
             topic1 = $('#topic1').val();
           }
-          if ($('#topicbyofficer').val() != null){
-            topicbyofficer = $('#topicbyofficer').val();
-          }
-          var sURL = current_URL + '?topic1=' + topic1+ '&topicbyofficer=';
+
+          var sURL = current_URL + '?topic1=' + topic1;
           self.location = sURL;
          return false;
          
@@ -52,9 +50,7 @@
            <option tal:attributes="value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
-      <input type="hidden" name="topicbyofficer" value="">
 </label>
-
 <button id='generate' class="small button" value='Generate'>Generate</button>
 </form>
 <br/>
@@ -65,30 +61,11 @@
             </tal:element>
     </tal:block>
 
-   <!--  <tal:block repeat="widget python: view.widgets.values()">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </tal:block>
-
-    <fieldset tal:repeat="group view/groups"
-              tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
-        <legend tal:content="group/label" />
-        <div class="field" tal:repeat="widget group/widgets/values">
-            <label tal:content="widget/label" />
-            <br />
-            <div tal:content="structure widget/render" />
-        </div>
-    </fieldset>
-
-    <fieldset id="folder-listing">
-        <legend>Contents</legend>
-        <tal:block define="listing_macro context/folder_listing/macros/listing">
-            <metal:use_macro use-macro="listing_macro" />
-        </tal:block>
-    </fieldset> -->
+  <div tal:condition="python: not view.contents()[0]">
+    <div data-alert class="alert-box info text-center">
+      No Questions Yet.
+    </div>
+  </div>
 
   </metal:content-core>
 </metal:main>
