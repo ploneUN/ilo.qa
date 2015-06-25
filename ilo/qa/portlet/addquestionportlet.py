@@ -31,7 +31,7 @@ class Assignment(base.Assignment):
        
     @property
     def title(self):
-        return "Add Question Portlet"
+        return "Add Question Button Portlet"
     
 
 class Renderer(base.Renderer):
