@@ -57,14 +57,14 @@ class Renderer(base.Renderer):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if not any(d['name'].lower() == obj.officer.lower() for d in results):
                 results.append({'name':obj.officer,
                                 'officer_email': obj.officer_email,
                                 'data': self.contents1(obj.officer.lower())['topics']})
-        return results
+        return sorted(results)
 
     def contents1(self, officer=None):
         context = self.context
@@ -74,15 +74,11 @@ class Renderer(base.Renderer):
         results = []
         path = '/'.join(context.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
-        i = 0
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.officer.lower() in officer :
-                i = i + 1
                 results.append({'title': brain.Title,
                                 'id': brain.getId,})
-                if i == 10:
-                    break;
         return {'topics': results}
 
     # def officers(self):
