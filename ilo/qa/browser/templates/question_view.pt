@@ -42,7 +42,7 @@
 
     <tal:block>      
             <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">
-              <a tal:attributes="href python: brain.getPath()"><p tal:content="python: brain._unrestrictedGetObject().answer"></p></a>
+              <a tal:attributes="href python: brain.getPath()"><p tal:content="structure python: brain._unrestrictedGetObject().answer"></p></a>
                
             </tal:element>
     </tal:block>
