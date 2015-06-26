@@ -51,7 +51,7 @@
         </tal:entry>
       </select>
 </label>
-<br><br><button id='generate' class="small button" value='Generate'>Generate</button>
+<button id='generate' class="small button" value='Generate'>Generate</button>
 </form>
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
