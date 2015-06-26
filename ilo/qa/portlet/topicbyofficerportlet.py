@@ -10,6 +10,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.CMFCore.utils import getToolByName
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 from Products.CMFCore.utils import getToolByName
+from operator import itemgetter
 
 
 grok.templatedir('templates')
@@ -57,14 +58,23 @@ class Renderer(base.Renderer):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
+        general_officer = []
+        gen_officer = 'General Officer'
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if not any(d['name'].lower() == obj.officer.lower() for d in results):
-                results.append({'name':obj.officer,
+            if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
+                results.append({'name':obj.officer.lower(),
                                 'officer_email': obj.officer_email,
                                 'data': self.contents1(obj.officer.lower())['topics']})
-        return sorted(results)
+            if obj.officer.lower() == gen_officer.lower():
+                general_officer.append({'name':obj.officer,
+                                'officer_email': obj.officer_email,
+                                'title': brain.Title,
+                                'id': brain.getId,})
+
+        return {'data': sorted(results, key=itemgetter('name')), 
+                'general_officer': general_officer}
 
     def contents1(self, officer=None):
         context = self.context
