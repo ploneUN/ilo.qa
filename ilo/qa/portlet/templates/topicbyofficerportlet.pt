@@ -4,11 +4,8 @@
 
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
       <ul class="tbo-listing">
-        <li class="tbo-title">
-  	<strong><span tal:content="python:brain['name'].title()" /></strong> <br>
-  	Email: <span tal:content="python:brain['officer_email']" />
-<hr>
-        </li>
+        <li class="tbo-title"><span tal:content="python:brain['name'].title()" /></li>
+	<li class="tbo-email"><span>Email:</span> <span tal:content="python:brain['officer_email']" /></li>
         <li>
   	<ul>
   	  <li tal:repeat="data python:brain['data']">

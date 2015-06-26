@@ -3,11 +3,22 @@
   list-style: circle;
   padding-left: 20px;
 }
-.tbo-title{
+.tbo-title,
+.tbo-email{
   font-weight: bold;
 }
-.tbo-title span:nth-child(2){
-  color: #427597;
+.tbo-email{
+  border-bottom: 1px solid #F2F1F0;
+  margin-bottom: 5px;
+}
+.tbo-email:after{
+  content: " ";
+  display: block;
+  border-top: 1px solid #ccc;
+  margin-top: 5px;
+}
+.tbo-email span:nth-child(2){
+  color: #205c90;
 }
 
 .alert-box {
