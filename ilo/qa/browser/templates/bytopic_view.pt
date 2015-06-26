@@ -50,8 +50,8 @@
            <option tal:attributes="value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
-</label><br>
-<button id='generate' class="small button" value='Generate'>Generate</button>
+</label>
+<br><br><button id='generate' class="small button" value='Generate'>Generate</button>
 </form>
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
