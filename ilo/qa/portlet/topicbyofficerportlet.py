@@ -62,6 +62,7 @@ class Renderer(base.Renderer):
             obj = brain._unrestrictedGetObject()
             if not any(d['name'].lower() == obj.officer.lower() for d in results):
                 results.append({'name':obj.officer,
+                                'officer_email': obj.officer_email,
                                 'data': self.contents1(obj.officer.lower())['topics']})
         return results
 

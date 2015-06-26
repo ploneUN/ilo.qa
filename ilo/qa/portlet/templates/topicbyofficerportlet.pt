@@ -2,12 +2,11 @@
   <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 
   <p tal:repeat="brain brains" tal:condition="brains"><br/>
-  <element tal:content="python:brain['name'].title()"></element>
+  <element tal:content="python:brain['name'].title()"></element> - <element tal:content="python:brain['officer_email']"></element>
   <element tal:repeat="data python:brain['data']"><br/>
-  <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']">
-  </a>
+    <li><a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']">
+    </a></li>
   </element>
-
 </p>
 <div class="side_viewlet state-sign" tal:condition="python: not view.officers_contents()">
   <div data-alert class="alert-box info text-center">
