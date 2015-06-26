@@ -1,22 +1,28 @@
-<div tal:condition="python: context.portal_type == 'ilo.qa.qafacility'">
-  <div class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents() " tal:condition="python: '/view' in url or '/bytopic_view' in url ">
+<dl class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents() " tal:condition="python: '/view' in url or '/bytopic_view' in url">
   <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 
-  <p tal:repeat="brain brains" tal:condition="brains"><br/>
-  <element tal:content="python:brain['name'].title()"></element> - <element tal:content="python:brain['officer_email']"></element>
-  <element tal:repeat="data python:brain['data']"><br/>
-    <li><a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']">
-    </a></li>
-  </element>
-</p>
-<div class="side_viewlet state-sign" tal:condition="python: not view.officers_contents()">
-  <div data-alert class="alert-box info text-center">
-  No Officers Yet.
-  </div>
-  <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
-</div>
-</div>
-</div>
+  <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
+    <ul class="tbo-listing">
+      <li class="tbo-title">
+	<span tal:content="python:brain['name'].title()" /> -
+	<span tal:content="python:brain['officer_email']" />
+      </li>
+      <li>
+	<ul>
+	  <li tal:repeat="data python:brain['data']">
+	    <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" />
+	  </li>
+	</ul>
+      </li>
+    </ul>
+  </dd>
+  <dd class="portletItem" tal:condition="python: not view.officers_contents()">
+    <div data-alert class="alert-box info text-center">
+    No Officers Yet.
+    </div>
+    <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
+  </dd>
+</dl>
 
 <!-- <div tal:define="data view/contents1; contents view/contents" tal:condition="python: '/view' in data[2].URL or '/bytopic_view' in data[2].URL ">
 
