@@ -1,13 +1,28 @@
 <div tal:condition="python: context.portal_type == 'ilo.qa.qafacility'">
-  <dl class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents() " tal:condition="python: '/view' in url or '/bytopic_view' in url">
+  <dl class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents()['data']; general_officer python: view.officers_contents()['general_officer']" tal:condition="python: '/view' in url or '/bytopic_view' in url">
     <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 
+<!-- General Officer -->
+<div tal:condition="general_officer">
+  <ul class="tbo-listing">
+    <li class="tbo-title">
+       <strong><span>General Officer<span></strong> <br>
+       Email: <span tal:content="python: general_officer[0]['officer_email']"/>
+    </li>
+    <dd class="portletItem" tal:repeat="brain general_officer">
+      <li>
+        <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']" tal:content="python: brain['title']" />
+      </li>
+    </dd>
+  <ul>
+</div>
+<!-- Officers -->
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
       <ul class="tbo-listing">
         <li class="tbo-title">
   	<strong><span tal:content="python:brain['name'].title()" /></strong> <br>
   	Email: <span tal:content="python:brain['officer_email']" />
-<hr>
+    <hr>
         </li>
         <li>
   	<ul>
@@ -18,7 +33,7 @@
         </li>
       </ul>
     </dd>
-    <dd class="portletItem" tal:condition="python: not view.officers_contents()">
+    <dd class="portletItem" tal:condition="python: not view.officers_contents()['data']">
       <div data-alert class="alert-box info text-center">
       No Officers Yet.
       </div>
