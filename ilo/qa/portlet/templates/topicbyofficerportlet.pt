@@ -1,4 +1,5 @@
-<div class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents() " tal:condition="python: '/view' in url or '/bytopic_view' in url">
+<div tal:condition="python: context.portal_type == 'ilo.qa.qafacility'">
+  <div class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents() " tal:condition="python: '/view' in url or '/bytopic_view' in url ">
   <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 
   <p tal:repeat="brain brains" tal:condition="brains"><br/>
@@ -13,6 +14,7 @@
   No Officers Yet.
   </div>
   <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
+</div>
 </div>
 </div>
 
