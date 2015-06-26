@@ -1,3 +1,15 @@
+.tbo-listing{}
+.tbo-listing > li > ul{
+  list-style: circle;
+  padding-left: 20px;
+}
+.tbo-title{
+  font-weight: bold;
+}
+.tbo-title span:nth-child(2){
+  color: #427597;
+}
+
 .alert-box {
   border-style: solid;
   border-width: 1px;
