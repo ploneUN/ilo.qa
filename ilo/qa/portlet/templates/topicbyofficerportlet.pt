@@ -5,13 +5,17 @@
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
       <ul class="tbo-listing">
         <li class="tbo-title"><span tal:content="python:brain['name'].title()" /></li>
+<<<<<<< HEAD
 	<li class="tbo-email"><span>Email:</span> <span tal:content="python:brain['officer_email']" /></li>
+=======
+  <li class="tbo-email"><span>Email:</span> <span tal:content="python:brain['officer_email']" /></li>
+>>>>>>> upstream/master
         <li>
-  	<ul>
-  	  <li tal:repeat="data python:brain['data']">
-  	    <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" />
-  	  </li>
-  	</ul>
+    <ul>
+      <li tal:repeat="data python:brain['data']">
+        <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" />
+      </li>
+    </ul>
         </li>
       </ul>
     </dd>
@@ -29,7 +33,7 @@
 <dl class="portlet"  tal:condition="python: contents.title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
 <dt class="portletHeader" tal:content="python:  contents.portlet_title"></dt>
   <dd class="portletItem lastItem" tal:condition="python: not data[0]">
-	<form method='post'>
+  <form method='post'>
     <label>Officer
       <select onchange='this.form.submit()' name='topicbyofficer' id='topicbyofficer' tal:define='val python: view.searchedValue("topicbyofficer")'>
         <tal:entry tal:repeat='option  view/officers'>
