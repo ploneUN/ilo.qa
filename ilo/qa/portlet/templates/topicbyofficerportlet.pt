@@ -4,7 +4,7 @@
   <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
     <ul>
       <li>
-	<span tal:content="python:brain['name'].title()" />
+	<span tal:content="python:brain['name'].title()" /> -
 	<span tal:content="python:brain['officer_email']" />
       </li>
       <li tal:repeat="data python:brain['data']">
