@@ -7,6 +7,7 @@
         <li class="tbo-title">
   	<strong><span tal:content="python:brain['name'].title()" /></strong> <br>
   	Email: <span tal:content="python:brain['officer_email']" />
+<hr>
         </li>
         <li>
   	<ul>
