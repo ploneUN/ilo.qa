@@ -42,7 +42,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
- <form method='post'>
+<!--  <form method='post'>
   <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
     <label>Topic
       <select name='topic1' id='topic1' >
@@ -52,7 +52,7 @@
       </select>
 </label>
 <button id='generate' class="small button" value='Generate'>Generate</button>
-</form>
+</form> -->
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
       <h2 tal:condition="python: view.contents()[1]" tal:content="python: 'Questions under '+view.contents()[1][0]"></h2>
