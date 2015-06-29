@@ -28,6 +28,7 @@ from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
+from plone.i18n.normalizer import idnormalizer
 
 
 # Interface class; used to define content-type schema.
@@ -96,6 +97,12 @@ class IQuestion(form.Schema, IImageScaleTraversable):
 
 alsoProvides(IQuestion, IFormFieldProvider)
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except Exception:
+        return False
 
 @grok.subscribe(IQuestion, IObjectAddedEvent)
 def _createObject(context, event):
@@ -103,6 +110,8 @@ def _createObject(context, event):
     membership = getToolByName(context, 'portal_membership')
     topic_officer = []
     topics = []
+    parent = context.aq_parent
+    id = context.getId()
     if context.topic:
         
         brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
@@ -119,6 +128,31 @@ def _createObject(context, event):
         
     if topics:
         context.topics_str = '\n'.join(topics)
+        
+    
+    object_ids = context.aq_parent.objectIds()
+    title = idnormalizer.normalize(context.Title())
+    
+    if title in object_ids:
+        id_num = []
+        
+        for ids in object_ids:
+            if ids.startswith(title):
+                val = ids.replace(title, '').split('-')
+                if is_number(val[-1]):
+                    id_num.append(int(val[-1]))
+        
+        if id_num:
+            parent.manage_renameObject(id, title+'-'+str(max(id_num)+1))
+        else:
+            parent.manage_renameObject(id, title+'-1')
+    
+    else:
+        
+        parent.manage_renameObject(id, title)
+                    
+                
+                
     
     context.reindexObject()
     return
