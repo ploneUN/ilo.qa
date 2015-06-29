@@ -58,6 +58,13 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     #        required=True,
     #     )
     # topic = schema.Choice(title = u"Topic",source=topics(), required=True)
+
+    title = schema.TextLine(
+           title=_(u"Question Title"),
+           required=True,
+        )
+
+
     form.widget(topic=CheckBoxFieldWidget)
     topic = schema.List(
         title=u'Topic',
