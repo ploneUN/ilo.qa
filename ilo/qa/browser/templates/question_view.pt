@@ -42,7 +42,14 @@
 
     <tal:block>      
             <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">
-              <a tal:attributes="href python: brain.getPath()"><p tal:content="structure python: brain._unrestrictedGetObject().answer"></p></a>
+              <a tal:attributes="href python: brain.getPath()" tal:define="answer python: brain._unrestrictedGetObject().answer">
+                  <tal:if tal:condition="python: len(answer) < 30">
+                        <p tal:content="structure answer"></p>
+                  </tal:if>
+                  <tal:if tal:condition="python: len(answer) >= 30">
+                        <tal:block tal:content="structure python: answer[:29]+' ...'"></tal:block>
+                  </tal:if>
+              </a>
                
             </tal:element>
     </tal:block>
