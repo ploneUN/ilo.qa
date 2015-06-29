@@ -6,10 +6,10 @@ from Products.CMFCore.utils import getToolByName
 
 grok.templatedir('templates')
 
-class bytopic_view(dexterity.DisplayForm):
+class bytopicall_view(dexterity.DisplayForm):
     grok.context(IQAFacility)
     grok.require('zope2.View')
-    grok.template('bytopic_view')
+    grok.template('bytopicall_view')
 
     @property
     def catalog(self):
@@ -52,17 +52,12 @@ class bytopic_view(dexterity.DisplayForm):
             obj = brain._unrestrictedGetObject()
             #import pdb; pdb.set_trace()
             if topic in self.pledge_id(obj.topic):
-                i = i + 1
+              
                 results.append({'title': brain.Title,
                                 'path':brain.getPath()})
-                if i == 11:
-                    break;
             if topic == 'all':
-                i = i + 1
                 results.append({'title': brain.Title,
                                 'path':brain.getPath()})
-                if i == 11:
-                    break;
         return (results, self.pledge_title(topic))
 
     def pledge_id(self, uids = None):
