@@ -83,12 +83,19 @@ def _createObject(context, event):
     catalog = getToolByName(context, 'portal_catalog')
     path = '/'.join(context.aq_parent.getPhysicalPath())
     brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic')
-    for brain in brains:
-        object_Ids.append(brain.id)
 
-    number = ("%04d") % len(object_Ids)
-    if len(object_Ids) > 1000:
-      number = len(object_Ids)
+    for brain in brains:
+        if brain.id != context.id:
+            object_Ids.append(brain.id)
+
+    if object_Ids:
+        id_number = int(max(object_Ids)) + 1
+        number = '%04d' % id_number
+        if len(object_Ids) > 9999:
+            number = id_number
+    else:
+        number = '0001'
+    # setattr(context, 'title', str(number))
     parent.manage_renameObject(id, str(number))
     #exclude from navigation code
     # behavior = IExcludeFromNavigation(context)
