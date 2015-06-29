@@ -40,7 +40,7 @@
 
     </tal:block>
 
-<a class="button" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+<a style="float:left;" class="button" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
 
     <tal:block>      
             <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">
