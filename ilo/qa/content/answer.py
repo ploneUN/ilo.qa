@@ -59,6 +59,13 @@ class IAnswer(form.Schema, IImageScaleTraversable):
 
 alsoProvides(IAnswer, IFormFieldProvider)
 
+def is_number(s):
+    try:
+        float(s)
+        return True
+    except Exception:
+        return False
+
 @grok.subscribe(IAnswer, IObjectAddedEvent)
 def _createObject(context, event):
     parent = context.aq_parent
@@ -77,11 +84,35 @@ def _createObject(context, event):
     path = '/'.join(context.aq_parent.getPhysicalPath())
     brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.answer')
     for brain in brains:
-        object_Ids.append(brain.id)
+        if brain.id != context.id and (brain.id).startswith('ans-'):
+            object_Ids.append(brain.id)
 
-    number = ("%04d") % len(object_Ids)
-    if len(object_Ids) > 1000:
-      number = len(object_Ids)
+    num_ids = []
+    context_title = ''
+    if object_Ids:
+        for num in object_Ids:
+            if '-' in num:
+                val = num.split('-')
+                if len(val) == 2:
+                    if is_number(val[1]):
+                        num_ids.append(int(val[1]))
+        if num_ids:
+            number = max(num_ids) + 1
+            context_title = 'ANS - %04d' % number
+            number = 'ans-%04d' % number
+    else:
+        number = 'ans-0001'
+        context_title = 'ANS - 0001'
+    
+    
+    #number = ("%04d") % len(object_Ids)
+    #if number in object_Ids:
+    #    max_number = max(object_Ids)
+    #    
+    #else:
+    #    if len(object_Ids) > 1000:
+    #      number = len(object_Ids)
+    setattr(context, 'title', context_title)
     parent.manage_renameObject(id, str(number))
     #exclude from navigation code
     # behavior = IExcludeFromNavigation(context)
