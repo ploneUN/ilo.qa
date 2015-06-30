@@ -8,6 +8,7 @@
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="internally_publish"/>
   <permission-map name="Access contents information" acquired="False">
+   <permission-role>Authenticated</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>
    <permission-role>Reviewer</permission-role>
@@ -29,6 +30,7 @@
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
+   <permission-role>Authenticated</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Reader</permission-role>
    <permission-role>Reviewer</permission-role>
