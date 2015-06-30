@@ -1,3 +1,5 @@
+select#topic1 { width: 90%; }
+
 .tbo-listing{}
 .tbo-listing > li > ul{
   list-style: circle;
