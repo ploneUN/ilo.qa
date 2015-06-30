@@ -35,9 +35,8 @@
             <label tal:content="widget/label" />
             <br />
             <div tal:content="structure widget/render" />
-            <div tal:condition="python: str(context.portal_membership.getAuthenticatedMember()) in ['reviewer', 'manager', 'editor']">
-              <a   style="float:right;" class="button" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
-            </div>
+                  <a tal:condition="view/show_add_answer" style="float:right;" class="button" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+
         </div>
     </tal:block>
     <tal:block>

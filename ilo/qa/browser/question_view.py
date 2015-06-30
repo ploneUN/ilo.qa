@@ -37,3 +37,8 @@ class Index(dexterity.DisplayForm):
         s = MLStripper()
         s.feed(html)
         return s.get_data()
+    
+    def show_add_answer(self, ):
+        context = self.context
+        return context.portal_membership.getAuthenticatedMember().has_role('Site Administrator', 'Manager') or context.portal_membership.getAuthenticatedMember().has_role('Editor', 'Reviewer')
+    
