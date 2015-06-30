@@ -4,6 +4,7 @@
  <permission>Add portal content</permission>
  <permission>Modify portal content</permission>
  <permission>View</permission>
+ <permission>Copy or Move</permission>
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="internally_publish"/>
   <permission-map name="Access contents information" acquired="False">
@@ -17,7 +18,13 @@
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
+  <permission-map name="Copy or Move" acquired="False">
+   <permission-role>Reviewer</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
   <permission-map name="Modify portal content" acquired="False">
+   <permission-role>Reviewer</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
@@ -36,6 +43,11 @@
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
    <permission-role>Authenticated</permission-role>
+  </permission-map>
+  <permission-map name="Copy or Move" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+   <permission-role>Reviewer</permission-role>
   </permission-map>
   <permission-map name="Modify portal content" acquired="False">
    <permission-role>Manager</permission-role>
