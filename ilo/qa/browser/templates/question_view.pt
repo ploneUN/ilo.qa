@@ -30,18 +30,16 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-
     <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
             <br />
             <div tal:content="structure widget/render" />
-<a style="float:right;" class="button" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+            <div tal:condition="python: str(context.portal_membership.getAuthenticatedMember()) in ['reviewer', 'manager', 'editor']">
+              <a   style="float:right;" class="button" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+            </div>
         </div>
-
     </tal:block>
-
-
     <tal:block>
             <dl>
             <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">
