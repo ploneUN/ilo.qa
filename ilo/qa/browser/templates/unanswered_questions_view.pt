@@ -29,11 +29,16 @@
     <br/>
     <h3>Unanswered Questions</h3>
     <tal:block tal:define="contents view/contents">
+      <dl>
         <tal:entry tal:repeat="content contents">
-            <a tal:attributes="href python: content['path']">
-                <p tal:content="python: content['title']"/>
-            </a>
+            <dt>
+                  <a tal:attributes="href python: content['path']">
+                      <span tal:content="python: content['title']"/>
+                  </a>
+            </dt>
+            <dd></dd>
         </tal:entry>
+      </dl>
     </tal:block>
 
 
