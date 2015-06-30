@@ -44,14 +44,14 @@
 
  <form method='post'>
   <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
-    <label>Topic
+    <label>Topic<br />
       <select name='topic1' id='topic1' >
         <tal:entry tal:repeat='option  view/topic'>
            <option tal:attributes="value python:option['value'];" tal:content="python: option['name']"></option>
         </tal:entry>
       </select>
 </label>
-<button id='generate' class="small button" value='Generate'>Search</button>
+<button id='generate' class="" value='Generate'>Search</button>
 </form>
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
