@@ -42,18 +42,24 @@
     </tal:block>
 
 
-    <tal:block>      
+    <tal:block>
+            <dl>
             <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">
-              <a tal:attributes="href python: brain.getPath()" tal:define="answer python: view.strip_tags(brain._unrestrictedGetObject().answer)">
-                  <tal:if tal:condition="python: len(answer) < 75">
-                        <p tal:content="structure answer"></p>
-                  </tal:if>
-                  <tal:if tal:condition="python: len(answer) >= 75">
-                        <p tal:content="structure python: answer[:74]+' ...'"></p>
-                  </tal:if>
-              </a>
+                  
+                        <dt>
+                              <a tal:attributes="href python: brain.getPath()" tal:define="answer python: view.strip_tags(brain._unrestrictedGetObject().answer)">
+                                  <tal:if tal:condition="python: len(answer) < 75">
+                                        <span tal:content="structure answer" />
+                                  </tal:if>
+                                  <tal:if tal:condition="python: len(answer) >= 75">
+                                        <span tal:content="structure python: answer[:74]+' ...'" />
+                                  </tal:if>
+                              </a>
+                        </dt>
+                        <dd></dd>
                
             </tal:element>
+            </dl>
     </tal:block>
 
 
