@@ -46,9 +46,9 @@
       No Officers Yet.
       </div>
       <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
-    </dd>
-     <a class="button expand" tal:attributes="href python: context.absolute_url()+'/searchbytopic_view'">Search By Topic</a><br>
-     <a class="button expand" tal:attributes="href python: context.absolute_url()+'/qa_facility_browserview'">View Recent Questions</a>
+    </dd><p>
+     <a class="button expand" tal:attributes="href python: context.absolute_url()+'/searchbytopic_view'">Search By Topic</a>
+     <a class="button expand" tal:attributes="href python: context.absolute_url()+'/qa_facility_browserview'">View Recent Questions</a></p>
   </dl>
 </div>
 
