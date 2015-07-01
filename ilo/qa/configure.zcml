@@ -10,6 +10,8 @@
     i18n_domain="ilo.qa">
 
     <includeDependencies package="." />
+    <include file="permissions.zcml" />
+
     <grok:grok package="." />
     <i18n:registerTranslations directory="locales" />
 
