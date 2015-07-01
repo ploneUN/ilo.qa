@@ -102,3 +102,13 @@ select#topic1 { width: 90%; }
 	padding-left: 0;
 	padding-right: 0;
 }
+.button.add-btn:before{
+  content: "+";
+  display: inline-block;
+  margin-right: 4px;
+  background-color: #fff;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+}
