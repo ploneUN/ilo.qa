@@ -13,5 +13,16 @@
         rel="stylesheet"
         rendering="import"
         insert-after="ploneKss.css" />
-
+    <stylesheet
+        id="++resource++ilo.qa/css/font-awesome.min.css"
+        cacheable="True"
+        compression="safe"
+        cookable="True"
+        enabled="1"
+        expression=""
+        media=""
+        rel="stylesheet"
+        rendering="import"
+        insert-after="ploneKss.css" />
+    
 </object>
