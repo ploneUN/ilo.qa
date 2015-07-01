@@ -7,7 +7,7 @@
   <property name="title" i18n:translate="">Email Template</property>
   <property name="description"
     i18n:translate="">Email Template</property>
-  <property name="icon_expr">string:${portal_url}/document_icon.png</property>
+  <property name="icon_expr">string:${portal_url}/++resource++ilo.qa/qa_email.png</property>
   <property name="factory">ilo.qa.emailtemplate</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">False</property>  

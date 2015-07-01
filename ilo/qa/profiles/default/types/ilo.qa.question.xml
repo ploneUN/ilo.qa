@@ -7,7 +7,7 @@
   <property name="title" i18n:translate="">Question</property>
   <property name="description"
     i18n:translate="">Question</property>
-  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
+  <property name="icon_expr">string:${portal_url}/++resource++ilo.qa/qa_question.png</property>
   <property name="factory">ilo.qa.question</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>  
