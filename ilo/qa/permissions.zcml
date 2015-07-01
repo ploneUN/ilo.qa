@@ -4,7 +4,13 @@
 
     <permission
         id="ilo.qa.AddTopic"
-        title="ilo.qa: Add ILOQA Topic"
+        title="ilo.qa: Add Topic"
         />
+
+    <permission
+        id="ilo.qa.AddAnswer"
+        title="ilo.qa: Add Answer"
+        />
+
 
 </configure>
