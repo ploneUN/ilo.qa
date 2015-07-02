@@ -5,6 +5,8 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Copy or Move</permission>
+ <permission>ilo.qa: Add Answer</permission>
+ <permission>ilo.qa: Add Topic</permission>
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="internally_publish"/>
   <permission-map name="Access contents information" acquired="False">
@@ -34,6 +36,16 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
+  <permission-map name="ilo.qa: Add Answer" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="ilo.qa: Add Topic" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
  </state>
  <state state_id="internally_published" title="Internally Published">
   <description>Visible to everyone, editable by the owner.</description>
@@ -56,6 +68,16 @@
   <permission-map name="View" acquired="False">
    <permission-role>Authenticated</permission-role>
    <permission-role>Member</permission-role>
+  </permission-map>
+  <permission-map name="ilo.qa: Add Answer" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="ilo.qa: Add Topic" acquired="False">
+   <permission-role>Editor</permission-role>
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
   </permission-map>
  </state>
  <transition transition_id="internally_publish" title="Internally Publish" new_state="internally_published" trigger="USER" before_script="" after_script="">
