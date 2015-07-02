@@ -56,11 +56,15 @@
 <br/>
      <tal:block tal:define="brains python: view.contents()">  
       <h2 tal:condition="python: view.contents()[1]" tal:content="python: 'Questions under '+view.contents()[1][0]"></h2>
-            <tal:element tal:repeat="brain python: brains[0][:10]" tal:condition="brains">
-              <a tal:attributes="href python: brain['path']"><p tal:content="python: brain['title']"></p></a>
-            </tal:element>
+            
+            <dl>
+                  <tal:element tal:repeat="brain python: brains[0][:10]" tal:condition="brains">
+                        <dt><a tal:attributes="href python: brain['path']"><span tal:content="python: brain['title']"/></a></dt>
+                        <dd></dd>
+                  </tal:element>
+            </dl>
             <a tal:attributes="href python: context.absolute_url()+'/bytopicall_view?topic1='+ view.searchedValue('topic1') " tal:condition="python: len(brains[0]) > 10">View All</a>
-           
+      
     </tal:block>
 
   <div tal:condition="python: not view.contents()[0]">
