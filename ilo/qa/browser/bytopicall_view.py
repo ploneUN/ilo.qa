@@ -34,7 +34,6 @@ class bytopicall_view(dexterity.DisplayForm):
             result = form[name]
         return result
 
-
     def contents(self):
         context = self.context
         request = self.request

@@ -23,4 +23,13 @@
         addview=".topicbyofficerportlet.AddForm"
         editview=".topicbyofficerportlet.EditForm"
         />
+
+    <plone:portlet
+        name="topicslistportlet.portlet"
+        interface=".topicslistportlet.IContentNavigation"
+        assignment=".topicslistportlet.Assignment"
+        renderer=".topicslistportlet.Renderer"
+        addview=".topicslistportlet.AddForm"
+        editview=".topicslistportlet.EditForm"
+        />
 </configure>
