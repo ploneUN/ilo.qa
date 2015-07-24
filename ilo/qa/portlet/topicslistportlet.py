@@ -63,6 +63,12 @@ class Renderer(base.Renderer):
         roles = api.user.get_roles(username=str(current))
         allowed =  ['Reviewer'] 
         return any((True for x in roles if x in allowed))
+
+    def review_state(self, review_state = None):
+        if '_' in review_state:
+            return review_state.replace('_', ' ')
+        else:
+            return review_state
     
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
