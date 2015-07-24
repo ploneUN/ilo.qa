@@ -11,7 +11,7 @@
      		<td tal:content="python: brain.getId"></td>
      		<td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"></a></td>
      		<td tal:content="python: brain._unrestrictedGetObject().officer"></td>
-     		<td tal:content="python: brain.review_state.title()"></td>
+     		<td tal:content="python: view.review_state(brain.review_state).title()"></td>
      	</tr>
      <table>
 </div>
