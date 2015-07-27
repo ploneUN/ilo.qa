@@ -55,14 +55,14 @@ class Renderer(base.Renderer):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic')
+        # import pdb; pdb.set_trace()
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic', review_state='internally_published', sort_on='Date',sort_order='reverse')
         return brains
 
     def roles(self):
         current = api.user.get_current()
         roles = api.user.get_roles(username=str(current))
-        allowed =  ['Reviewer', 'Administrator', 'Manager'] 
-        return any((True for x in roles if x in allowed))
+        return any((True for x in roles if x in ['Reviewer', 'Administrator', 'Manager'] ))
 
     def review_state(self, review_state = None):
         if '_' in review_state:
