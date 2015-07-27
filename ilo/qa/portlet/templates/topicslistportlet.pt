@@ -1,7 +1,7 @@
-<div class="side_viewlet state-sign" tal:define="brains python: view.topics()" tal:condition="python: view.roles() == True">
+<dl class="portlet topiclistportlet" tal:define="brains python: view.topics()" tal:condition="python: view.roles() == True">
      <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
      <dd class="portletItem">
-	  <table width="100%">
+	  <table class="listing">
 	       <tr>
 		    <td>ID</td>
 		    <td>Title</td>
@@ -16,5 +16,5 @@
 	       </tr>
 	  <table>	
      </dd>
-</div>
+</dl>
 
