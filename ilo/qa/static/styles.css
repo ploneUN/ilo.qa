@@ -112,3 +112,13 @@ select#topic1 { width: 90%; }
   border: 1px solid #ccc;
   border-radius: 50px;
 }
+
+.topiclistportlet .portletItem{
+  padding: 0;
+}
+.topiclistportlet .portletItem > table{
+  font-size: 90%;
+}
+.topiclistportlet .portletItem > table td{
+  padding: 5px;
+}
