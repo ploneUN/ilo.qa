@@ -1,18 +1,20 @@
 <div class="side_viewlet state-sign" tal:define="brains python: view.topics()" tal:condition="python: brains and view.roles() == True">
      <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
-     <table width="100%">
-     		<tr>
-     			<td>ID</td>
-     			<td>Title</td>
-     			<td>Officer</td>
-     			<td>State</td>
-     		</tr>
-     	<tr tal:repeat="brain brains">
-     		<td tal:content="python: brain.getId"></td>
-     		<td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"></a></td>
-     		<td tal:content="python: brain._unrestrictedGetObject().officer"></td>
-     		<td tal:content="python: view.review_state(brain.review_state).title()"></td>
-     	</tr>
-     <table>
+     <dd class="portletItem">
+	  <table width="100%">
+	       <tr>
+		    <td>ID</td>
+		    <td>Title</td>
+		    <td>Officer</td>
+		    <td>State</td>
+	       </tr>
+	       <tr tal:repeat="brain brains">
+		    <td tal:content="python: brain.getId"></td>
+		    <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"></a></td>
+		    <td tal:content="python: brain._unrestrictedGetObject().officer"></td>
+		    <td tal:content="python: view.review_state(brain.review_state).title()"></td>
+	       </tr>
+	  <table>	
+     </dd>
 </div>
 
