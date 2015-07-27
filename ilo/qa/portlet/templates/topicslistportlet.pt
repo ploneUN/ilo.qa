@@ -1,4 +1,4 @@
-<div class="side_viewlet state-sign" tal:define="brains python: view.topics()" tal:condition="python: brains and view.roles() == True">
+<div class="side_viewlet state-sign" tal:define="brains python: view.topics()" tal:condition="python: view.roles() == True">
      <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
      <table width="100%">
      		<tr>
