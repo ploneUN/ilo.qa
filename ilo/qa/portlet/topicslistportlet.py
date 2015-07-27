@@ -61,7 +61,7 @@ class Renderer(base.Renderer):
     def roles(self):
         current = api.user.get_current()
         roles = api.user.get_roles(username=str(current))
-        allowed =  ['Reviewer'] 
+        allowed =  ['Reviewer', 'Administrator', 'Manager'] 
         return any((True for x in roles if x in allowed))
 
     def review_state(self, review_state = None):
