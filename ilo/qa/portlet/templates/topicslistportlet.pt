@@ -3,14 +3,14 @@
      {  
         var x = document.getElementById(divId).style.display; 
 
-        if(x=="block")
+        if(x=="table-row-group")
         {
           document.getElementById(divId).style.display = "none";
           document.getElementById(inhtmText).innerHTML="Show More...";
         }
        if(x=="none")
        {
-          document.getElementById(divId).style.display = "block";
+          document.getElementById(divId).style.display = "table-row-group";
           document.getElementById(inhtmText).innerHTML="Show Less";
         }
      }
@@ -29,16 +29,16 @@
 		    </tr>
 		    <tr tal:repeat="brain python: brains[:10]">
 			 <!-- <td tal:content="python: brain.getId"></td> -->
-			 <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"></a></td>
+			 <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
 			 <td tal:content="python: brain._unrestrictedGetObject().officer"></td>
 			 <td tal:content="python: view.review_state(brain.review_state).title()"></td>
 		    </tr>
 	       </tbody>
-	       <tbody tal:condition="python: len(brains) > 10" class="listing" id="contentbb" style="display: none;">
+	       <tbody tal:condition="python: len(brains) > 10" id="contentbb" style="display: none">
 	     
 		    <tr tal:repeat="brain python: brains[10:]">
 			 <!-- <td tal:content="python: brain.getId"></td> -->
-			 <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"></a></td>
+			 <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
 			 <td tal:content="python: brain._unrestrictedGetObject().officer"></td>
 			 <td tal:content="python: view.review_state(brain.review_state).title()"></td>
 		    </tr>
