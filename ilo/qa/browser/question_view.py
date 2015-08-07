@@ -3,6 +3,7 @@ from plone.directives import dexterity, form
 from ilo.qa.content.question import IQuestion
 from Products.CMFCore.utils import getToolByName
 from HTMLParser import HTMLParser
+from plone import api
 
 grok.templatedir('templates')
 
@@ -40,5 +41,6 @@ class Index(dexterity.DisplayForm):
     
     def show_add_answer(self, ):
         context = self.context
+        # import pdb; pdb.set_trace()
         return context.portal_membership.getAuthenticatedMember().has_role('Site Administrator', 'Manager') or context.portal_membership.getAuthenticatedMember().has_role('Editor', 'Reviewer')
     

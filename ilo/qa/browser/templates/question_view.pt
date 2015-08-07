@@ -35,7 +35,9 @@
             <label tal:content="widget/label" />
             <br />
             <div tal:content="structure widget/render" />
-                  <a tal:condition="view/show_add_answer" style="float:right;" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+                  <a tal:condition="python: not view.show_add_answer()" style="float:right;" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+
+
 
         </div>
     </tal:block>
