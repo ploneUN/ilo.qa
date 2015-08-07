@@ -129,7 +129,7 @@ select#topic1 { width: 90%; }
   filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#fb9e25',GradientType=0);
   background-color:#ffc477;
   border:1px solid #eeb44f;
-  color:#ffffff;
+  color:#ffffff !important;
   text-shadow:0px 1px 0px #cc9f52;
 }
 .button.l-orange-btn:hover {
