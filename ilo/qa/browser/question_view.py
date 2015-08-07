@@ -39,8 +39,13 @@ class Index(dexterity.DisplayForm):
         s.feed(html)
         return s.get_data()
     
-    def show_add_answer(self, ):
-        context = self.context
-        # import pdb; pdb.set_trace()
-        return context.portal_membership.getAuthenticatedMember().has_role('Site Administrator', 'Manager') or context.portal_membership.getAuthenticatedMember().has_role('Editor', 'Reviewer')
-    
+    # def show_add_answer(self, ):
+    #     context = self.context
+    #     # import pdb; pdb.set_trace()
+    #     return context.portal_membership.getAuthenticatedMember().has_role('Site Administrator', 'Manager') or context.portal_membership.getAuthenticatedMember().has_role('Editor', 'Reviewer')
+    # 
+
+    def show_add_answer(self):
+        current = api.user.get_current()
+        roles = api.user.get_roles(username=str(current))
+        return any((True for x in roles if x in ['Reviewer', 'Administrator', 'Manager','Site Administrator'] ))
