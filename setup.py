@@ -36,7 +36,8 @@ setup(name='ilo.qa',
           'plone.app.versioningbehavior',
           'collective.setuphelpers',
           'collective.easytemplate',
-          'plone.api'
+          'plone.api',
+          'atreal.usersinout'
           # -*- Extra requirements: -*-
       ],
       extras_require={
