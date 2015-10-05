@@ -51,13 +51,7 @@ class searchbytopic_view(dexterity.DisplayForm):
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             #import pdb; pdb.set_trace()
-            if topic in self.pledge_id(obj.topic):
-                i = i + 1
-                results.append({'title': brain.Title,
-                                'path':brain.getPath()})
-                if i == 11:
-                    break;
-            if topic == 'all':
+            if (topic in self.pledge_id(obj.topic)) or topic == 'all':
                 i = i + 1
                 results.append({'title': brain.Title,
                                 'path':brain.getPath()})
