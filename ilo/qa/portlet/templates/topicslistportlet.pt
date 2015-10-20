@@ -24,8 +24,8 @@
 		    <tr>
 			 <!-- <td>ID</td> -->
 			 <td>Title</td>
-			 <td>State</td>
 			 <td>Officer</td>
+			 <td>State</td>
 		    </tr>
 		    <tr tal:repeat="brain python: brains[:10]">
 			 <!-- <td tal:content="python: brain.getId"></td> -->

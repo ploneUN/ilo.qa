@@ -35,6 +35,23 @@
         </div>
     </tal:block>
 
+     <table class="listing">
+         <tbody>
+        <tr>
+       <!-- <td>ID</td> -->
+       <td>Title</td>
+       <td>Topic</td>
+       <td>State</td>
+        </tr>
+        <tr tal:repeat="brain view/contents">
+       <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
+       <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
+       <td tal:content="python: brain.review_state.title()"></td>
+        </tr>
+       
+         </tbody>
+    </table>
+
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
         <legend tal:content="group/label" />
