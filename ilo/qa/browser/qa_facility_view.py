@@ -19,5 +19,16 @@ class Index(dexterity.DisplayForm):
     	context = self.context
     	catalog = self.catalog
     	path = '/'.join(context.getPhysicalPath())
-    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')[:11]
+    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')[:10]
     	return brains
+
+    def topic(self, uids = None):
+        catalog = self.catalog
+        context = self.context
+        results = []
+        path = '/'.join(context.getPhysicalPath())
+        for uid in uids:
+            brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
+            for brain in brains:
+                results.append(brain.Title)
+        return ', '.join(results)
