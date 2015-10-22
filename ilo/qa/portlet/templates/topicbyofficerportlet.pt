@@ -45,7 +45,7 @@
       <div data-alert class="alert-box info text-center">
       No Officers Yet.
       </div>
-      <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'"><i class="fa fa-user-plus"></i> Add Officer</a >
+      <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'"><i class="fa fa-plus"></i> Add Officer</a >
     </dd>
     <dd class="portletItem">
      <a class="button expand" tal:attributes="href python: context.absolute_url()+'/searchbytopic_view'"><i class="fa fa-search"></i> Search By Topic</a></dd>
