@@ -5,39 +5,47 @@
 <!-- General Officer -->
     <dd class="portletItem" tal:condition="general_officer">
       <ul class="tbo-listing">
-	<li class="tbo-title">
-	  <span>General Officer<span>
-	</li>
-	<li class="tbo-email">
-	  <span>Email: </span>
-	  <span tal:content="python: general_officer[0]['officer_email']"/>
-        </li>
-	<li class="portletItem" tal:repeat="brain general_officer">
-	  <ul>
-	    <li>
-	      <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']" tal:content="python: brain['title']" />
-	    </li>
-	  </ul>
-	</li>
+		<li class="tbo-heading">
+		  <div class='tbo-left'>
+			<h4>General Officer</h4>
+			<span>Email: </span>
+			<span tal:content="python: general_officer[0]['officer_email']"/>
+		  </div>
+		  <div class="tbo-right">
+			<img width='100%' alt='' tal:attributes="src python: view.officer_photo(general_officer[0]['officer_email'])"/>
+		  </div>
+		  <div style="display: block;clear: both"></div>
+		</li>
+		
+		<li class="portletItem" tal:repeat="brain general_officer">
+		  <ul>
+			<li>
+			  <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']" tal:content="python: brain['title']" />
+			</li>
+		  </ul>
+		</li>
       <ul>
     </dd>
 <!-- Officers -->
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
       <ul class="tbo-listing">
-        <li class="tbo-title">
-	  <span tal:content="python:brain['name'].title()" />
+        <li class="tbo-heading">
+		  <div class='tbo-left'>
+			<h4 tal:content="python:brain['name'].title()"/>
+			<span>Email: </span>
+			<span tal:content="python:brain['officer_email']" />
+		  </div>
+		  <div class="tbo-right">
+			<img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
+		  </div>
+		  <div style="display: block;clear: both"></div>
         </li>
-	<li class="tbo-email">
-	  <span>Email: </span>
-	  <span tal:content="python:brain['officer_email']" />
-        </li>
-	
-        <li>
-	  <ul>
-	    <li tal:repeat="data python:brain['data']">
-	      <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" />
-	    </li>
-	  </ul>
+		<li>
+		  <ul>
+			<li tal:repeat="data python:brain['data']">
+			  <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" />
+			</li>
+		  </ul>
         </li>
       </ul>
     </dd>
