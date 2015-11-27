@@ -6,21 +6,39 @@ select#topic1 { width: 90%; }
   padding-left: 20px;
 }
 .tbo-title,
-.tbo-email{
+.tbo-email,
+.tbo-heading{
   font-weight: bold;
 }
+.tbo-heading,
 .tbo-email{
   border-bottom: 1px solid #F2F1F0;
   margin-bottom: 5px;
 }
+.tbo-heading:after,
 .tbo-email:after{
   content: " ";
   display: block;
   border-top: 1px solid #ccc;
   margin-top: 5px;
 }
+.tbo-heading span:nth-child(1)[]
 .tbo-email span:nth-child(2){
   color: #205c90;
+}
+.tbo-left{
+  float: left;
+  width: 70%;
+}
+.tbo-right{
+  float: right;
+  width: 25%;
+}
+.tbo-left span:nth-child(3){
+  color: #205c90;
+}
+.tbo-right img{
+  width: 100%;
 }
 
 .alert-box {
