@@ -11,6 +11,8 @@ from Products.CMFCore.utils import getToolByName
 from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 from Products.CMFCore.utils import getToolByName
 from operator import itemgetter
+from zope.component.hooks import getSite
+
 
 
 grok.templatedir('templates')
@@ -90,6 +92,16 @@ class Renderer(base.Renderer):
                 results.append({'title': brain.Title,
                                 'id': brain.getId,})
         return {'topics': results}
+    
+    def officer_photo(self, officer_email=None):
+        membership = getToolByName(self.context, 'portal_membership')
+        userImg = membership.getPersonalPortrait().absolute_url()
+        for member in membership.listMembers():
+            if officer_email == member.getProperty('email'):
+                user_id = member.getUserName()
+                userImg = membership.getPersonalPortrait(user_id).absolute_url()
+    
+        return userImg
 
     # def officers(self):
     #     context = self.context
