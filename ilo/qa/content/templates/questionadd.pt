@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="plone">
+<metal:styleslot fill-slot='style_slot'>
+  
+</metal:styleslot>
+<!-- <metal:javascript_head fill-slot="javascript_head_slot">
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    var basis_list = $('#basis_list').html();
+
+    $('#formfield-form-widgets-service_position .cell-1 select').live('change', function() {
+      var service_id = this.id;
+      var position_id = '#'+service_id.replace('service_list', 'position');
+      var service_list = document.getElementById(service_id);
+
+      var service_value = service_list.options[service_list.selectedIndex].value;
+      var positions = $('span#'+service_value).html()
+      $(position_id).html(basis_list);
+      if (service_value == '--NOVALUE--'){
+        positions = "AS', 'CBKMS', 'LS', 'OED', 'PDMFS', 'PDS', 'PFPEMS'"
+        $(position_id).val(" ");
+      }
+      $(position_id + ' option').each(function() {
+        if(positions.indexOf($(this).val()) > -1 ){
+          $(this).remove();
+        } 
+      });
+    });
+  });
+</script>
+</metal:javascript_head> -->
+<metal:javascript_head fill-slot="javascript_head_slot">
+<script type="text/javascript">
+  $(document).ready(function(){
+    var topic1 = $('span#topic1').html();
+    document.getElementById("formfield-form-widgets-topic").value = topic1;
+     $('span#form-widgets-topic span input').each(function() {
+        if ($(this).val() == topic1){
+          this.checked=true;
+        }
+      });
+  });
+</script>
+</metal:javascript_head>
+<body>
+<metal:main fill-slot="main">
+  <tal:main-macro metal:define-macro="main">
+    <h1 class="documentFirstHeading" tal:content="view/label | nothing" />
+    <div id="content-core">
+      <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
+    </div>
+
+    <tal:block tal:define="form request/form" tal:condition="form">
+      <span style="display: none" id="topic1" tal:content="python: view.topic_uid(form['topic1'])"></span>
+    </tal:block>
+
+  </tal:main-macro>
+</metal:main>
+</body>
+</html>
