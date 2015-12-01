@@ -8,7 +8,7 @@
 
 <metal:javascript_head fill-slot="javascript_head_slot">
 <script type="text/javascript">
-  $(document).ready(function(){
+  /*$(document).ready(function(){
     var topic1 = $('span#topic1').html();
     document.getElementById("formfield-form-widgets-topic").value = topic1;
      $('span#form-widgets-topic span input').each(function() {
@@ -16,7 +16,7 @@
           this.checked=true;
         }
       });
-  });
+  });*/
 </script>
 </metal:javascript_head>
 <body>
@@ -26,9 +26,9 @@
     <div id="content-core">
       <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>
-    <tal:block tal:define="form request/form" tal:condition="form">
+    <!--<tal:block tal:define="form request/form" tal:condition="form">
       <span style="display: none" id="topic1" tal:content="python: view.topic_uid(form['topic1'])"></span>
-    </tal:block>
+    </tal:block>-->
   </tal:main-macro>
 </metal:main>
 </body>
