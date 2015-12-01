@@ -23,6 +23,7 @@
         media=""
         rel="stylesheet"
         rendering="import"
+        applyPrefix="True"
         insert-after="ploneKss.css" />
     
 </object>
