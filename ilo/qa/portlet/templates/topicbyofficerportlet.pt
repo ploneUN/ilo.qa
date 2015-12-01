@@ -1,104 +1,87 @@
-<div tal:condition="python: context.portal_type == 'ilo.qa.qafacility'">
-  <dl class="portlet" tal:define="url view/context/request/URL; brains python: view.officers_contents()['data']; general_officer python: view.officers_contents()['general_officer']" tal:condition="python: '/view' in url or '/bytopic_view' in url">
-    <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
+<div tal:condition="python: context.portal_type == 'ilo.qa.qafacility'"
+      tal:define="absolute_url context/absolute_url">
 
+  <dl class="portlet" tal:define="url view/context/request/URL; 
+                                  brains python: view.officers_contents()['data']; 
+                                  general_officer python: view.officers_contents()['general_officer']" 
+                      tal:condition="python: '/view' in url or '/bytopic_view' in url">
+    <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 <!-- General Officer -->
     <dd class="portletItem" tal:condition="general_officer">
       <ul class="tbo-listing">
-		<li class="tbo-heading">
-		  <div class='tbo-left'>
-			<h4>General Officer</h4>
-			<span>Email: </span>
-			<span tal:content="python: general_officer[0]['officer_email']"/>
-		  </div>
-		  <div class="tbo-right">
-			<img width='100%' alt='' tal:attributes="src python: view.officer_photo(general_officer[0]['officer_email'])"/>
-		  </div>
-		  <div style="display: block;clear: both"></div>
-		</li>
+    		<li class="tbo-heading">
+    		  <div class='tbo-left'>
+      			<h4>General Officer</h4>
+      			<span>Email: </span>
+      			<span tal:content="python: general_officer[0]['officer_email']"/>
+    		  </div>
+    		  <div class="tbo-right">
+    			 <img width='100%' alt='' tal:attributes="src python: view.officer_photo(general_officer[0]['officer_email'])"/>
+    		  </div>
+    		  <div style="display: block;clear: both"></div>
+    		</li>
 		
-		<li class="portletItem" tal:repeat="brain general_officer">
-		  <ul>
-			<li>
-			  <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']" tal:content="python: brain['title']" />
-			</li>
-		  </ul>
-		</li>
+    		<li class="portletItem" tal:repeat="brain general_officer">
+    		  <ul>
+    			<li>
+    			  <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?topic1=' +brain['id']" 
+                tal:content="python: brain['title']" />
+    			</li>
+    		  </ul>
+    		</li>
       <ul>
     </dd>
 <!-- Officers -->
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
       <ul class="tbo-listing">
         <li class="tbo-heading">
-		  <div class='tbo-left'>
-			<h4 tal:content="python:brain['name'].title()"/>
-			<span>Email: </span>
-			<span tal:content="python:brain['officer_email']" />
-		  </div>
-		  <div class="tbo-right">
-			<img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
-		  </div>
-		  <div style="display: block;clear: both"></div>
+    		  <div class='tbo-left'>
+      			<h4 tal:content="python:brain['name'].title()"/>
+      			<span>Email: </span>
+      			<span tal:content="python:brain['officer_email']" />
+    		  </div>
+    		  <div class="tbo-right">
+    			 <img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
+    		  </div>
+    		  <div style="display: block;clear: both"></div>
         </li>
-		<li>
-		  <ul>
-			<li tal:repeat="data python:brain['data']">
-			  <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" />
-			</li>
-		  </ul>
-        </li>
+    		<li>
+    		  <ul>
+      			<li tal:repeat="data python:brain['data']">
+      			  <!-- <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" /> -->
+              <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?topic1=' +data['id']" 
+                  tal:content="python: data['title']" />
+      			</li>
+    		  </ul>
+            </li>
       </ul>
     </dd>
-    <dd class="portletItem" tal:condition="python: not view.officers_contents()['data']">
-      <div data-alert class="alert-box info text-center">
-      No Officers Yet.
-      </div>
-      <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'"><i class="fa fa-plus"></i> Add Officer</a >
-    </dd>
-    <dd class="portletItem">
-     <a class="button expand" tal:attributes="href python: context.absolute_url()+'/searchbytopic_view'"><i class="fa fa-search"></i> Search By Topic</a></dd>
-     <dd class="portletItem"><a class="button expand" tal:attributes="href python: context.absolute_url()+'/qa_facility_browserview'"><i class="fa fa-eye"></i> View Recent Questions</a></dd>
-<dd class="portletItem"><a class="button expand" tal:attributes="href python: context.absolute_url()+'/unanswered_questions_view'"><i class="fa fa-eye"></i> View Unanswered Questions</a></dd>
+
+     <dd class="portletItem" tal:condition="python: not view.officers_contents()['data']">
+        <div data-alert class="alert-box info text-center">
+        No Officers Yet.
+        </div>
+        <a class="button expand" tal:attributes="href string:${absolute_url} /++add++ilo.qa.topic">
+          <i class="fa fa-plus"></i> Add Officer
+        </a >
+      </dd>
+
+      <dd class="portletItem">
+       <a class="button expand" tal:attributes="href string:${absolute_url}/searchbytopic_view">
+        <i class="fa fa-search"></i> Search By Topic
+        </a>
+      </dd>
+
+       <dd class="portletItem">
+        <a class="button expand" tal:attributes="href string:${absolute_url}/qa_facility_browserview">
+          <i class="fa fa-eye"></i> View Recent Questions
+        </a>
+      </dd>
+      
+      <dd class="portletItem">
+        <a class="button expand" tal:attributes="href string:${absolute_url}/unanswered_questions_view">
+          <i class="fa fa-eye"></i> View Unanswered Questions
+        </a>
+      </dd>
   </dl>
 </div>
-
-<!-- <div tal:define="data view/contents1; contents view/contents" tal:condition="python: '/view' in data[2].URL or '/bytopic_view' in data[2].URL ">
-
-<dl class="portlet"  tal:condition="python: contents.title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) > 1">
-<dt class="portletHeader" tal:content="python:  contents.portlet_title"></dt>
-  <dd class="portletItem lastItem" tal:condition="python: not data[0]">
-  <form method='post'>
-    <label>Officer
-      <select onchange='this.form.submit()' name='topicbyofficer' id='topicbyofficer' tal:define='val python: view.searchedValue("topicbyofficer")'>
-        <tal:entry tal:repeat='option  view/officers'>
-           <option tal:attributes="selected python: (val == str(option['name'])); value python:option['name'];" tal:content="python: option['name']"></option>
-        </tal:entry>
-      </select>
-    </label>
-    </form>
-  </dd>
-
- <tal:block tal:define="brains data; topic python: brains[1]; officer python: brains[0]">
-  <br/>
-  <p tal:condition="python: topic and officer and hasattr(topic, 'lower') " tal:content="python:  'Topics by: '+ str((topic))"></p>
-  <p tal:condition="python: topic and officer and not hasattr(topic, 'lower') " tal:content="python:  'Topics by: '+ str((topic[0]))"></p>
-  <tal:element tal:repeat="brain python: officer" tal:condition="brains">
-    <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +brain['id']+ '&topicbyofficer='">
-      <p tal:content="python: brain['title']"></p>
-    </a>
-  </tal:element>
-
-  <dd class="portletFooter" tal:condition="python: data[0]">
-    <a class="button expand" tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=&topicbyofficer='">Search Another Officer</a>
-  </dd>
-  </tal:block>
-</dl>
-
-<div class="side_viewlet state-sign" tal:condition="python: view.contents().title and context.portal_type == 'ilo.qa.qafacility' and len(view.officers()) == 1">
-  <div data-alert class="alert-box info text-center">
-  No Officers Yet.
-</div>
-  <a class="button expand" tal:attributes="href python: context.absolute_url() + '/++add++ilo.qa.topic'">Add Officer</a >
-</div>
-
-</div> -->

@@ -29,6 +29,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from plone.i18n.normalizer import idnormalizer
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 # Interface class; used to define content-type schema.
@@ -43,7 +44,10 @@ class topics(object):
             path = '/'.join(context.getPhysicalPath())
         else:
             path = '/'.join(context.aq_parent.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
+                                                    portal_type='ilo.qa.topic',
+                                                    review_state='internally_published',
+                                                    sort_on='sortable_title')
         results = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
@@ -112,8 +116,8 @@ def _createObject(context, event):
     topics = []
     parent = context.aq_parent
     id = context.getId()
+
     if context.topic:
-        
         brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
         for brain in brains:
             #if membership.getMemberById(brain.Creator).getProperty('email'):
@@ -125,35 +129,25 @@ def _createObject(context, event):
     
     if membership.getMemberById(context.Creator()).getProperty('email'):
         context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
-        
     if topics:
         context.topics_str = '\n'.join(topics)
-        
     
     object_ids = context.aq_parent.objectIds()
     title = idnormalizer.normalize(context.Title())
     
     if title in object_ids:
         id_num = []
-        
         for ids in object_ids:
             if ids.startswith(title):
                 val = ids.replace(title, '').split('-')
                 if is_number(val[-1]):
                     id_num.append(int(val[-1]))
-        
         if id_num:
             parent.manage_renameObject(id, title+'-'+str(max(id_num)+1))
         else:
             parent.manage_renameObject(id, title+'-1')
-    
-    else:
-        
+    else:  
         parent.manage_renameObject(id, title)
-                    
-                
-                
-    
     context.reindexObject()
     return
 
@@ -171,3 +165,22 @@ def _modifyObject(context, event):
         context.topic_officer = ','.join(topic_officer)
     context.reindexObject()
     return
+
+class IQuestionAddForm(dexterity.AddForm):
+    grok.name('ilo.qa.question')
+    template = ViewPageTemplateFile('templates/questionadd.pt')
+    form.wrap(False)
+
+    @property
+    def catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    def topic_uid(self, form_id=None):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+                                        portal_type='ilo.qa.topic',
+                                        id = form_id)
+        if brains:
+            return brains[0].UID
