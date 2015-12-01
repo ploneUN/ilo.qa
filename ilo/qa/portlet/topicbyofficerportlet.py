@@ -73,7 +73,8 @@ class Renderer(base.Renderer):
                 general_officer.append({'name':obj.officer,
                                 'officer_email': obj.officer_email,
                                 'title': brain.Title,
-                                'id': brain.getId,})
+                                'id': brain.getId,
+                                'uid':brain.UID})
 
         return {'data': sorted(results, key=itemgetter('name')), 
                 'general_officer': general_officer}
@@ -90,7 +91,8 @@ class Renderer(base.Renderer):
             obj = brain._unrestrictedGetObject()
             if obj.officer.lower() in officer :
                 results.append({'title': brain.Title,
-                                'id': brain.getId,})
+                                'id': brain.getId,
+                                'uid':brain.UID})
         return {'topics': results}
     
     def officer_photo(self, officer_email=None):
