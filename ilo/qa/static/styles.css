@@ -2,7 +2,7 @@ select#topic1 { width: 90%; }
 
 .tbo-listing{}
 .tbo-listing > li > ul{
-  list-style: circle;
+  list-style-image: url('++resource++ilo.qa/qa-icon.png');
   padding-left: 20px;
 }
 .tbo-title,
