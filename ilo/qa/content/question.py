@@ -29,6 +29,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from plone.i18n.normalizer import idnormalizer
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 # Interface class; used to define content-type schema.
@@ -164,3 +165,22 @@ def _modifyObject(context, event):
         context.topic_officer = ','.join(topic_officer)
     context.reindexObject()
     return
+
+class IQuestionAddForm(dexterity.AddForm):
+    grok.name('ilo.qa.question')
+    template = ViewPageTemplateFile('templates/questionadd.pt')
+    form.wrap(False)
+
+    @property
+    def catalog(self):
+        return getToolByName(self.context, 'portal_catalog')
+
+    def topic_uid(self, form_id=None):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+                                        portal_type='ilo.qa.topic',
+                                        id = form_id)
+        if brains:
+            return brains[0].UID
