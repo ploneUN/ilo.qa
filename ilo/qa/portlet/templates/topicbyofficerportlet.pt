@@ -24,8 +24,10 @@
     		<li class="portletItem" tal:repeat="brain general_officer">
     		  <ul>
     			<li>
-    			  <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +brain['uid']" 
-                tal:content="python: brain['title']" />
+    			  <!-- <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +brain['uid']" 
+                tal:content="python: brain['title']" /> -->
+            <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +brain['uid']" >??</a>
+            <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']"  tal:content="python: brain['title']"/>
     			</li>
     		  </ul>
     		</li>
@@ -48,9 +50,8 @@
     		<li>
     		  <ul>
       			<li tal:repeat="data python:brain['data']">
-      			  <!-- <a tal:attributes="href python: context.absolute_url()+ '/bytopic_view?topic1=' +data['id']" tal:content="python: data['title']" /> -->
-              <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +data['uid']" 
-                  tal:content="python: data['title']" />
+              <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +data['uid']" >??</a>
+      			  <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +data['id']"  tal:content="python: data['title']"/>
       			</li>
     		  </ul>
             </li>
