@@ -1,9 +1,14 @@
 select#topic1 { width: 90%; }
 
-.tbo-listing{}
+.tbo-listing{border-bottom: 2px solid #F2F1F0;padding-bottom: 10px;}
 .tbo-listing > li > ul{
-  list-style-image: url('++resource++ilo.qa/qa-icon.png');
+  /*list-style-image: url('++resource++ilo.qa/qa-icon.png');*/
   padding-left: 20px;
+}
+.tbo-listing > li > ul li a:first-child{
+  margin-left: -20px;
+  margin-right: 10px;
+  text-decoration: none;
 }
 .tbo-title,
 .tbo-email,
@@ -12,14 +17,14 @@ select#topic1 { width: 90%; }
 }
 .tbo-heading,
 .tbo-email{
-  border-bottom: 1px solid #F2F1F0;
+  /*border-bottom: 1px solid #F2F1F0;*/
   margin-bottom: 5px;
 }
 .tbo-heading:after,
 .tbo-email:after{
   content: " ";
   display: block;
-  border-top: 1px solid #ccc;
+  /*border-top: 1px solid #ccc;*/
   margin-top: 5px;
 }
 .tbo-heading span:nth-child(1)[]
