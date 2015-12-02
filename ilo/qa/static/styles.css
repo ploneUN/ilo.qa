@@ -9,6 +9,7 @@ select#topic1 { width: 90%; }
   margin-left: -20px;
   margin-right: 10px;
   text-decoration: none;
+  font-size: 12px;
 }
 .tbo-title,
 .tbo-email,
