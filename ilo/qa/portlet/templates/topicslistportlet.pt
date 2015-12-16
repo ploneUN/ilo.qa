@@ -16,7 +16,7 @@
      }
 </script>
 
-<dl class="portlet topiclistportlet" tal:define="brains python: view.topics()" tal:condition="python: view.roles() == True">
+<dl class="portlet topiclistportlet" tal:define="brains view/topics" tal:condition="view/roles">
      <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
      <dd class="portletItem">
 	  <table class="listing">
@@ -29,7 +29,8 @@
 		    </tr>
 		    <tr tal:repeat="brain python: brains[:10]">
 			 <!-- <td tal:content="python: brain.getId"></td> -->
-			 <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
+			 <td><a tal:attributes="href python: context.absolute_url()+ '/++add++ilo.qa.question?form.widgets.topic=' +brain.UID" tal:content="python: brain.Title"></a></td>
+			<!--  <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td> -->
 			 <td tal:content="python: brain._unrestrictedGetObject().officer"></td>
 			 <td tal:content="python: view.review_state(brain.review_state).title()"></td>
 		    </tr>
