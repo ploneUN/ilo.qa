@@ -40,10 +40,12 @@
     		  <div class='tbo-left'>
       			<h4 tal:content="python:brain['name'].title()"/>
       			<span>Email: </span>
-      			<span tal:content="python:brain['officer_email']" />
+      			<a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']" tal:content="python: brain['officer_email']"></a>
     		  </div>
     		  <div class="tbo-right">
-    			 <img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
+            <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']">
+    			   <img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
+            </a>
     		  </div>
     		  <div style="display: block;clear: both"></div>
         </li>

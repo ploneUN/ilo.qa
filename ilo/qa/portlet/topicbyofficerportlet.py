@@ -62,12 +62,15 @@ class Renderer(base.Renderer):
         results = []
         general_officer = []
         gen_officer = 'General Officer'
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
+                                                    portal_type='ilo.qa.topic',
+                                                    review_state='internally_published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
                 results.append({'name':obj.officer.lower(),
                                 'officer_email': obj.officer_email,
+                                'uid':brain.UID,
                                 'data': self.contents1(obj.officer.lower())['topics']})
             if obj.officer.lower() == gen_officer.lower():
                 general_officer.append({'name':obj.officer,
@@ -86,7 +89,10 @@ class Renderer(base.Renderer):
         catalog = self.catalog
         results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
+                                                    portal_type='ilo.qa.topic',
+                                                    review_state='internally_published',
+                                                    sort_on='Date',sort_order='reverse')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.officer.lower() in officer :
