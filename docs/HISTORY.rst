@@ -1,6 +1,10 @@
 Changelog
 =========
 
+'1.1dev3' - Jan 13,2016
+---------------------
+adjusmtent for topic by officer portlet and Modified email and photo placeholder
+
 '1.1dev2' - Dec 16,2015
 ---------------------
 Changed redict url on topics list portlet
