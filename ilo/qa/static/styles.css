@@ -6,7 +6,7 @@ select#topic1 { width: 90%; }
   padding-left: 20px;
 }
 .tbo-listing > li > ul li a:first-child{
-  margin-left: -20px;
+ /* margin-left: -20px;*/
   margin-right: 10px;
   text-decoration: none;
   font-size: 12px;
@@ -83,6 +83,37 @@ select#topic1 { width: 90%; }
 }
 
 /*button*/
+ul.listing-btn{
+  padding-left: 0 !important;
+}
+ul.listing-btn li.list-btn{
+  text-align: left !important; 
+}
+ul.listing-btn li.list-btn a:first-child{
+  float: right;
+  position: relative;
+  text-decoration: none;
+  border-bottom: none;
+  margin: 0;
+  padding: 3px;
+}
+ul.listing-btn li.list-btn a:first-child i:first-child{
+  font-size: 16px !important;
+  color: #000;
+  text-shadow: none;
+}
+ul.listing-btn li.list-btn a:first-child i:last-child{
+  vertical-align: sub;
+  font-size: 10px !important;
+  color: #000;
+  text-shadow: none;
+    box-shadow: -1px 1px 1px #fff;
+    border-radius: 50%;
+}
+.button.tiny{
+  padding: 3px 12px 5px 12px;
+  font-size:12px;
+}
 .button {
   -moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
   -webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
@@ -109,6 +140,7 @@ select#topic1 { width: 90%; }
   text-align: center;
   text-shadow:0px 1px 0px #ffffff;
 }
+
 .button:hover {
   background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
   background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
