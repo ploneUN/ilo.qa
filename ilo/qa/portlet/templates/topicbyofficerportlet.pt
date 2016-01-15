@@ -25,7 +25,8 @@
 		  
 		  <ul class="listing-btn">
       			<li class="button tiny list-btn">
-			  <a title="Add Question" tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +brain['uid']" >
+			  <a class="tooltips" tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +brain['uid']" >
+			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
             <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']"  tal:content="python: brain['title']"/>
@@ -54,7 +55,8 @@
     		<li>
     		  <ul class="listing-btn">
       			<li class="button tiny list-btn" tal:repeat="data python:brain['data']">
-			  <a title="Add Question" tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +data['uid']" >
+			  <a class="tooltips" tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +data['uid']" >
+			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
 			  

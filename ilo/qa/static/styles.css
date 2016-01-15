@@ -208,3 +208,12 @@ ul.listing-btn li.list-btn a:first-child i:last-child{
 .topiclistportlet .portletItem > table td{
   padding: 5px;
 }
+
+
+/**
+ * Tooltip Styles
+ */
+a.tooltips{position:relative;display:inline}
+a.tooltips span{position:absolute;width:100px;color:#FFF;background:#000;height:30px;line-height:30px;text-align:center;visibility:hidden;border-radius:6px;font-weight:400}
+a.tooltips span:after{content:'';position:absolute;top:100%;left:50%;margin-left:-8px;width:0;height:0;border-top:8px solid #000;border-right:8px solid transparent;border-left:8px solid transparent}
+a:hover.tooltips span{visibility:visible;opacity:.8;bottom:30px;left:50%;margin-left:-50px;z-index:999}
