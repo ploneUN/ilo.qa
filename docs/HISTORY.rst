@@ -1,6 +1,10 @@
 Changelog
 =========
 
+'1.1dev4' - Jan 13,2016
+---------------------
+remove text shadow from tooltip and apply tooltip
+
 '1.1dev3' - Jan 13,2016
 ---------------------
 adjusmtent for topic by officer portlet and Modified email and photo placeholder
