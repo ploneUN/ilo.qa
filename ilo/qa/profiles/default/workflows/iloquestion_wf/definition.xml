@@ -40,6 +40,7 @@
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
+   <permission-role>Owner</permission-role>
    <permission-role>Member</permission-role>
    <permission-role>Authenticated</permission-role>
    <permission-role>Manager</permission-role>
@@ -72,6 +73,7 @@
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="View" acquired="False">
+   <permission-role>Owner</permission-role>
    <permission-role>Authenticated</permission-role>
    <permission-role>Member</permission-role>
   </permission-map>
