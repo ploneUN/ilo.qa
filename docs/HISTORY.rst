@@ -1,6 +1,10 @@
 Changelog
 =========
 
+'1.1dev6' - March 21, 2016
+---------------------
+modified workflow and topic by officer browserview
+
 '1.1dev4' - Jan 13,2016
 ---------------------
 remove text shadow from tooltip and apply tooltip
