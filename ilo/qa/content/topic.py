@@ -59,6 +59,11 @@ class ITopic(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
+    officer_title = schema.TextLine(
+           title=_(u"Officer Title"),
+           required=True,
+        )
+
     officer = schema.TextLine(
            title=_(u"Officer"),
            required=True,
