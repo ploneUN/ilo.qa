@@ -67,42 +67,37 @@ class Renderer(base.Renderer):
                                                     review_state='internally_published')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
+            #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
+            brain_dict =  {'name':obj.officer.lower(),
+                            'officer_title':obj.officer_title,
+                            'officer_email': obj.officer_email,
+                            'uid':brain.UID,
+                            'data': self.topics(obj.officer.lower(),brains)}
+           
             if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
-                results.append({'name':obj.officer.lower(),
-                                'officer_title':obj.officer_title,
-                                'officer_email': obj.officer_email,
-                                'uid':brain.UID,
-                                'data': self.contents1(obj.officer.lower())['topics']})
-            if obj.officer.lower() == gen_officer.lower():
-                general_officer.append({'name':obj.officer,
-                                'officer_title':obj.officer_title,
-                                'officer_email': obj.officer_email,
-                                'title': brain.Title,
-                                'id': brain.getId,
-                                'uid':brain.UID})
+                if obj.officer_title != 'Director':
+                    results.append(brain_dict)
+                else:
+                    results.insert(0, brain_dict)
 
-        return {'data': sorted(results, key=itemgetter('name')), 
+            if obj.officer.lower() == gen_officer.lower():
+                general_officer.append(brain_dict)
+
+        #results.sort(key=lambda x: ['Director', 'Sales','Officer'].index(x['officer_title']))
+        return {'data': results, 
+                #'data': sorted(results, key=itemgetter('name')), 
                 'general_officer': general_officer}
 
-    def contents1(self, officer=None):
-        context = self.context
-        request = self.request
-        form = request.form
-        catalog = self.catalog
-        results = []
-        path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
-                                                    portal_type='ilo.qa.topic',
-                                                    review_state='internally_published',
-                                                    sort_on='Date',sort_order='reverse')
+    def topics(self, officer, brains):
+        topics = []
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            if obj.officer.lower() in officer :
-                results.append({'title': brain.Title,
+            if obj.officer.lower() == officer :
+                topics.append({'title': brain.Title,
                                 'id': brain.getId,
                                 'uid':brain.UID})
-        return {'topics': results}
-    
+        return topics
+        
     def officer_photo(self, officer_email=None):
         membership = getToolByName(self.context, 'portal_membership')
         userImg = membership.getPersonalPortrait().absolute_url()
@@ -113,55 +108,6 @@ class Renderer(base.Renderer):
     
         return userImg
 
-    # def officers(self):
-    #     context = self.context
-    #     catalog = self.catalog
-    #     path = '/'.join(context.getPhysicalPath())
-    #     results = [{'name':''}]
-    #     brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
-    #     for brain in brains:
-    #         obj = brain._unrestrictedGetObject()
-    #         if not any(d['name'].lower() == obj.officer.lower() for d in results):
-    #             results.append({'name':obj.officer.lower()})
-    #     return results
-
-    # def searchedValue(self, name=None):
-    #     result = ''
-    #     if self.request.form:
-    #         form = self.request.form
-    #         result = form[name]
-    #     return result
-
-
-    # def contents1(self):
-    #     context = self.context
-    #     request = self.request
-    #     form = request.form
-    #     catalog = self.catalog
-    #     officer='None'
-    #     results = []
-    #     path = '/'.join(context.getPhysicalPath())
-    #     brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
-    #     if form:
-    #         officer = form['topicbyofficer']
-    #     i = 0
-    #     for brain in brains:
-    #         obj = brain._unrestrictedGetObject()
-    #         if obj.officer.lower() in officer :
-    #             i = i + 1
-    #             results.append({'title': brain.Title,
-    #                             'id': brain.getId,
-    #                             'path':brain.getPath()})
-    #             if i == 10:
-    #                 break;
-    #         if officer == 'all':
-    #             i = i + 1
-    #             results.append({'title': brain.Title,
-    #                             'id': brain.getId,
-    #                             'path':brain.getPath()})
-    #             if i == 10:
-    #                 break;
-    #     return (results, officer, request)
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)

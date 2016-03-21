@@ -41,8 +41,11 @@
       <ul class="tbo-listing">
         <li class="tbo-heading">
     		  <div class='tbo-left'>
-      			<h4 tal:content="python:brain['name'].title()+', ' +brain['officer_title']"/>
-      			<span>Email: </span>
+            
+      			<h4 tal:condition="brain/officer_title" tal:content="python:brain['name'].title()+', ' +brain['officer_title']"/>
+            <h4 tal:condition="python: not brain['officer_title']" tal:content="python:brain['name'].title()"/>
+      			
+            <span>Email: </span>
       			<a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']" tal:content="python: brain['officer_email']"></a>
     		  </div>
     		  <div class="tbo-right">
