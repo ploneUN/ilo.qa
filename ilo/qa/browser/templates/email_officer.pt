@@ -27,13 +27,18 @@
         <h3>Send Private Question</h3>
         <label tal:content="string: To: ${brain/officer}"></label>
         <form method="post">
-            <label>Subject:</label>
-            <input name="email_subject"/>
-            <br/>
-            <label>Message:</label>
-            <textarea name="email_message"></textarea>
-            <input type="submit" value="Send"/>
-            <span tal:define="dummy view/send_email"></span>
+            <div class="field">
+                <label>Subject:</label>
+                <input name="email_subject"/>
+            </div>
+            <div class="field">
+                <label>Message:</label>
+                <textarea name="email_message"></textarea>
+            </div>
+            <div class="formControls">
+                <input type="submit" value="Send"/>
+                <span tal:define="dummy view/send_email"></span>
+            </div>
         </form>
         
     </tal:block>
