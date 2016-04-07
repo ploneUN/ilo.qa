@@ -54,6 +54,9 @@
             </a>
     		  </div>
     		  <div style="display: block;clear: both"></div>
+			  <div>
+				  <a tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']">Private Question</a>
+			  </div>
         </li>
     		<li>
     		  <ul class="listing-btn">
