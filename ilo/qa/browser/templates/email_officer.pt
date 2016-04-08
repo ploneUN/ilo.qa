@@ -25,19 +25,26 @@
   <metal:content-core define-macro="content-core">
     <tal:block tal:define="brain view/get_officer" tal:condition="brain/officer">
         <h3>Send Private Question</h3>
-        <label tal:content="string: To: ${brain/officer}"></label>
+        <br />
+        <div class="field">
+            <label tal:content="string: To: ${brain/officer}"></label>
+        </div>
         <form method="post">
-            <div class="field">
-                <label>Subject:</label>
-                <input name="email_subject"/>
-            </div>
-            <div class="field">
-                <label>Message:</label>
-                <textarea name="email_message"></textarea>
-            </div>
+            <fieldset style="border: none">
+                <div class="field">
+                    <label>Subject:</label>
+                    <div class="fieldErrorBox"></div>
+                    <input type="txt" name="email_subject"/>
+                </div>
+                <div class="field">
+                    <label>Message:</label>
+                    <div class="fieldErrorBox"></div>
+                    <textarea name="email_message"></textarea>
+                </div>
+                <span tal:define="dummy view/send_email"></span>
+            </fieldset>
             <div class="formControls">
                 <input type="submit" value="Send"/>
-                <span tal:define="dummy view/send_email"></span>
             </div>
         </form>
         
