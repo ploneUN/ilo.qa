@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.1dev7'
+version = '1.1dev8'
 
 setup(name='ilo.qa',
       version=version,
