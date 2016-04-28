@@ -51,8 +51,10 @@
             <h4 tal:condition="python: not brain['officer_title']" tal:content="python:brain['name'].title()"/>
       			
             <span>Email: </span>
-      			<a class="tooltips" tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']" tal:content="python: brain['officer_email']">
-<span>Send Private Question</span></a>
+      			<a class="tooltips large" tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']">
+			  <span>Send Private Question</span>
+			  <b tal:content="python: brain['officer_email']" />
+			</a>
 <!--<a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']" tal:content="python: brain['officer_email']"></a>-->
     		  </div>
     		  <div class="tbo-right">
