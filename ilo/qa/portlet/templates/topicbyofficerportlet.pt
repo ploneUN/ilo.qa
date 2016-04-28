@@ -29,7 +29,12 @@
 			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
-            <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']"  tal:content="python: brain['title']"/>
+			  <a class="tooltips large" tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']">
+			    <span>Show question on this topic</span>
+			    
+			    <b tal:content="python: brain['title']" />
+			    
+			  </a>
 			  
       			</li>
     		  </ul>
@@ -68,7 +73,10 @@
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
 			  
-      			  <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +data['id']"  tal:content="python: data['title']"/>
+      			  <a class="tooltips large" tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +data['id']">
+			    <span>Show question on this topic</span>
+			    <b tal:content="python: data['title']" />
+			  </a>
 			  
       			</li>
     		  </ul>
