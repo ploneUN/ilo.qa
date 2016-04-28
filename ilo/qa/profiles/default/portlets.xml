@@ -7,13 +7,13 @@
             title="Add Question Button"
             description=""
     /> -->
-
+<!--
 <assignment name="addquestionportlet" category="content_type"
         key="ilo.qa.qafacility" manager="plone.leftcolumn"
         type="addquestionportlet.portlet" visible="True" insert-before="topicbyofficerportlet">
     <property name="portlet_title">Add Question Button</property>
   </assignment>
-
+-->
 <!-- <portlet
             addview="topicbyofficerportlet.portlet"
             title="Topic By Officer Portlet"
