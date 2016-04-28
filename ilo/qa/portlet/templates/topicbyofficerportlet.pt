@@ -83,6 +83,7 @@
         </a >
       </dd>
 
+<!--
       <dd class="portletItem">
        <a class="button expand" tal:attributes="href string:${absolute_url}/searchbytopic_view">
         <i class="fa fa-search"></i> Search By Topic
@@ -100,5 +101,6 @@
           <i class="fa fa-eye"> View Unanswered Questions
         </a>
       </dd>
+-->
   </dl>
 </div>
