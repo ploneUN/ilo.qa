@@ -28,18 +28,21 @@
   <metal:content-core define-macro="content-core">
 
     <tal:block repeat="widget view/widgets/values">
-        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
+
+        <!--<div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
             <br />
             <div tal:content="structure widget/render" />
-        </div>
+        </div>-->
+    <div><h3>Latest Questions</h3></div>
     </tal:block>
+
 
      <table class="listing">
          <tbody>
         <tr>
        <!-- <td>ID</td> -->
-       <td>Title</td>
+       <td>Question</td>
        <td>Topic</td>
        <td>State</td>
         </tr>
