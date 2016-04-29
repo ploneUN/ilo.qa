@@ -35,10 +35,6 @@
             <label tal:content="widget/label" />
             <br />
             <div tal:content="structure widget/render" />
-                  <a tal:condition="python: view.show_add_answer() == True" style="float:right;" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
-
-
-
         </div>
     </tal:block>
     <tal:block>
@@ -61,6 +57,7 @@
             </dl>
     </tal:block>
 
+<a tal:condition="python: view.show_add_answer() == True" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
 
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">

@@ -1,5 +1,12 @@
 Changelog
 =========
+'1.1dev8' - april 8, 2016
+------
+-added email facility for ilo qa
+
+'1.1dev7' - march 22, 2016
+---------------------
+Topic by officer portlet: Sort on results (director first in the list)
 
 '1.1dev6' - March 21, 2016
 ---------------------

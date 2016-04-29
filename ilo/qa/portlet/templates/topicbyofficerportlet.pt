@@ -29,7 +29,12 @@
 			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
-            <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']"  tal:content="python: brain['title']"/>
+			  <a class="tooltips large" tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']">
+			    <span>Show question on this topic</span>
+			    
+			    <b tal:content="python: brain['title']" />
+			    
+			  </a>
 			  
       			</li>
     		  </ul>
@@ -46,7 +51,11 @@
             <h4 tal:condition="python: not brain['officer_title']" tal:content="python:brain['name'].title()"/>
       			
             <span>Email: </span>
-      			<a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']" tal:content="python: brain['officer_email']"></a>
+      			<a class="tooltips large" tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']">
+			  <span>Send Private Question</span>
+			  <b tal:content="python: brain['officer_email']" />
+			</a>
+<!--<a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']" tal:content="python: brain['officer_email']"></a>-->
     		  </div>
     		  <div class="tbo-right">
             <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']">
@@ -54,6 +63,9 @@
             </a>
     		  </div>
     		  <div style="display: block;clear: both"></div>
+			 <!-- <div>
+				  <a tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']">Private Question</a>
+			  </div>-->
         </li>
     		<li>
     		  <ul class="listing-btn">
@@ -63,7 +75,10 @@
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
 			  
-      			  <a tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +data['id']"  tal:content="python: data['title']"/>
+      			  <a class="tooltips large" tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +data['id']">
+			    <span>Show question on this topic</span>
+			    <b tal:content="python: data['title']" />
+			  </a>
 			  
       			</li>
     		  </ul>
@@ -75,11 +90,12 @@
         <div data-alert class="alert-box info text-center">
         No Officers Yet.
         </div>
-        <a class="button expand" tal:attributes="href string:${absolute_url} /++add++ilo.qa.topic">
+        <a class="button expand" tal:attributes="href string:${absolute_url}/++add++ilo.qa.topic">
           <i class="fa fa-plus"></i> Add Officer
         </a >
       </dd>
 
+<!--
       <dd class="portletItem">
        <a class="button expand" tal:attributes="href string:${absolute_url}/searchbytopic_view">
         <i class="fa fa-search"></i> Search By Topic
@@ -97,5 +113,6 @@
           <i class="fa fa-eye"> View Unanswered Questions
         </a>
       </dd>
+-->
   </dl>
 </div>

@@ -2,6 +2,7 @@ from five import grok
 from plone.directives import dexterity, form
 from ilo.qa.content.qa_facility import IQAFacility
 from Products.CMFCore.utils import getToolByName
+from plone import api
 
 grok.templatedir('templates')
 
@@ -13,7 +14,7 @@ class Index(dexterity.DisplayForm):
 
     @property
     def catalog(self):
-    	return getToolByName(self.context, 'portal_catalog')
+        return getToolByName(self.context, 'portal_catalog')
 
     @property
     def form(self):
@@ -21,14 +22,14 @@ class Index(dexterity.DisplayForm):
         return request.form
 
     def latest_questions(self):
-    	context = self.context
-    	catalog = self.catalog
-    	path = '/'.join(context.getPhysicalPath())
-    	brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
                                                     portal_type='ilo.qa.question',
                                                     sort_on='Date',
                                                     sort_order='reverse')[:10]
-    	return brains
+        return brains
 
     def topic(self, uids = None):
         catalog = self.catalog
@@ -59,3 +60,9 @@ class Index(dexterity.DisplayForm):
         if form.has_key('data'):
             result = form[name]
         return result
+
+    def roles(self):
+        current = str(api.user.get_current())
+        roles = api.user.get_roles(username=current, obj= self.context)
+        allowed =  ['Reviewer','Manager', 'Administrator'] 
+        return any((True for x in roles if x in allowed))
