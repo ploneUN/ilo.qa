@@ -2,40 +2,40 @@
 <portlets>
 
     <!-- -*- extra stuff goes here -*- -->
-<!-- <portlet
+ <portlet
             addview="addquestionportlet.portlet"
             title="Add Question Button"
             description=""
-    /> -->
-<!--
+    />
+
 <assignment name="addquestionportlet" category="content_type"
         key="ilo.qa.qafacility" manager="plone.leftcolumn"
-        type="addquestionportlet.portlet" visible="True" insert-before="topicbyofficerportlet">
+        type="addquestionportlet.portlet" visible="False" insert-before="topicbyofficerportlet">
     <property name="portlet_title">Add Question Button</property>
   </assignment>
--->
-<!-- <portlet
+
+<portlet
             addview="topicbyofficerportlet.portlet"
             title="Topic By Officer Portlet"
             description=""
     />
- -->
+ 
     <assignment name="topicbyofficerportlet" category="content_type"
         key="ilo.qa.qafacility" manager="plone.leftcolumn"
-        type="topicbyofficerportlet.portlet" visible="True" insert-before="topicslistportlet">
+        type="topicbyofficerportlet.portlet" visible="False" insert-before="topicslistportlet">
     <property name="portlet_title">Topic By Officer Portlet</property>
   </assignment>
 
-<!-- <portlet
+<portlet
             addview="topicslistportlet.portlet"
             title="Topics List Portlet"
             description=""
-    /> -->
-<!--
+    /> 
+
     <assignment name="topicslistportlet" category="content_type"
 	    key="ilo.qa.qafacility" manager="plone.leftcolumn"
-	    type="topicslistportlet.portlet" visible="True">
+	    type="topicslistportlet.portlet" visible="False">
 	<property name="portlet_title">Topics List</property>
   </assignment>
--->
+
 </portlets>
