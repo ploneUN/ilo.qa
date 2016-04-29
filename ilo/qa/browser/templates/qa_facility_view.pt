@@ -15,45 +15,103 @@
     if needed.
 </tal:comment>
 
+<metal:javascript_head fill-slot="javascript_head_slot">
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var current_URL = $("span#current").html();
+        var data = $("span#data").html();
+        var data1 = $("span#data1").html();
+        $("#previous").click(function(){
+            data = parseInt(data) -10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+
+        $("#next").click(function(){
+            data = parseInt(data) +10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+
+         $("#previous1").click(function(){
+            data1 = parseInt(data1) -10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+
+        $("#next1").click(function(){
+            data1 = parseInt(data1) +10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+      });
+</script>
+</metal:javascript_head>
+
+
 <metal:styleslot fill-slot='style_slot'>
       <style type="text/css" media="all">
          #content-core label {display:none;}
-      </style>
-
-
-    
+      </style>    
 </metal:styleslot>
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
     <tal:block repeat="widget view/widgets/values">
-
-        <!--<div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
+        <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
             <br />
             <div tal:content="structure widget/render" />
-        </div>-->
-    <div><h3>Latest Questions</h3></div>
+        </div>
     </tal:block>
+    <h3>Latest Questions</h3>
+    <form method='post'>
+      <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+      <span style="display: none" tal:content="python: view.searchedValue('data1')" name='data1' id='data1'></span>
+    </form>
 
-
-     <table class="listing">
-         <tbody>
-        <tr>
-       <!-- <td>ID</td> -->
-       <td>Question</td>
-       <td>Topic</td>
-       <td>State</td>
-        </tr>
-        <tr tal:repeat="brain view/contents">
-       <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
-       <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
-       <td tal:content="python: brain.review_state.title()"></td>
-        </tr>
-       
-         </tbody>
-    </table>
+    <element tal:define="latest_questions view/latest_questions; 
+                        unanswered_questions view/unanswered_questions; 
+                        data python: int(view.searchedValue('data'));
+                        data1 python: int(view.searchedValue('data1'))" >
+      <table class="listing">
+        <tbody>
+          <tr>
+            <td>Question</td>
+            <td>Topic</td>
+            <td>State</td>
+            <td>Action</td>
+          </tr>
+          <tr tal:repeat="brain python: latest_questions[data:data+10]">
+            <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
+            <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
+            <td tal:content="python: brain.review_state.title()"></td>
+            <td><a tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer"> + Answer</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="previous" tal:condition="python: data">previous</button>
+      <button id="next" tal:condition="python: len(latest_questions[data:data+11]) > 10">next</button>
+      <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
+    <div tal:condition="view/roles">
+      <h3>Unanswered Questions</h3>
+      <table class="listing">
+        <tbody>
+          <tr>
+            <td>Question</td>
+            <td>Topic</td>
+            <td>State</td>
+            <td>Action</td>
+          </tr>
+          <tr tal:repeat="brain python: unanswered_questions[data1:data1+10]">
+            <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
+            <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
+            <td tal:content="python: brain.review_state.title()"></td>
+            <td><a tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer"> + Answer</a></td>
+          </tr> 
+        </tbody>
+      </table>
+      <button id="previous1" tal:condition="data1">previous</button>
+      <button id="next1" tal:condition="python: len(unanswered_questions[data1:data1+11]) > 10">next</button>
+    </div>
+  </element>
 
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
@@ -65,7 +123,7 @@
         </div>
     </fieldset>
       <br/>
-      <a tal:attributes="href string:${context/absolute_url}/unanswered_questions_view">Unanswered Questions</a>
+    <!--   <a tal:attributes="href string:${context/absolute_url}/unanswered_questions_view">Unanswered Questions</a> -->
 
   </metal:content-core>
 </metal:main>
