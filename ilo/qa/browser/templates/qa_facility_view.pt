@@ -83,7 +83,13 @@
             <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
             <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
             <td tal:content="python: brain.review_state.title()"></td>
-            <td><a tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer"> + Answer</a></td>
+            <td>
+                <a class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
+                    <span>Add answer</span>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <b>Answer</b>
+                </a>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -104,7 +110,13 @@
             <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
             <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
             <td tal:content="python: brain.review_state.title()"></td>
-            <td><a tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer"> + Answer</a></td>
+            <td>
+                <a class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
+                    <span>Add answer</span>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <b>Answer</b>
+                </a>
+            </td>
           </tr> 
         </tbody>
       </table>
