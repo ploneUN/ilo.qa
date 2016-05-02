@@ -72,7 +72,7 @@ class IQuestion(form.Schema, IImageScaleTraversable):
 
     dexteritytextindexer.searchable('question_details')
     form.widget(question_details=WysiwygFieldWidget)
-    question_details = schema.Text(title=u"Question Details")
+    question_details = schema.Text(title=u"Question Details",required=False,)
 
 
     form.widget(topic=CheckBoxFieldWidget)
