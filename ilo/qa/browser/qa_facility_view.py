@@ -31,6 +31,12 @@ class Index(dexterity.DisplayForm):
                                                     sort_order='reverse')[:10]
         return brains
 
+    def has_answer(self, brain=None):
+        catalog = self.catalog
+        brains = catalog.searchResults(path={'query': brain.getPath(), 'depth' : 1}, portal_type='ilo.qa.answer')
+        if brains:
+            return brains
+
     def topic(self, uids = None):
         catalog = self.catalog
         context = self.context
