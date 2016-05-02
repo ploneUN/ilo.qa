@@ -43,17 +43,16 @@
         <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">     
           <dt>
             <a tal:attributes="href python: brain.getPath()" tal:define="answer python: view.strip_tags(brain._unrestrictedGetObject().answer)">
-              <tal:if tal:condition="python: len(answer) < 75">
                 <span tal:content="structure answer" />
-              </tal:if>
-              <tal:if tal:condition="python: len(answer) >= 75">
-                <span tal:content="structure python: answer[:74]+' ...'" />
-              </tal:if>
             </a>
           </dt>
         </tal:element>
       </dl>
-      <a tal:condition="view/show_add_answer" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+      <dl tal:condition="view/show_add_answer">
+      <a tal:condition="not: view/contents" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+
+      <a tal:condition="view/contents" class="button l-orange-btn" tal:attributes="href python: view.contents()[0].getPath()+'/edit'">Edit Answer</a>
+      </dl>
     </tal:block>
 
 
