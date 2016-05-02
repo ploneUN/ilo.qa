@@ -96,7 +96,7 @@
                   <tal:element_one tal:define="first_answer python: answer[0];
                                                 published first_answer/review_state">
                     <!-- Answer state is draft yet -->
-                    <a tal:condition="python: published == 'draft'" class="button tooltips"  tal:attributes="href string: ${first_answer/getPath}">
+                    <a tal:condition="python: published == 'draft'" class="button tooltips"  tal:attributes="href string: ${first_answer/getPath}/content_status_modify?workflow_action=internally_publish">
                         <span>Publish answer</span>
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         <b>Publish Answer</b>
