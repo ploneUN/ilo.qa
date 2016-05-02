@@ -22,7 +22,7 @@
  
     <assignment name="topicbyofficerportlet" category="content_type"
         key="ilo.qa.qafacility" manager="plone.leftcolumn"
-        type="topicbyofficerportlet.portlet" visible="False" insert-before="topicslistportlet">
+        type="topicbyofficerportlet.portlet" visible="True" insert-before="topicslistportlet">
     <property name="portlet_title">Topic By Officer Portlet</property>
   </assignment>
 
