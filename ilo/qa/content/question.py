@@ -32,6 +32,8 @@ from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from plone.i18n.normalizer import idnormalizer
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from z3c.form.interfaces import HIDDEN_MODE
+from z3c.form.interfaces import IEditForm
 
 
 # Interface class; used to define content-type schema.
@@ -76,7 +78,7 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     question_details = schema.Text(title=u"Question Details",required=False,)
 
     
-    # form.widget(topic=CheckBoxFieldWidget)
+    form.mode(IEditForm, topic='display')
     form.widget(topic=RadioFieldWidget)
     topic = schema.List(
         title=u'Topic',
@@ -186,8 +188,12 @@ class IQuestionAddForm(dexterity.AddForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
-                                        portal_type='ilo.qa.topic',
-                                        id = form_id)
+        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic', uid = form_id)
         if brains:
-            return brains[0].UID
+            return brains[0].Title
+
+    def updateWidgets(self):
+        super(IQuestionAddForm, self).updateWidgets()
+        if self.request.form.has_key('form.widgets.topic'):
+            widgets = self.widgets
+            widgets['topic'].mode = HIDDEN_MODE
