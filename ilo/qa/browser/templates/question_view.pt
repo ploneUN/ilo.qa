@@ -16,7 +16,7 @@
 </tal:comment>
 <metal:styleslot fill-slot="style_slot">
       <style type="text/css">
-            div#content-core div.field:nth-child(2){
+            div#content-core div.field:nth-child(5){
                   display: none;
             }
             div#content-core div.field:nth-child(3){

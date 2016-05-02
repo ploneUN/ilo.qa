@@ -6,19 +6,6 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
-<metal:javascript_head fill-slot="javascript_head_slot">
-<script type="text/javascript">
-  /*$(document).ready(function(){
-    var topic1 = $('span#topic1').html();
-    document.getElementById("formfield-form-widgets-topic").value = topic1;
-     $('span#form-widgets-topic span input').each(function() {
-        if ($(this).val() == topic1){
-          this.checked=true;
-        }
-      });
-  });*/
-</script>
-</metal:javascript_head>
 <body>
 <metal:main fill-slot="main">
   <tal:main-macro metal:define-macro="main">
@@ -26,9 +13,11 @@
     <div id="content-core">
       <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>
-    <!--<tal:block tal:define="form request/form" tal:condition="form">
-      <span style="display: none" id="topic1" tal:content="python: view.topic_uid(form['topic1'])"></span>
-    </tal:block>-->
+    <b>Topic:</b>
+    <tal:block tal:define="form request/form" tal:condition="python: form.has_key('form.widgets.topic')">
+       <p tal:content="python: view.topic_uid(form['form.widgets.topic'])"/>
+    </tal:block>
+
   </tal:main-macro>
 </metal:main>
 </body>
