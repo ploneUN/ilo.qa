@@ -27,6 +27,7 @@ from ilo.qa import MessageFactory as _
 
 from Products.CMFCore.utils import getToolByName
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from plone.i18n.normalizer import idnormalizer
@@ -74,8 +75,9 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     form.widget(question_details=WysiwygFieldWidget)
     question_details = schema.Text(title=u"Question Details",required=False,)
 
-
-    form.widget(topic=CheckBoxFieldWidget)
+    
+    # form.widget(topic=CheckBoxFieldWidget)
+    form.widget(topic=RadioFieldWidget)
     topic = schema.List(
         title=u'Topic',
         required=False,
