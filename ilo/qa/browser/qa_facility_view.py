@@ -36,7 +36,7 @@ class Index(dexterity.DisplayForm):
         context = self.context
         results = []
         path = '/'.join(context.getPhysicalPath())
-        for uid in uids:
+        for uid in uids or []:
             brains = catalog.searchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
             for brain in brains:
                 results.append(brain.Title)
