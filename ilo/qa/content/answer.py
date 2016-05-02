@@ -118,4 +118,4 @@ def _createObject(context, event):
     # behavior = IExcludeFromNavigation(context)
     # behavior.exclude_from_nav = True
     context.reindexObject()
-    return
+    return context.REQUEST.response.redirect(parent.absolute_url())
