@@ -84,6 +84,13 @@
             <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
             <td tal:content="python: brain.review_state.title()"></td>
             <td tal:define="answer python: view.has_answer(brain)">
+              <!-- Question state is draft yet -->
+              <a tal:condition="python: brain.review_state == 'draft'" class="button tooltips" tal:attributes="href string: ${brain/getPath}/content_status_modify?workflow_action=internally_publish">
+                    <span>Publish Question</span>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <b>Publish Question</b>
+                </a>
+             <!-- ANSWERS --> 
                 <!-- No Answet Yet -->
                 <a tal:condition="not: answer" class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
                     <span>Add answer</span>
