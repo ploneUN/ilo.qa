@@ -85,17 +85,15 @@
             <td tal:content="python: brain.review_state.title()"></td>
             <td tal:define="answer python: view.has_answer(brain)">
               <!-- Question state is draft yet -->
-              <a tal:condition="python: brain.review_state == 'draft'" class="button tooltips" tal:attributes="href string: ${brain/getPath}/content_status_modify?workflow_action=internally_publish">
+              <a tal:condition="python: brain.review_state == 'draft'" class="button tooltips large-tooltip" tal:attributes="href string: ${brain/getPath}/content_status_modify?workflow_action=internally_publish">
                     <span>Publish Question</span>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    <b>Publish Question</b>
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                 </a>
              <!-- ANSWERS --> 
                 <!-- No Answet Yet -->
                 <a tal:condition="not: answer" class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
                     <span>Add answer</span>
                     <i class="fa fa-plus" aria-hidden="true"></i>
-                    <b>Answer</b>
                 </a>
 
                 <!-- Has An Answer Already -->
@@ -104,16 +102,14 @@
                                                 published first_answer/review_state">
                     <!-- Answer state is draft yet -->
                     <a tal:condition="python: published == 'draft'" class="button tooltips"  tal:attributes="href string: ${first_answer/getPath}/content_status_modify?workflow_action=internally_publish">
-                        <span>Publish answer</span>
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <b>Publish Answer</b>
+                        <span>Publish Answer</span>
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                     </a>
 
                     <!-- Answer state is not draft -->
                     <a tal:condition="python: published != 'draft'" class="button tooltips"  tal:attributes="href string: ${first_answer/getPath}/edit">
-                        <span>Edit answer</span>
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <b>Edit Answer</b>
+                        <span>Edit Answer</span>
+                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
                     </a>
                   </tal:element_one>
               </tal:element>
@@ -141,9 +137,8 @@
             <td tal:content="python: brain.review_state.title()"></td>
             <td>
                 <a class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
-                    <span>Add answer</span>
+                    <span>Add Answer</span>
                     <i class="fa fa-plus" aria-hidden="true"></i>
-                    <b>Answer</b>
                 </a>
             </td>
           </tr> 
