@@ -224,3 +224,5 @@ a:hover.tooltips.large span{left: 25%}
 
 a.tooltips.large-tooltip span{width: 130px}
 a:hover.tooltips.large-tooltip span{left: 25%}
+
+a.icon-green{color: #75ad0a !important}
