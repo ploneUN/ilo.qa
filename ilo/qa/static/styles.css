@@ -221,3 +221,6 @@ a:hover.tooltips span{visibility:visible;opacity:.8;bottom:30px;left:50%;margin-
 a.tooltips.large,
 a.tooltips.large span{width: 180px}
 a:hover.tooltips.large span{left: 25%}
+
+a.tooltips.large-tooltip span{width: 130px}
+a:hover.tooltips.large-tooltip span{left: 25%}
