@@ -77,44 +77,12 @@
             <td>Question</td>
             <td>Topic</td>
             <td>State</td>
-            <td>Action</td>
+            <!-- <td>Action</td> -->
           </tr>
-          <tr tal:repeat="brain python: latest_questions[data:data+10]">
+          <tr tal:repeat="brain python: latest_questions[data:data+10]" >
             <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
             <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
             <td tal:content="python: brain.review_state.title()"></td>
-            <td tal:define="answer python: view.has_answer(brain)">
-              <!-- Question state is draft yet -->
-              <a tal:condition="python: brain.review_state == 'draft'" class="button tooltips large-tooltip" tal:attributes="href string: ${brain/getPath}/content_status_modify?workflow_action=internally_publish">
-                    <span>Publish Question</span>
-                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                </a>
-             <!-- ANSWERS --> 
-                <!-- No Answet Yet -->
-                <a tal:condition="not: answer" class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
-                    <span>Add answer</span>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                </a>
-
-                <!-- Has An Answer Already -->
-                <tal:element tal:condition="answer" >
-                  <tal:element_one tal:define="first_answer python: answer[0];
-                                                published first_answer/review_state">
-                    <!-- Answer state is draft yet -->
-                    <a tal:condition="python: published == 'draft'" class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${first_answer/getPath}/content_status_modify?workflow_action=internally_publish">
-                        <span>Publish Answer</span>
-                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                    </a>
-
-                    <!-- Answer state is not draft -->
-                    <a tal:condition="python: published != 'draft'" class="button tooltips"  tal:attributes="href string: ${first_answer/getPath}/edit">
-                        <span>Edit Answer</span>
-                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                    </a>
-                  </tal:element_one>
-              </tal:element>
-            
-            </td>
           </tr>
         </tbody>
       </table>
@@ -135,11 +103,49 @@
             <td><a tal:attributes="href python: brain.getPath()" tal:content="python: brain.Title"/></td>
             <td tal:content="python: view.topic(brain._unrestrictedGetObject().topic)"></td>
             <td tal:content="python: brain.review_state.title()"></td>
-            <td>
+           <!--  <td>
                 <a class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
                     <span>Add Answer</span>
                     <i class="fa fa-plus" aria-hidden="true"></i>
                 </a>
+            </td> -->
+
+             <td tal:define="answer python: view.has_answer(brain)">
+              <!-- Question state is draft yet -->
+             <!--  <a tal:condition="python: brain.review_state == 'draft'" class="button tooltips large-tooltip" tal:attributes="href string: ${brain/getPath}/content_status_modify?workflow_action=internally_publish">
+                    <span>Publish Question</span>
+                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                </a> -->
+             <!-- ANSWERS --> 
+                <!-- No Answet Yet -->
+                <a tal:condition="not: answer" class="button tooltips" tal:attributes="href string: ${brain/getPath}/++add++ilo.qa.answer">
+                    <span>Add answer</span>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </a>
+
+                <!-- Has An Answer Already -->
+                <tal:element tal:condition="answer" >
+                  <tal:element_one tal:define="first_answer python: answer[0];
+                                                published first_answer/review_state"
+                                                tal:condition="python: published == 'draft'">
+                    <!-- Answer state is draft yet -->
+                    <a  class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${first_answer/getPath}/content_status_modify?workflow_action=internally_publish">
+                        <span>Publish Answer</span>
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${first_answer/getPath}/edit">
+                        <span>Edit Answer</span>
+                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${first_answer/getPath}/delete_confirmation">
+                        <span>Delete Answer</span>
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                    </a>
+                  </tal:element_one>
+              </tal:element>
+            
             </td>
           </tr> 
         </tbody>

@@ -25,15 +25,22 @@ class Index(dexterity.DisplayForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
+        results = []
         brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
                                                     portal_type='ilo.qa.question',
                                                     sort_on='Date',
-                                                    sort_order='reverse')[:10]
-        return brains
+                                                    sort_order='reverse')
+        for brain in brains:
+            answer = self.has_answer(brain)
+            if answer:
+                if answer[0].review_state != 'draft':
+                    results.append(brain)
+        return results
 
     def has_answer(self, brain=None):
         catalog = self.catalog
-        brains = catalog.searchResults(path={'query': brain.getPath(), 'depth' : 1}, portal_type='ilo.qa.answer')
+        brains = catalog.searchResults(path={'query': brain.getPath(), 'depth' : 1}, 
+                                    portal_type='ilo.qa.answer')
         if brains:
             return brains
 
@@ -43,7 +50,9 @@ class Index(dexterity.DisplayForm):
         results = []
         path = '/'.join(context.getPhysicalPath())
         for uid in uids or []:
-            brains = catalog.searchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
+            brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+                                            portal_type='ilo.qa.topic',
+                                            UID = uid)
             for brain in brains:
                 results.append(brain.Title)
         return ', '.join(results)
@@ -53,9 +62,15 @@ class Index(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
-        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+                                        portal_type='ilo.qa.question',
+                                        #review_state='internally_published',
+                                        sort_on='Date',
+                                        sort_order='reverse')
         for brain in brains:
-            brains2 = catalog.unrestrictedSearchResults(path={'query':brain.getPath(), 'depth':1}, portal_type='ilo.qa.answer', review_state='internally_published')
+            brains2 = catalog.searchResults(path={'query':brain.getPath(), 'depth':1}, 
+                                                        portal_type='ilo.qa.answer', 
+                                                        review_state='internally_published')
             if len(brains2) == 0:
                 results.append(brain)
         return results
