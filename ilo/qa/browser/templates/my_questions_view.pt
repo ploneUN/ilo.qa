@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="ilo.qa">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a sample view template. It will not be used for rendering the
+    content unless activated by creation of a view class with a matching name.
+    
+    Note that we're using Plone 4 macros. Replace them with Plone 3 macros
+    if needed.
+</tal:comment>
+
+<metal:javascript_head fill-slot="javascript_head_slot">
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var current_URL = $("span#current").html();
+        var data = $("span#data").html();
+        var data1 = $("span#data1").html();
+        $("#previous").click(function(){
+            data = parseInt(data) -10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+
+        $("#next").click(function(){
+            data = parseInt(data) +10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+
+         $("#previous1").click(function(){
+            data1 = parseInt(data1) -10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+
+        $("#next1").click(function(){
+            data1 = parseInt(data1) +10;
+          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+        });
+      });
+</script>
+</metal:javascript_head>
+
+
+<metal:styleslot fill-slot='style_slot'>
+      <style type="text/css" media="all">
+         #content-core label {display:none;}
+      </style>    
+</metal:styleslot>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+    <h1>My Questions</h1>
+    <table width='100%' class="listing">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Topic</th>
+                <th>Answer</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody tal:define="brains view/questions" tal:condition="brains">
+            <tr tal:repeat="brain brains">
+                <td>
+                    <a tal:attributes="href python: brain['url']" tal:content="python: brain['title']"/>
+                </td>
+                <td tal:content="python: brain['topic']"/>
+                <td tal:content="python: brain['answer']"/>
+                <td tal:content="python: brain['state']"/>
+            </tr>
+        </tbody>
+    </table>
+    
+
+
+    <!--   <a tal:attributes="href string:${context/absolute_url}/unanswered_questions_view">Unanswered Questions</a> -->
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
