@@ -22,6 +22,11 @@ from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 #from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
+from zope.app.container.interfaces import IObjectAddedEvent
+from zope.component import getUtility, getMultiAdapter
+from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, IPortletRetriever
+from ilo.qa.portlet import myquestionsportlet
+from zope.container.interfaces import INameChooser
 
 from ilo.qa import MessageFactory as _
 
@@ -38,3 +43,15 @@ class IQAFacility(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IQAFacility, IFormFieldProvider)
+
+@grok.subscribe(IQAFacility, IObjectAddedEvent)
+def createObject(context, event):
+    column = getUtility(IPortletManager, name=u'plone.leftcolumn', context=context)
+    manager = getMultiAdapter((context, column,), IPortletAssignmentMapping)
+    assignment = myquestionsportlet.Assignment()
+    chooser = INameChooser(manager)
+    assignment.button_label = 'My Questions'
+    manager[chooser.chooseName(None, assignment)] = assignment
+    
+    return
+    
