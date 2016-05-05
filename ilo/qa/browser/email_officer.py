@@ -40,14 +40,18 @@ class email_officer(dexterity.DisplayForm):
                     mail = self.context.MailHost
                     from_email = api.user.get_current().getProperty('email')
                     from_name = api.user.get_current().getProperty('fullname')
-                    msg = {}
-                    msg['From'] = '%s' % from_email
+                    #msg = {}
+                    msg = MIMEMultipart()
+                    
+                    msg['From'] = '%s <%s>' % (from_name, from_email)
+                    msg.add_header('reply-to', from_email)
                     msg['To'] = '%s' % self.get_officer()['officer_email']
                     msg['Subject'] = form['email_subject']
                     msg['Message'] = form['email_message']
                     mailhost = self.context.MailHost
                     try:
-                        mailhost.send(msg['Message'], mto=msg['To'], mfrom=msg['From'], subject=msg['Subject'], immediate=True, charset='utf8', msg_type=None)
+                        #mailhost.send(msg['Message'], mto=msg['To'], mfrom=msg['From'], subject=msg['Subject'], immediate=True, charset='utf8', msg_type=None)
+                        mailhost.send(msg.as_string())
                         self.context.plone_utils.addPortalMessage(u"Email successfully sent", 'success')
                         self.request.RESPONSE.redirect(self.context.absolute_url())
                     except:
