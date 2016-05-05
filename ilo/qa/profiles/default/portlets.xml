@@ -37,5 +37,11 @@
 	    type="topicslistportlet.portlet" visible="False">
 	<property name="portlet_title">Topics List</property>
   </assignment>
+    
+    <portlet
+            addview="myquestionsportlet.portlet"
+            title="My Questions Button Portlet"
+            description=""
+    /> 
 
 </portlets>
