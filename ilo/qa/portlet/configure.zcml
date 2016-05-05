@@ -33,5 +33,14 @@
         addview=".topicslistportlet.AddForm"
         editview=".topicslistportlet.EditForm"
         />
+    
+    <plone:portlet
+        name="myquestionsportlet.portlet"
+        interface=".myquestionsportlet.IContentNavigation"
+        assignment=".myquestionsportlet.Assignment"
+        renderer=".myquestionsportlet.Renderer"
+        addview=".myquestionsportlet.AddForm"
+        editview=".myquestionsportlet.EditForm"
+        />
 
 </configure>
