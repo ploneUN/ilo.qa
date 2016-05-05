@@ -134,14 +134,14 @@
                         <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                     </a>
 
-                    <a class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${first_answer/getPath}/edit">
+                    <a class="button tooltips large-tooltip"  tal:attributes="href string: ${first_answer/getPath}/edit">
                         <span>Edit Answer</span>
                         <i class="fa fa-pencil-square" aria-hidden="true"></i>
                     </a>
 
-                    <a class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${first_answer/getPath}/delete_confirmation">
+                    <a class="button tooltips large-tooltip"  tal:attributes="href string: ${first_answer/getPath}/delete_confirmation">
                         <span>Delete Answer</span>
-                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </a>
                   </tal:element_one>
               </tal:element>
