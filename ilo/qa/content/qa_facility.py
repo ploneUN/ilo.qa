@@ -33,7 +33,7 @@ class IQAFacility(form.Schema, IImageScaleTraversable):
     QA Facility
     """
     form.widget(facility_body=WysiwygFieldWidget)
-    facility_body = schema.Text(title=u"Body")
+    facility_body = schema.Text(title=u"Body",required="false")
 
     pass
 
