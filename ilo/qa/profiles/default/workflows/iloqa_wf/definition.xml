@@ -5,8 +5,8 @@
  <permission>Modify portal content</permission>
  <permission>View</permission>
  <permission>Copy or Move</permission>
- <permission>ilo.qa: Add Answer</permission>
- <permission>ilo.qa: Add Topic</permission>
+ <permission>ilo.qa: Add Question</permission>
+ <permission>ilo.qa: Config</permission>
  <permission>List folder contents</permission>
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="internally_publish"/>
@@ -40,12 +40,12 @@
    <permission-role>Reviewer</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="ilo.qa: Add Answer" acquired="False">
+  <permission-map name="ilo.qa: Add Question" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="ilo.qa: Add Topic" acquired="False">
+  <permission-map name="ilo.qa: Add Config" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
@@ -80,12 +80,12 @@
    <permission-role>Authenticated</permission-role>
    <permission-role>Member</permission-role>
   </permission-map>
-  <permission-map name="ilo.qa: Add Answer" acquired="False">
+  <permission-map name="ilo.qa: Add Question" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
-  <permission-map name="ilo.qa: Add Topic" acquired="False">
+  <permission-map name="ilo.qa: Add Config" acquired="False">
    <permission-role>Editor</permission-role>
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
