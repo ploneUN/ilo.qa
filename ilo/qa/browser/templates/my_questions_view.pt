@@ -75,10 +75,8 @@
             </tr>
         </tbody>
     </table>
-    
-
-
-    <!--   <a tal:attributes="href string:${context/absolute_url}/unanswered_questions_view">Unanswered Questions</a> -->
+  
+    <a tal:attributes="href string:${context/absolute_url}" tal:content="string: Back to ${context/Title}"></a>
 
   </metal:content-core>
 </metal:main>
