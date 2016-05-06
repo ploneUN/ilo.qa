@@ -32,14 +32,16 @@ setup(name='ilo.qa',
           'collective.grok',
           'plone.app.referenceablebehavior',
           'collective.dexteritytextindexer',
-#          'plone.app.multilingual',
-#          'plone.multilingualbehavior',
+          'plone.app.multilingual',
+          'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
           'collective.setuphelpers',
           'collective.easytemplate',
+          'a5.workflow',
           'plone.api'
           # -*- Extra requirements: -*-
       ],
+
       extras_require={
           'test': [
               'plone.app.testing',

@@ -19,7 +19,8 @@
    <bound-workflow workflow_id="iloqa_items"/>
   </type>
   <type type_id="ilo.qa.topic">
-   <bound-workflow workflow_id="iloqa_items"/>
+   <!--bound-workflow workflow_id="iloqa_items"/-->
+   <bound-workflow workflow_id="a5_config_items_workflow"/>
   </type>
  </bindings>
 </object>
