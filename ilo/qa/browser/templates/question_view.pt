@@ -42,10 +42,10 @@
       <dl>
         <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">   
         <h5>Answer</h5>  
-          <dt>
-            <a tal:attributes="href python: brain.getPath()" tal:define="answer python: view.strip_tags(brain._unrestrictedGetObject().answer)">
+          <dt tal:define="answer python: view.strip_tags(brain._unrestrictedGetObject().answer)">
+           <!--  <a tal:attributes="href python: brain.getPath()" > -->
                 <span tal:content="structure answer" />
-            </a>
+           <!--  </a> -->
           </dt>
         </tal:element>
       </dl>
