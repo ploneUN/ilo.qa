@@ -47,7 +47,8 @@ class email_officer(dexterity.DisplayForm):
                     msg.add_header('reply-to', from_email)
                     msg['To'] = '%s' % self.get_officer()['officer_email']
                     msg['Subject'] = form['email_subject']
-                    msg['Message'] = form['email_message']
+                    body= form['email_message'].encode('utf-8')
+                    msg.attach(MIMEText(body, 'plain', 'utf-8'))
                     mailhost = self.context.MailHost
                     try:
                         #mailhost.send(msg['Message'], mto=msg['To'], mfrom=msg['From'], subject=msg['Subject'], immediate=True, charset='utf8', msg_type=None)
