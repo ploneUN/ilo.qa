@@ -7,11 +7,16 @@
  <permission>Copy or Move</permission>
  <permission>ilo.qa: Add Answer</permission>
  <permission>ilo.qa: Add Topic</permission>
+ <permission>List folder contents</permission>
  <state state_id="draft" title="Draft">
   <exit-transition transition_id="internally_publish"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Reviewer</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents" acquired="False">
+   <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
   <permission-map name="Add portal content" acquired="False">
@@ -50,6 +55,10 @@
   <description>Visible to everyone, editable by the owner.</description>
   <exit-transition transition_id="retract"/>
   <permission-map name="Access contents information" acquired="False">
+   <permission-role>Manager</permission-role>
+   <permission-role>Site Administrator</permission-role>
+  </permission-map>
+  <permission-map name="List folder contents" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>
   </permission-map>
