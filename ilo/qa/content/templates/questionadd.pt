@@ -13,8 +13,9 @@
     <div id="content-core">
       <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>
-    <b>Topic:</b>
+   
     <tal:block tal:define="form request/form" tal:condition="python: form.has_key('form.widgets.topic')">
+       <b>Topic:</b>
        <p tal:content="python: view.topic_uid(form['form.widgets.topic'])"/>
     </tal:block>
 

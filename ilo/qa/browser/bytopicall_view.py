@@ -20,7 +20,7 @@ class bytopicall_view(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = [{'value':'all', 'name':'All'}]
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
         for brain in brains:
             results.append({'value':brain.getId,
                             'name':brain.Title})
@@ -42,7 +42,7 @@ class bytopicall_view(dexterity.DisplayForm):
         topic=''
         results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')
         if form:
             topic = form['topic1']
         i = 0
@@ -65,7 +65,7 @@ class bytopicall_view(dexterity.DisplayForm):
         results = []
         path = '/'.join(context.getPhysicalPath())
         for uid in uids:
-            brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',UID = uid)
+            brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic',UID = uid)
             for brain in brains:
                 results.append(brain.getId)
         return results
@@ -75,7 +75,7 @@ class bytopicall_view(dexterity.DisplayForm):
         context = self.context
         title = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic', id = uid)
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic', id = uid)
         for brain in brains:
             title.append(brain.Title)
         return title

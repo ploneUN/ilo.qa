@@ -48,9 +48,9 @@ class topics(object):
             path = '/'.join(context.getPhysicalPath())
         else:
             path = '/'.join(context.aq_parent.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
                                                     portal_type='ilo.qa.topic',
-                                                    review_state='internally_published',
+                                                    # review_state='internally_published',
                                                     sort_on='sortable_title')
         results = []
         for brain in brains:
@@ -188,7 +188,7 @@ class IQuestionAddForm(dexterity.AddForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic', uid = form_id)
+        brains = catalog.searchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic', uid = form_id)
         if brains:
             return brains[0].Title
 
