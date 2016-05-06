@@ -27,6 +27,7 @@ from zope.component import getUtility, getMultiAdapter
 from plone.portlets.interfaces import IPortletManager, IPortletAssignmentMapping, IPortletRetriever
 from ilo.qa.portlet import myquestionsportlet
 from zope.container.interfaces import INameChooser
+from plone.dexterity.utils import createContentInContainer
 
 from ilo.qa import MessageFactory as _
 
@@ -52,6 +53,11 @@ def createObject(context, event):
     chooser = INameChooser(manager)
     assignment.button_label = 'My Questions'
     manager[chooser.chooseName(None, assignment)] = assignment
+
+    #auto create config and workspace folders on ppp dms
+    createContentInContainer(context, 'ilo.qa.config', checkConstraints=False, title='Config')
     
     return
+
+
     

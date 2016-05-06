@@ -26,7 +26,7 @@ class Index(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
-        brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+        brains = catalog.searchResults(path={'query': path, 'depth' : 2}, 
                                                     portal_type='ilo.qa.question',
                                                     sort_on='Date',
                                                     sort_order='reverse')
@@ -50,7 +50,7 @@ class Index(dexterity.DisplayForm):
         results = []
         path = '/'.join(context.getPhysicalPath())
         for uid in uids or []:
-            brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
+            brains = catalog.searchResults(path={'query': path, 'depth' : 2}, 
                                             portal_type='ilo.qa.topic',
                                             UID = uid)
             for brain in brains:
