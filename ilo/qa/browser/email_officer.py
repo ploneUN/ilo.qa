@@ -58,6 +58,10 @@ class email_officer(dexterity.DisplayForm):
                         self.context.plone_utils.addPortalMessage(u"Unable to send email", 'info')
                         self.request.RESPONSE.redirect(self.context.absolute_url())
         return ''
+    
+    def auth_user(self, ):
+        return api.user.get_current().getProperty('email')
+    
                     
                     
                    

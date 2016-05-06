@@ -29,6 +29,9 @@
         <div class="field">
             <label tal:content="string: To: ${brain/officer}"></label>
         </div>
+        <div class="field">
+            <label tal:content="string: From: ${view/auth_user}"/>
+        </div>
         <form method="post">
             <fieldset style="border: none">
                 <div class="field">
