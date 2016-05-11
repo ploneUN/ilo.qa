@@ -50,7 +50,7 @@ class topics(object):
             path = '/'.join(context.aq_parent.getPhysicalPath())
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
                                                     portal_type='ilo.qa.topic',
-                                                    review_state='internally_published',
+                                                    review_state='enabled',
                                                     sort_on='sortable_title')
         results = []
         for brain in brains:

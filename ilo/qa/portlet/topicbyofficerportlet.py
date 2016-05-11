@@ -63,8 +63,8 @@ class Renderer(base.Renderer):
         general_officer = []
         gen_officer = 'General Officer'
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
-                                                    portal_type='ilo.qa.topic',)
-                                                    # review_state='enabled')
+                                                    portal_type='ilo.qa.topic',
+                                                    review_state='enabled')
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
