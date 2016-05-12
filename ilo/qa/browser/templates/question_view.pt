@@ -38,25 +38,35 @@
         </div>
     </tal:block>
 
-    <tal:block>
-      <dl>
-        <tal:element tal:repeat="brain view/contents" tal:condition="view/contents">   
-        <dt>Answer</dt>  
-          <dd tal:define="answer python: view.strip_tags(brain._unrestrictedGetObject().answer)">
-           <!--  <a tal:attributes="href python: brain.getPath()" > -->
-                <p style="word-wrap: break-word" tal:content="structure answer" />
-           <!--  </a> -->
+
+
+    <tal:element tal:define="contents view/contents;">
+      <tal:block tal:condition="contents">
+        
+        <tal:element1 tal:define="answer python: contents[0]">
+        <dt>Answer</dt> 
+          <dd tal:define="first_answer python: view.strip_tags(answer.getObject().answer)">
+              <p style="word-wrap: break-word" tal:content="structure first_answer" />
           </dd>
-        </tal:element>
-      </dl>
+     
+
       <dl tal:condition="view/show_add_answer">
-      <a tal:condition="not: view/contents" class="button l-orange-btn" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+        <a tal:condition="python: answer.review_state != 'draft'" class="button l-orange-btn" 
+          tal:attributes="href python: answer.getPath()+'/edit'">Edit Answer</a>
 
-      <a tal:condition="view/contents" class="button l-orange-btn" tal:attributes="href python: view.contents()[0].getPath()+'/edit'">Edit Answer</a>
+        <a tal:condition="python: answer.review_state == 'draft'" class="button l-orange-btn" 
+          tal:attributes="href string: ${answer/getURL}/content_status_modify?workflow_action=internally_publish">Publish Answer</a>
+
       </dl>
-    </tal:block>
+    </tal:element1>
+      </tal:block>
 
+    </tal:element>
 
+      <dl tal:condition="view/show_add_answer">
+        <a tal:condition="not: view/contents" class="button l-orange-btn" 
+          tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.answer'">Add an Answer</a>
+      </dl>
 
     <fieldset tal:repeat="group view/groups"
               tal:attributes="id python:''.join((group.prefix, 'groups.', group.__name__)).replace('.', '-')">
