@@ -188,7 +188,7 @@ class IQuestionAddForm(dexterity.AddForm):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.searchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic', uid = form_id)
+        brains = catalog.searchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic', UID = form_id)
         if brains:
             return brains[0].Title
 
