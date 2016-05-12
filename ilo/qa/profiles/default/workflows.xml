@@ -5,7 +5,6 @@
  <object name="iloquestion_wf" meta_type="Workflow"/>
  <object name="iloqa_wf" meta_type="Workflow"/>
  <object name="iloqa_items" meta_type="Workflow"/>
- <object name="config_workflow" meta_type="Workflow"/>
  <bindings>
   <default>
    <bound-workflow workflow_id="simple_publication_workflow"/>
@@ -20,7 +19,7 @@
    <bound-workflow workflow_id="iloqa_items"/>
   </type>
   <type type_id="ilo.qa.config">
-   <bound-workflow workflow_id="config_workflow"/>
+   <bound-workflow workflow_id="a5_config_containers_workflow"/>
   </type>
   <type type_id="ilo.qa.topic">
    <!--bound-workflow workflow_id="iloqa_items"/-->
