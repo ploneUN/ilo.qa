@@ -31,8 +31,13 @@ class Index(dexterity.DisplayForm):
     	context = self.context
     	catalog = self.catalog
     	path = '/'.join(context.getPhysicalPath())
-    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.answer',review_state='internally_published',sort_on='Date',sort_order='reverse')
-    	return brains
+    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
+                                            portal_type='ilo.qa.answer',
+                                            # review_state='internally_published',
+                                            sort_on='Date',
+                                            sort_order='reverse')
+    	if brains:
+            return brains
     
     def strip_tags(self, html):
         s = MLStripper()
