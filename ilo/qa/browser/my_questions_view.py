@@ -29,6 +29,13 @@ class my_questions_view(dexterity.DisplayForm):
         brains = self.catalog.searchResults(path={'query':path, 'depth':1}, portal_type='ilo.qa.answer', sort_on='modified', sort_order='descending')
         if brains:
             return brains[0].Title
+
+    def searchedValue(self, name=None):
+        result = 0
+        form = self.request.form
+        if form.has_key('data'):
+            result = form[name]
+        return result
             
         
         

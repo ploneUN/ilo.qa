@@ -31,6 +31,10 @@ class bytopic_view(dexterity.DisplayForm):
         result = ''
         if self.request.form:
             form = self.request.form
+            if not form.has_key('data'):
+                form['data']=0
+            if not form.has_key('data1'):
+                form['data1']=0
             result = form[name]
         return result
 
@@ -41,29 +45,33 @@ class bytopic_view(dexterity.DisplayForm):
         form = request.form
         catalog = self.catalog
         topic=''
-        results = []
+        has_answer_results = []
+        no_answer_results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
+                                                    portal_type='ilo.qa.question',
+                                                    # review_state='internally_published',
+                                                    sort_on='Date',
+                                                    sort_order='reverse')
         if form:
             topic = form['topic1']
-        i = 0
-
         for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            #import pdb; pdb.set_trace()
+            obj = brain.getObject()
             if topic in self.pledge_id(obj.topic):
-                i = i + 1
-                results.append({'title': brain.Title,
-                                'path':brain.getPath()})
-                if i == 11:
-                    break;
-            if topic == 'all':
-                i = i + 1
-                results.append({'title': brain.Title,
-                                'path':brain.getPath()})
-                if i == 11:
-                    break;
-        return (results, self.pledge_title(topic))
+                answers = catalog.searchResults(path={'query': brain.getPath(), 'depth' : 1}, 
+                                                portal_type='ilo.qa.answer')
+                
+                if answers and answers[0].review_state != 'draft':
+                    has_answer_results.append(brain)
+                
+                answer_draft = ''
+                if not answers or answers[0].review_state == 'draft':
+                    if answers:
+                        answer_draft = answers[0]
+                    no_answer_results.append({'brain':brain, 'answer_draft': answer_draft})
+            # if topic == 'all':
+            #     results.append(brain)
+        return (has_answer_results, topic, no_answer_results)
 
     def pledge_id(self, uids = None):
         catalog = self.catalog
@@ -71,7 +79,9 @@ class bytopic_view(dexterity.DisplayForm):
         results = []
         path = '/'.join(context.getPhysicalPath())
         for uid in uids:
-            brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic',UID = uid)
+            brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
+                                                        portal_type='ilo.qa.topic',
+                                                        UID = uid)
             for brain in brains:
                 results.append(brain.getId)
         return results
@@ -81,7 +91,9 @@ class bytopic_view(dexterity.DisplayForm):
         context = self.context
         title = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic', id = uid)
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
+                                                    portal_type='ilo.qa.topic', 
+                                                    id = uid)
         for brain in brains:
             title.append(brain.Title)
         return title
