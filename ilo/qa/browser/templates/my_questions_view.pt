@@ -18,27 +18,15 @@
 <metal:javascript_head fill-slot="javascript_head_slot">
     <script type="text/javascript">
     $(document).ready(function(){
-        var current_URL = $("span#current").html();
+        var current_URL = $("span#current").html()+'/my_questions_view';
         var data = $("span#data").html();
-        var data1 = $("span#data1").html();
         $("#previous").click(function(){
             data = parseInt(data) -10;
-          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+          window.location = current_URL + '?data=' + data;
         });
-
         $("#next").click(function(){
             data = parseInt(data) +10;
-          window.location = current_URL + '?data=' + data + '&data1='+ data1;
-        });
-
-         $("#previous1").click(function(){
-            data1 = parseInt(data1) -10;
-          window.location = current_URL + '?data=' + data + '&data1='+ data1;
-        });
-
-        $("#next1").click(function(){
-            data1 = parseInt(data1) +10;
-          window.location = current_URL + '?data=' + data + '&data1='+ data1;
+          window.location = current_URL + '?data=' + data;
         });
       });
 </script>
@@ -54,7 +42,10 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
+    <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+
     <h1>My Questions</h1>
+    <element tal:define="brains view/questions; data python: int(view.searchedValue('data'));" >
     <table width='100%' class="listing">
         <thead>
             <tr>
@@ -64,8 +55,8 @@
                 <th>State</th>
             </tr>
         </thead>
-        <tbody tal:define="brains view/questions" tal:condition="brains">
-            <tr tal:repeat="brain brains">
+        <tbody tal:condition="brains">
+            <tr tal:repeat="brain python: brains[data:data+10]">
                 <td>
                     <a tal:attributes="href python: brain['url']" tal:content="python: brain['title']"/>
                 </td>
@@ -75,7 +66,11 @@
             </tr>
         </tbody>
     </table>
-  
+    <button id="previous" tal:condition="data">previous</button>
+    <button id="next" tal:condition="python: len(brains[data:data+11]) > 10">next</button>
+    </element>
+    <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
+    <br/>
     <a tal:attributes="href string:${context/absolute_url}" tal:content="string: Back to ${context/Title}"></a>
 
   </metal:content-core>

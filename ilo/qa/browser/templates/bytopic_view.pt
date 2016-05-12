@@ -22,56 +22,138 @@
 
     $(document).ready(function(){
         var current_URL = $("span#current").html()+'/bytopic_view';
+        var data = $("span#data").html();
+        var data1 = $("span#data1").html();
+        var topic_id = $("span#topic_id").html();
+        $("#previous").click(function(){
+            data = parseInt(data) -10;
+          window.location = current_URL + '?data=' + data + '&data1=' + data1 + '&topic1='+topic_id;
+        });
 
-        var topic1 ='';
-         $("#generate").click(function(){
-          if ($('#topic1').val() != null){
-            topic1 = $('#topic1').val();
-          }
+        $("#next").click(function(){
+            data = parseInt(data) +10;
+          window.location = current_URL + '?data=' + data + '&data1=' + data1 + '&topic1='+topic_id;
+        });
 
-          var sURL = current_URL + '?topic1=' + topic1;
-          self.location = sURL;
-         return false;
-         
+        $("#previous1").click(function(){
+            data1 = parseInt(data1) -10;
+          window.location = current_URL + '?data=' + data + '&data1=' + data1 + '&topic1='+topic_id;
+        });
+
+        $("#next1").click(function(){
+            data1 = parseInt(data1) +10;
+          window.location = current_URL + '?data=' + data + '&data1=' + data1 + '&topic1='+topic_id;
         });
       });
+
+
 </script>
 </metal:javascript_head>
   
 
 <metal:main fill-slot="content-core">
-  <metal:content-core define-macro="content-core">
+  <metal:content-core define-macro="content-core" tal:define="topic_id python: view.pledge_title(view.contents()[1])">
 
-<!--  <form method='post'>
-  <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
-    <label>Topic
-      <select name='topic1' id='topic1' >
-        <tal:entry tal:repeat='option  view/topic'>
-           <option tal:attributes="value python:option['value'];" tal:content="python: option['name']"></option>
-        </tal:entry>
-      </select>
-</label>
-<button id='generate' class="small button" value='Generate'>Generate</button>
-</form> -->
-<br/>
-     <tal:block tal:define="brains python: view.contents()">  
-      <h2 tal:condition="python: view.contents()[1]" tal:content="python: 'Questions under '+view.contents()[1][0]"></h2>
-            
-            <dl>
-                  <tal:element tal:repeat="brain python: brains[0][:10]" tal:condition="brains">
-                        <dt><a tal:attributes="href python: brain['path']"><span tal:content="python: brain['title']"/></a></dt>
-                        <dd></dd>
-                  </tal:element>
-            </dl>
-            <a tal:attributes="href python: context.absolute_url()+'/bytopicall_view?topic1='+ view.searchedValue('topic1') " tal:condition="python: len(brains[0]) > 10">View All</a>
-      
-    </tal:block>
+  
+    <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
+    <span style="display: none" tal:content="python: view.searchedValue('data1')" name='data1' id='data1'></span>
+    <span style="display: none" tal:content="python: view.contents()[1]" name='topic_id' id='topic_id'></span>
+    <h2 tal:condition="topic_id" tal:content="python: 'Questions under '+topic_id[0]"></h2>
+    
+    
+    <element tal:define="brains python: view.contents()[0]; data python: int(view.searchedValue('data'));" tal:condition="brains">
+    <h3>Latest Questions</h3>
+    <table class="listing">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <!-- <th>Topic</th> -->
+               <!--  <th>Answer</th> -->
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody tal:condition="brains">
+            <tr tal:repeat="brain python: brains[data:data+10]">
+              <tal:element tal:define="obj brain/getObject">
+                <td>
+                    <a tal:attributes="href brain/getURL" tal:content="brain/Title"/>
+                </td>
+                <!-- <td tal:content="obj/topic"/> -->
+                <!-- <td tal:content="python: obj.answer"/> -->
+                <td tal:content="brain/review_state"/>
+              </tal:element>
+            </tr>
+        </tbody>
+    </table>
+    <button id="previous" tal:condition="data">previous</button>
+    <button id="next" tal:condition="python: len(brains[data:data+11]) > 10">next</button>
+    </element>
 
-  <div tal:condition="python: not view.contents()[0]">
+    
+    <element tal:define="brains python: view.contents()[2]; data1 python: int(view.searchedValue('data1'));" tal:condition="brains">
+      <h3>Unanswered Questions</h3>
+    <table class="listing">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>State</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr tal:repeat="brain python: brains[data1:data1+10]">
+              <tal:element tal:define="brain_data brain/brain; obj brain_data/getObject; answer_draft brain/answer_draft">
+                <td>
+                    <a tal:attributes="href brain_data/getURL" tal:content="brain_data/Title"/>
+                </td>
+                <td tal:content="brain_data/review_state"/>  
+                <td>
+                    <a tal:condition="not: answer_draft" class="button tooltips" tal:attributes="href string: ${brain_data/getURL}/++add++ilo.qa.answer">
+                      <span>Add answer</span>
+                      <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+
+                  <tal:element1 tal:condition="answer_draft">
+                    <a  class="button tooltips large-tooltip icon-green"  tal:attributes="href string: ${answer_draft/getURL}/content_status_modify?workflow_action=internally_publish">
+                      <span>Publish Answer</span>
+                      <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="button tooltips large-tooltip"  tal:attributes="href string: ${answer_draft/getURL}/edit">
+                        <span>Edit Answer</span>
+                        <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                    </a>
+
+                    <a class="button tooltips large-tooltip"  tal:attributes="href string: ${answer_draft/getURL}/delete_confirmation">
+                        <span>Delete Answer</span>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </a>
+                  </tal:element1>
+                </td>
+
+              </tal:element>
+            </tr>
+        </tbody>
+    </table>
+    <button id="previous1" tal:condition="data1">previous</button>
+    <button id="next1" tal:condition="python: len(brains[data1:data1+11]) > 10">next</button>
+  <br/>
+
+    
+    </element>
+
+    <div tal:condition="python: not view.contents()[0] and  not view.contents()[2]">
     <div data-alert class="alert-box info text-center">
       No Questions Yet.
     </div>
   </div>
+
+
+    <span  style="display: none" id="current" tal:content="python: '/'.join(context.getPhysicalPath())"></span>
+  
+
+  
+  <a tal:attributes="href string:${context/absolute_url}" tal:content="string: Back to ${context/Title}"></a>
 
   </metal:content-core>
 </metal:main>
