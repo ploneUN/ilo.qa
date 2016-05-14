@@ -6,9 +6,6 @@
  <object name="iloqa_wf" meta_type="Workflow"/>
  <object name="iloqa_items" meta_type="Workflow"/>
  <bindings>
-  <default>
-   <bound-workflow workflow_id="simple_publication_workflow"/>
-  </default>
   <type type_id="ilo.qa.question">
    <bound-workflow workflow_id="iloquestion_wf"/>
   </type>
