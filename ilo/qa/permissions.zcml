@@ -1,16 +1,10 @@
 <configure
-    xmlns="http://namespaces.zope.org/zope"
-    i18n_domain="ilo.qa">
+  xmlns="http://namespaces.zope.org/zope"
+  i18n_domain="ilo.qa">
 
-    <permission
-        id="ilo.qa.AddTopic"
-        title="ilo.qa: Add Topic"
-        />
-
-    <permission
-        id="ilo.qa.AddAnswer"
-        title="ilo.qa: Add Answer"
-        />
-
+  <permission
+    id="ilo.qa.AddAnswer"
+    title="ilo.qa: Add Answer"
+    />
 
 </configure>

@@ -1,13 +1,10 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="ilo.qa: Add Topic" acquire="False">
-      <role name="Editor"/>
-      <role name="Manager"/>
-    </permission>
     <permission name="ilo.qa: Add Answer" acquire="False">
-      <role name="Editor"/>
       <role name="Manager"/>
+      <role name="Site Administrator"/>
+      <role name="Reviewer"/>
     </permission>
   </permissions>
 </rolemap>
