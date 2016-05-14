@@ -1,26 +1,21 @@
 <?xml version="1.0"?>
 <object name="portal_workflow" meta_type="Plone Workflow Tool">
- <property
+  <property
     name="title">Contains workflow definitions for your portal</property>
- <object name="iloquestion_wf" meta_type="Workflow"/>
- <object name="iloqa_wf" meta_type="Workflow"/>
- <object name="iloqa_items" meta_type="Workflow"/>
- <bindings>
-  <type type_id="ilo.qa.question">
-   <bound-workflow workflow_id="iloquestion_wf"/>
-  </type>
-  <type type_id="ilo.qa.qafacility">
-   <bound-workflow workflow_id="iloqa_wf"/>
-  </type>
-  <type type_id="ilo.qa.answer">
-   <bound-workflow workflow_id="iloqa_items"/>
-  </type>
-  <type type_id="ilo.qa.config">
-   <bound-workflow workflow_id="a5_config_containers_workflow"/>
-  </type>
-  <type type_id="ilo.qa.topic">
-   <!--bound-workflow workflow_id="iloqa_items"/-->
-   <bound-workflow workflow_id="a5_config_items_workflow"/>
-  </type>
- </bindings>
+  <object name="iloqa_answers" meta_type="Workflow"/>
+  <object name="iloqa_questions" meta_type="Workflow"/>
+  <bindings>
+    <type type_id="ilo.qa.answer">
+      <bound-workflow workflow_id="iloqa_answers"/>
+    </type>
+    <type type_id="ilo.qa.question">
+      <bound-workflow workflow_id="iloqa_questions"/>
+    </type>
+    <type type_id="ilo.qa.config">
+      <bound-workflow workflow_id="a5_config_containers_workflow"/>
+    </type>
+    <type type_id="ilo.qa.topic">
+      <bound-workflow workflow_id="a5_config_items_workflow"/>
+    </type>
+  </bindings>
 </object>
