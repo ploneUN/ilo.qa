@@ -61,7 +61,7 @@
             <div tal:content="structure widget/render" />
         </div>
     </tal:block>
-    <h3>Latest Questions</h3>
+    <h3>Latest Answered Questions</h3>
     <form method='post'>
       <span style="display: none" tal:content="python: view.searchedValue('data')" name='data' id='data'></span>
       <span style="display: none" tal:content="python: view.searchedValue('data1')" name='data1' id='data1'></span>
