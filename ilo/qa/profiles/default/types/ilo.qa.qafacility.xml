@@ -56,4 +56,9 @@
     url_expr="string:${object_url}/edit" visible="True">
     <permission value="Modify portal content" />
   </action>
+  <action title="Configure" action_id="configure" category="object" condition_expr=""
+    url_expr="string:${object_url}/config" visible="True">
+    <permission value="Review portal content" />
+  </action>
+
 </object>
