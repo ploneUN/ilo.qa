@@ -47,12 +47,12 @@ alsoProvides(IQAFacility, IFormFieldProvider)
 
 @grok.subscribe(IQAFacility, IObjectAddedEvent)
 def createObject(context, event):
-    column = getUtility(IPortletManager, name=u'plone.leftcolumn', context=context)
-    manager = getMultiAdapter((context, column,), IPortletAssignmentMapping)
-    assignment = myquestionsportlet.Assignment()
-    chooser = INameChooser(manager)
-    assignment.button_label = 'My Questions'
-    manager[chooser.chooseName(None, assignment)] = assignment
+#    column = getUtility(IPortletManager, name=u'plone.leftcolumn', context=context)
+#    manager = getMultiAdapter((context, column,), IPortletAssignmentMapping)
+#    assignment = myquestionsportlet.Assignment()
+#    chooser = INameChooser(manager)
+#    assignment.button_label = 'My Questions'
+#    manager[chooser.chooseName(None, assignment)] = assignment
 
     #auto create config and workspace folders on ppp dms
     createContentInContainer(context, 'ilo.qa.config', checkConstraints=False, title='Config')
