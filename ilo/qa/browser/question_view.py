@@ -33,7 +33,7 @@ class Index(dexterity.DisplayForm):
     	path = '/'.join(context.getPhysicalPath())
     	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, 
                                             portal_type='ilo.qa.answer',
-                                            # review_state='internally_published',
+                                            # review_state='shared_intranet',
                                             sort_on='Date',
                                             sort_order='reverse')
     	if brains:

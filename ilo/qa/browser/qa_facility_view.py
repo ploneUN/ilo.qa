@@ -64,13 +64,13 @@ class Index(dexterity.DisplayForm):
         results = []
         brains = catalog.searchResults(path={'query': path, 'depth' : 1}, 
                                         portal_type='ilo.qa.question',
-                                        #review_state='internally_published',
+                                        #review_state='shared_intranet',
                                         sort_on='Date',
                                         sort_order='reverse')
         for brain in brains:
             brains2 = catalog.searchResults(path={'query':brain.getPath(), 'depth':1}, 
                                                         portal_type='ilo.qa.answer', 
-                                                        review_state='internally_published')
+                                                        review_state='shared_intranet')
             if len(brains2) == 0:
                 results.append(brain)
         return results

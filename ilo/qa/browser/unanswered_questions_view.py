@@ -19,9 +19,9 @@ class unanswered_questions_view(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='shared_intranet',sort_on='Date',sort_order='reverse')
         for brain in brains:
-            brains2 = catalog.unrestrictedSearchResults(path={'query':brain.getPath(), 'depth':1}, portal_type='ilo.qa.answer', review_state='internally_published')
+            brains2 = catalog.unrestrictedSearchResults(path={'query':brain.getPath(), 'depth':1}, portal_type='ilo.qa.answer', review_state='shared_intranet')
             if len(brains2) == 0:
                 results.append({'title':brain.Title, 'path':brain.getPath()})
         return results

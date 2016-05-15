@@ -19,5 +19,5 @@ class qa_facility_browserview(dexterity.DisplayForm):
     	context = self.context
     	catalog = self.catalog
     	path = '/'.join(context.getPhysicalPath())
-    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')[:11]
+    	brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='shared_intranet',sort_on='Date',sort_order='reverse')[:11]
     	return brains

@@ -20,7 +20,7 @@ class searchbytopic_view(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = [{'value':'all', 'name':'All'}]
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.topic',review_state='enabled',sort_on='Date',sort_order='reverse')
         for brain in brains:
             results.append({'value':brain.getId,
                             'name':brain.Title})
@@ -43,7 +43,7 @@ class searchbytopic_view(dexterity.DisplayForm):
         topic=''
         results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='internally_published',sort_on='Date',sort_order='reverse')
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 1}, portal_type='ilo.qa.question',review_state='shared_intranet',sort_on='Date',sort_order='reverse')
         if form:
             topic = form['topic1']
         i = 0
