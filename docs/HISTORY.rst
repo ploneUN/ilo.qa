@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.1 -may 16, 2016
+-----
+-added view for config and fixed configuration xml
 
 1.5 - may 16, 2016
 ------
