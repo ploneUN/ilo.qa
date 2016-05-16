@@ -1,4 +1,5 @@
-<div class="side_viewlet state-sign" tal:condition="python: context.portal_type == 'ilo.qa.qafacility'">
+
+<div class="side_viewlet state-sign" tal:condition="view/roles">
     <a class="button expand" tal:attributes="href view/myquestions_url">
         <i class="fa"></i> <span tal:content="python: view.contents().button_label">My Questions</span></a>
 </div>
