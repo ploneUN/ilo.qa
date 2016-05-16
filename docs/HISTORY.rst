@@ -1,5 +1,10 @@
 Changelog
 =========
+
+1.1dev10 - may 16, 2016
+------
+-modified workflow, portlets and browser views
+
 '1.1dev8' - april 8, 2016
 ------
 -added email facility for ilo qa
