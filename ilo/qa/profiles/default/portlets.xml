@@ -34,12 +34,12 @@
 
   <assignment name="myquestionsportlet" category="content_type"
     key="ilo.qa.qafacility" manager="plone.leftcolumn"
-    type="myquestionsportlet.portlet" visible="True" insert-after="topicbyofficerportlet">
+    type="myquestionsportlet.portlet" visible="True" insert-after="*">
     <property name="button_label">My Questions</property>
   </assignment>
 
   <assignment name="topicslistportlet" category="content_type"
-    key="ilo.qa.qafacility" manager="plone.leftcolumn"
+    key="ilo.qa.qafacility" manager="plone.leftcolumn" insert-before="myquestionsportlet"
     type="topicslistportlet.portlet" visible="False">
     <property name="portlet_title">Topics List</property>
   </assignment>

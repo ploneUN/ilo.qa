@@ -12,6 +12,7 @@ from plone.app.form.widgets.wysiwygwidget import WYSIWYGWidget
 from Products.CMFCore.utils import getToolByName
 from operator import itemgetter
 from zope.component.hooks import getSite
+from plone import api
 
 
 
@@ -51,6 +52,11 @@ class Renderer(base.Renderer):
     
     def myquestions_url(self):
         return self.context.absolute_url()+'/my_questions_view'
+
+    def roles(self):
+        current = api.user.get_current()
+        roles = api.user.get_roles(username=str(current))
+        return any((True for x in roles if x in ['Reviewer', 'Administrator', 'Manager'] ))
     
 
 class AddForm(base.AddForm):
