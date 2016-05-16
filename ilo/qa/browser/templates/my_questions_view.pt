@@ -51,7 +51,8 @@
             <tr>
                 <th>Question</th>
                 <th>Topic</th>
-                <th>Answer</th>
+                <th>Creator</th>
+               <!--  <th>Answer</th> -->
                 <th>State</th>
             </tr>
         </thead>
@@ -61,7 +62,8 @@
                     <a tal:attributes="href python: brain['url']" tal:content="python: brain['title']"/>
                 </td>
                 <td tal:content="python: brain['topic']"/>
-                <td tal:content="python: brain['answer']"/>
+                <td tal:content="python: brain['creator']"/>
+                <!-- <td tal:content="python: brain['answer']"/> -->
                 <td tal:content="python: brain['state']"/>
             </tr>
         </tbody>

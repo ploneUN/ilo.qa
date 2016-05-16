@@ -51,6 +51,7 @@
             <tr>
                 <th>Question</th>
                 <th>Topic</th>
+                <th>Creator</th>
                <!--  <th>Answer</th> -->
                 <th>State</th>
             </tr>
@@ -62,6 +63,7 @@
                 </td>
                <!--  <td tal:content="python: brain['topic']"/> -->
                 <!-- <td tal:content="python: brain['answer']"/> -->
+                <td tal:content="brain/Creator"/>
                 <td tal:content="brain/review_state"/>
             </tr>
         </tbody>

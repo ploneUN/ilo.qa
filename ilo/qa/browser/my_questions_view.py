@@ -52,6 +52,7 @@ class my_questions_view(dexterity.DisplayForm):
                 raw = {}
                 raw['title'] = brain.Title
                 raw['topic'] = ''
+                raw['creator'] = brain.Creator
                 
                 topics = brain.getObject().topic
                 for tp in topics:

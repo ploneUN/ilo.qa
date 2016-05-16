@@ -67,6 +67,7 @@
         <thead>
             <tr>
                 <th>Question</th>
+                <th>Creator</th>
                 <!-- <th>Topic</th> -->
                <!--  <th>Answer</th> -->
                 <th>State</th>
@@ -78,6 +79,7 @@
                 <td>
                     <a tal:attributes="href brain/getURL" tal:content="brain/Title"/>
                 </td>
+                <td tal:content="brain/Creator"/>
                 <!-- <td tal:content="obj/topic"/> -->
                 <!-- <td tal:content="python: obj.answer"/> -->
                 <td tal:content="brain/review_state"/>
@@ -96,6 +98,7 @@
         <thead>
             <tr>
                 <th>Question</th>
+                <th>Creator</th>
                 <th>State</th>
                 <th>Actions</th>
             </tr>
@@ -106,6 +109,7 @@
                 <td>
                     <a tal:attributes="href brain_data/getURL" tal:content="brain_data/Title"/>
                 </td>
+                <td tal:content="brain_data/Creator"/>  
                 <td tal:content="brain_data/review_state"/>  
                 <td>
                     <a tal:condition="not: answer_draft" class="button tooltips" tal:attributes="href string: ${brain_data/getURL}/++add++ilo.qa.answer">
