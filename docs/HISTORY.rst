@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.5 - may 16, 2016
+------
+-production release (fixed portlet and permission errors)
+
 1.1dev10 - may 16, 2016
 ------
 -modified workflow, portlets and browser views
