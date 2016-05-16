@@ -55,7 +55,7 @@ def createObject(context, event):
 #    manager[chooser.chooseName(None, assignment)] = assignment
 
     #auto create config and workspace folders on ppp dms
-    createContentInContainer(context, 'ilo.qa.config', checkConstraints=False, title='Config')
+    createContentInContainer(context, 'ilo.qa.config', checkConstraints=False, title='Configurations')
     
     return
 
