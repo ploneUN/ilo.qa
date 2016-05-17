@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.2 - may 17, 2016
+-added code for contributor column
+
 1.5.1 -may 16, 2016
 -----
 -added view for config and fixed configuration xml
