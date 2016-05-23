@@ -1,5 +1,9 @@
 Changelog
 =========
+
+1.5.3 - may 23, 2016
+-changed contentrule email and url
+
 1.5.2 - may 17, 2016
 -added code for contributor column
 
