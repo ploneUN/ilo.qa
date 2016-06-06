@@ -1,6 +1,9 @@
 Changelog
 =========
 
+1.5.4 - june 6, 2016
+-added portlet for topics in configuration folder
+
 1.5.3 - may 23, 2016
 -changed contentrule email and url
 
