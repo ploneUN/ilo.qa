@@ -43,4 +43,14 @@
         editview=".myquestionsportlet.EditForm"
         />
 
+
+    <plone:portlet
+        name="addtopicportlet.portlet"
+        interface=".addtopicportlet.IContentNavigation"
+        assignment=".addtopicportlet.Assignment"
+        renderer=".addtopicportlet.Renderer"
+        addview=".addtopicportlet.AddForm"
+        editview=".addtopicportlet.EditForm"
+        />
+        
 </configure>

@@ -50,5 +50,11 @@
     <property name="portlet_title">Add Question Button</property>
   </assignment>
 
+  <assignment name="addtopicportlet" category="content_type"
+    key="ilo.qa.config" manager="plone.leftcolumn"
+    type="addtopicportlet.portlet" visible="True">
+    <property name="portlet_title">Add Topic Button</property>
+  </assignment>
+
   
 </portlets>

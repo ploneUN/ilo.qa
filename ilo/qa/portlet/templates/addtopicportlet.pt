@@ -1,0 +1,7 @@
+<div class="side_viewlet state-sign">
+    <a class="button l-orange-btn expand" tal:attributes="href python: context.absolute_url()+'/++add++ilo.qa.topic'" tal:define="label python: view.contents().button_description">
+    	<i class="fa fa-plus-circle"></i> 
+    	<span tal:condition="label" tal:content="label">Add a Topic</span>
+    	<span tal:condition="not: label">Add a Topic</span>
+    </a>
+</div>
