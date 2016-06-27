@@ -20,7 +20,7 @@ class bytopic_view(dexterity.DisplayForm):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = [{'value':'all', 'name':'All'}]
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic',review_state='enabled',sort_on='Date',sort_order='reverse')
+        brains = catalog.searchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.topic',review_state='enabled',sort_on='Date',sort_order='reverse')
         for brain in brains:
             results.append({'value':brain.getId,
                             'name':brain.Title})
@@ -38,7 +38,6 @@ class bytopic_view(dexterity.DisplayForm):
             result = form[name]
         return result
 
-
     def contents(self):
         context = self.context
         request = self.request
@@ -48,8 +47,7 @@ class bytopic_view(dexterity.DisplayForm):
         has_answer_results = []
         no_answer_results = []
         path = '/'.join(context.getPhysicalPath())
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
-                                                    portal_type='ilo.qa.question',
+        brains = catalog.searchResults(path={'query': path, 'depth' : 2}, portal_type='ilo.qa.question',
                                                     # review_state='shared_intranet,
                                                     sort_on='Date',
                                                     sort_order='reverse')
@@ -69,8 +67,6 @@ class bytopic_view(dexterity.DisplayForm):
                     if answers:
                         answer_draft = answers[0]
                     no_answer_results.append({'brain':brain, 'answer_draft': answer_draft})
-            # if topic == 'all':
-            #     results.append(brain)
         return (has_answer_results, topic, no_answer_results)
 
     def pledge_id(self, uids = None):
