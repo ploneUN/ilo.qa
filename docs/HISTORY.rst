@@ -1,5 +1,7 @@
 Changelog
 =========
+1.5.5 - june 28, 2016
+-fixed permission error on ilo.qa facility
 
 1.5.4 - june 6, 2016
 -added portlet for topics in configuration folder
