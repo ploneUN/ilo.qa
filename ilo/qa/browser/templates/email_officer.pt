@@ -26,8 +26,13 @@
     <tal:block tal:define="brain view/get_officer" tal:condition="brain/officer">
 
         <h3>Send Private Question</h3>
-              <div>This feature is for private inquiries.  Answers will be sent through email and it will not appear in the portal.  If your question is not private and can benefit others, please click on the question mark icon beside the topic.  Shared inquiries will be available to other registered users. </div>
-        <br />
+        <!--<div>This feature is for private inquiries.  Answers will be sent through email and it will not appear in the portal.  If your question is not private and can benefit others, please click on the question mark icon beside the topic.  Shared inquiries will be available to other registered users. </div>-->
+  
+        <dl class="portalMessage info">
+            <!--<dt>Send Private Question</dt>-->
+            <dd>This feature is for private inquiries.  Answers will be sent through email and it will not appear in the portal.  If your question is not private and can benefit others, please click on the question mark icon beside the topic.  Shared inquiries will be available to other registered users.</dd>
+        </dl>
+        
         <div class="field">
             <label tal:content="string: To: ${brain/officer}"></label>
         </div>
