@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.6 - july 12,2016
+-fixed permission and browserview
+
 1.5.5 - june 28, 2016
 -fixed permission error on ilo.qa facility
 
