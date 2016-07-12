@@ -46,7 +46,7 @@
                 <div class="field">
                     <label>Subject:</label>
                     <div class="fieldErrorBox"></div>
-                    <input type="txt" name="email_subject"/>
+                    <input type="text" name="email_subject"/>
                 </div>
                 <div class="field">
                     <label>Message:</label>
