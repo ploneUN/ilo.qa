@@ -17,7 +17,9 @@
 
 <metal:styleslot fill-slot="style_slot">
       <style type="text/css">
-            
+            textarea[name="email_message"]{
+                min-height: 150px;
+            }
       </style>
 </metal:styleslot>
 
