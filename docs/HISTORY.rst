@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.7 - july 13, 2016
+-fixed browser views
+
 1.5.6 - july 12,2016
 -fixed permission and browserview
 
