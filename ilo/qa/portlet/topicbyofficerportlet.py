@@ -60,33 +60,46 @@ class Renderer(base.Renderer):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
-        general_officer = []
         gen_officer = 'General Officer'
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
                                                     portal_type='ilo.qa.topic',
                                                     review_state='enabled')
+        # for brain in brains:
+        #     obj = brain._unrestrictedGetObject()
+        #     #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
+        #     brain_dict =  {'name':obj.officer.lower(),
+        #                     'officer_title':obj.officer_title,
+        #                     'officer_email': obj.officer_email,
+        #                     'uid':brain.UID,
+        #                     'data': self.topics(obj.officer.lower(),brains)}
+           
+        #     if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
+        #         if obj.officer_title != 'Director':
+        #             results.append(brain_dict)
+        #         else:
+        #             results.insert(0, brain_dict)
+
+        #     if obj.officer.lower() == gen_officer.lower():
+        #         general_officer.append(brain_dict)
+
+        # #results.sort(key=lambda x: ['Director', 'Sales','Officer'].index(x['officer_title']))
+        # return {'data': results, 
+        #         #'data': sorted(results, key=itemgetter('name')), 
+        #         'general_officer': general_officer}
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
             brain_dict =  {'name':obj.officer.lower(),
                             'officer_title':obj.officer_title,
                             'officer_email': obj.officer_email,
                             'uid':brain.UID,
                             'data': self.topics(obj.officer.lower(),brains)}
            
-            if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
-                if obj.officer_title != 'Director':
-                    results.append(brain_dict)
-                else:
-                    results.insert(0, brain_dict)
-
-            if obj.officer.lower() == gen_officer.lower():
-                general_officer.append(brain_dict)
-
-        #results.sort(key=lambda x: ['Director', 'Sales','Officer'].index(x['officer_title']))
-        return {'data': results, 
-                #'data': sorted(results, key=itemgetter('name')), 
-                'general_officer': general_officer}
+            if not any(d['name'].lower() == obj.officer.lower() for d in results):
+                results.append(brain_dict)
+        officer_titles = ['Director', 'Senior Evaluation Officer', 'Communications and Knowledge Management Officer']
+        results.sort()
+        results.sort(key=lambda x: officer_titles.index(x.get('officer_title')) if x.get('officer_title') in officer_titles else 99)
+        return results
 
     def topics(self, officer, brains):
         topics = []
@@ -125,3 +138,6 @@ class EditForm(base.EditForm):
     # form_fields['item_title'].custom_widget = WYSIWYGWidget
     label = u"Edit Topic By Officer Portlet"
     description = ''
+
+
+[{'data': [{'uid': '2444d59d213844dc8cdc8ed48b428efd', 'id': '0003', 'title': 'Officer'}], 'officer_title': u'Senior Evaluation Officer', 'name': u'naomi asukai', 'officer_email': u'sa@d.com', 'uid': '2444d59d213844dc8cdc8ed48b428efd'}, {'data': [{'uid': '950f54c0552b4284994e517c4b6a87f8', 'id': '0006', 'title': 'School'}], 'officer_title': u'Senior Evaluation Officer', 'name': u'craig russon', 'officer_email': u'd@d.com', 'uid': '950f54c0552b4284994e517c4b6a87f8'}, {'data': [{'uid': '1a868c47c5644647874214ddcddf4a0d', 'id': '0005', 'title': 'Jan'}], 'officer_title': u'Communications and Knowledge Management Officer', 'name': u'jannette murawski', 'officer_email': u'j@j.com', 'uid': '1a868c47c5644647874214ddcddf4a0d'}, {'data': [{'uid': '7fc20f074096497fa469f31444da5bef', 'id': '0002', 'title': 'Family'}], 'officer_title': u'Senior Evaluation Officer', 'name': u'peter wichmand', 'officer_email': u'sandrea@afterfivetech.com', 'uid': '7fc20f074096497fa469f31444da5bef'}, {'data': [{'uid': '5633b7294d604e569ef30b9e6a27aa87', 'id': '0001', 'title': 'Love'}], 'officer_title': u'Director', 'name': u'guy thijs', 'officer_email': u'Email@d.com', 'uid': '5633b7294d604e569ef30b9e6a27aa87'}]
