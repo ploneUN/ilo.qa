@@ -138,6 +138,3 @@ class EditForm(base.EditForm):
     # form_fields['item_title'].custom_widget = WYSIWYGWidget
     label = u"Edit Topic By Officer Portlet"
     description = ''
-
-
-[{'data': [{'uid': '2444d59d213844dc8cdc8ed48b428efd', 'id': '0003', 'title': 'Officer'}], 'officer_title': u'Senior Evaluation Officer', 'name': u'naomi asukai', 'officer_email': u'sa@d.com', 'uid': '2444d59d213844dc8cdc8ed48b428efd'}, {'data': [{'uid': '950f54c0552b4284994e517c4b6a87f8', 'id': '0006', 'title': 'School'}], 'officer_title': u'Senior Evaluation Officer', 'name': u'craig russon', 'officer_email': u'd@d.com', 'uid': '950f54c0552b4284994e517c4b6a87f8'}, {'data': [{'uid': '1a868c47c5644647874214ddcddf4a0d', 'id': '0005', 'title': 'Jan'}], 'officer_title': u'Communications and Knowledge Management Officer', 'name': u'jannette murawski', 'officer_email': u'j@j.com', 'uid': '1a868c47c5644647874214ddcddf4a0d'}, {'data': [{'uid': '7fc20f074096497fa469f31444da5bef', 'id': '0002', 'title': 'Family'}], 'officer_title': u'Senior Evaluation Officer', 'name': u'peter wichmand', 'officer_email': u'sandrea@afterfivetech.com', 'uid': '7fc20f074096497fa469f31444da5bef'}, {'data': [{'uid': '5633b7294d604e569ef30b9e6a27aa87', 'id': '0001', 'title': 'Love'}], 'officer_title': u'Director', 'name': u'guy thijs', 'officer_email': u'Email@d.com', 'uid': '5633b7294d604e569ef30b9e6a27aa87'}]
