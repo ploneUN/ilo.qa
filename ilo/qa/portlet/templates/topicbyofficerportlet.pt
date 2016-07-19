@@ -2,119 +2,49 @@
       tal:define="absolute_url context/absolute_url">
 
   <dl class="portlet" tal:define="url view/context/request/URL; 
-                                  brains python: view.officers_contents()['data']; 
-                                  general_officer python: view.officers_contents()['general_officer']" 
+                                  brains view/officers_contents;" 
                       tal:condition="python: '/view' in url or '/bytopic_view' in url">
     <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
-<!-- General Officer -->
-    <dd class="portletItem" tal:condition="general_officer">
-      <ul class="tbo-listing">
-    		<li class="tbo-heading">
-    		  <div class='tbo-left'>
-      			<h4>General Officer</h4>
-      			<span>Email: </span>
-      			<span tal:content="python: general_officer[0]['officer_email']"/>
-    		  </div>
-    		  <div class="tbo-right">
-    			 <img width='100%' alt='' tal:attributes="src python: view.officer_photo(general_officer[0]['officer_email'])"/>
-    		  </div>
-    		  <div style="display: block;clear: both"></div>
-    		</li>
-		
-    		<li class="portletItem" tal:repeat="brain general_officer">
-		  
-		  <ul class="listing-btn">
-      			<li class="button tiny list-btn">
-			  <a class="tooltips" tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +brain['uid']" >
-			    <span>Add Question</span>
-			    <img src="++resource++ilo.qa/qadd.png" />
-			  </a>
-			  <a class="tooltips large" tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +brain['id']">
-			    <span>Show question on this topic</span>
-			    
-			    <b tal:content="python: brain['title']" />
-			    
-			  </a>
-			  
-      			</li>
-    		  </ul>
-    		</li>
-      <ul>
-    </dd>
+
 <!-- Officers -->
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
       <ul class="tbo-listing">
         <li class="tbo-heading">
     		  <div class='tbo-left'>
-            
-      			<h4 tal:condition="brain/officer_title" tal:content="python:brain['name'].title()+', ' +brain['officer_title']"/>
-            <h4 tal:condition="python: not brain['officer_title']" tal:content="python:brain['name'].title()"/>
-      			
+      			<h4 tal:condition="brain/officer_title" tal:content="python: ', '.join((brain['name'].title(),brain['officer_title']))"/>
             <span>Email: </span>
-      			<a class="tooltips large" tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']">
+      			<a class="tooltips large" tal:attributes="href string: ${absolute_url}/email_officer?id=${brain/uid}">
 			  <span>Send Private Question</span>
-			  <b tal:content="python: brain['officer_email']" />
+			  <b tal:content="brain/officer_email" />
 			</a>
-<!--<a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']" tal:content="python: brain['officer_email']"></a>-->
     		  </div>
     		  <div class="tbo-right">
-            <a tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?officer=' +brain['uid']">
+            <a tal:attributes="href string: ${absolute_url}/++add++ilo.qa.question?officer=${brain/uid}">
     			   <img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
             </a>
     		  </div>
     		  <div style="display: block;clear: both"></div>
-			 <!-- <div>
-				  <a tal:attributes="href python: context.absolute_url()+'/email_officer?id='+brain['uid']">Private Question</a>
-			  </div>-->
         </li>
     		<li>
     		  <ul class="listing-btn">
-      			<li class="button tiny list-btn" tal:repeat="data python:brain['data']">
-			  <a class="tooltips" tal:attributes="href python: absolute_url+ '/++add++ilo.qa.question?form.widgets.topic=' +data['uid']" >
+      			<li class="button tiny list-btn" tal:repeat="data brain/data">
+			  <a class="tooltips" tal:attributes="href string: ${absolute_url}/++add++ilo.qa.question?form.widgets.topic=${data/uid}" >
 			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
-			  
-      			  <a class="tooltips large" tal:attributes="href python: absolute_url+ '/bytopic_view?topic1=' +data['id']">
+      		<a class="tooltips large" tal:attributes="href string: ${absolute_url}/bytopic_view?topic1='${data/id}">
 			    <span>Show question on this topic</span>
-			    <b tal:content="python: data['title']" />
+			    <b tal:content="data/title" />
 			  </a>
-			  
       			</li>
     		  </ul>
             </li>
       </ul>
     </dd>
-
-     <dd class="portletItem" tal:condition="python: not view.officers_contents()['data']">
+     <dd class="portletItem" tal:condition="not: brains">
         <div data-alert class="alert-box info text-center">
         No Officers Yet.
         </div>
-	<!--
-        <a class="button expand" tal:attributes="href string:${absolute_url}/++add++ilo.qa.topic">
-          <i class="fa fa-plus"></i> Add Officer
-        </a >
-	-->
       </dd>
-
-<!--
-      <dd class="portletItem">
-       <a class="button expand" tal:attributes="href string:${absolute_url}/searchbytopic_view">
-        <i class="fa fa-search"></i> Search By Topic
-        </a>
-      </dd>
-
-       <dd class="portletItem">
-        <a class="button expand" tal:attributes="href string:${absolute_url}/qa_facility_browserview">
-          <i class="fa fa-eye"> View Recent Questions
-        </a>
-      </dd>
-      
-      <dd class="portletItem">
-        <a class="button expand" tal:attributes="href string:${absolute_url}/unanswered_questions_view">
-          <i class="fa fa-eye"> View Unanswered Questions
-        </a>
-      </dd>
--->
   </dl>
 </div>

@@ -60,33 +60,46 @@ class Renderer(base.Renderer):
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
         results = []
-        general_officer = []
         gen_officer = 'General Officer'
         brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
                                                     portal_type='ilo.qa.topic',
                                                     review_state='enabled')
+        # for brain in brains:
+        #     obj = brain._unrestrictedGetObject()
+        #     #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
+        #     brain_dict =  {'name':obj.officer.lower(),
+        #                     'officer_title':obj.officer_title,
+        #                     'officer_email': obj.officer_email,
+        #                     'uid':brain.UID,
+        #                     'data': self.topics(obj.officer.lower(),brains)}
+           
+        #     if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
+        #         if obj.officer_title != 'Director':
+        #             results.append(brain_dict)
+        #         else:
+        #             results.insert(0, brain_dict)
+
+        #     if obj.officer.lower() == gen_officer.lower():
+        #         general_officer.append(brain_dict)
+
+        # #results.sort(key=lambda x: ['Director', 'Sales','Officer'].index(x['officer_title']))
+        # return {'data': results, 
+        #         #'data': sorted(results, key=itemgetter('name')), 
+        #         'general_officer': general_officer}
         for brain in brains:
             obj = brain._unrestrictedGetObject()
-            #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
             brain_dict =  {'name':obj.officer.lower(),
                             'officer_title':obj.officer_title,
                             'officer_email': obj.officer_email,
                             'uid':brain.UID,
                             'data': self.topics(obj.officer.lower(),brains)}
            
-            if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
-                if obj.officer_title != 'Director':
-                    results.append(brain_dict)
-                else:
-                    results.insert(0, brain_dict)
-
-            if obj.officer.lower() == gen_officer.lower():
-                general_officer.append(brain_dict)
-
-        #results.sort(key=lambda x: ['Director', 'Sales','Officer'].index(x['officer_title']))
-        return {'data': results, 
-                #'data': sorted(results, key=itemgetter('name')), 
-                'general_officer': general_officer}
+            if not any(d['name'].lower() == obj.officer.lower() for d in results):
+                results.append(brain_dict)
+        officer_titles = ['Director', 'Senior Evaluation Officer', 'Communications and Knowledge Management Officer']
+        results.sort()
+        results.sort(key=lambda x: officer_titles.index(x.get('officer_title')) if x.get('officer_title') in officer_titles else 99)
+        return results
 
     def topics(self, officer, brains):
         topics = []
