@@ -17,7 +17,13 @@
 
 <metal:javascript_head fill-slot="javascript_head_slot">
     <script type="text/javascript">
+        
     $(document).ready(function(){
+        curr_url = $('span#curr_url').html();
+        if (window.location.href.indexOf(curr_url) !== 0){
+            window.location = curr_url;
+        }
+        
         var current_URL = $("span#current").html();
         var data = $("span#data").html();
         var data1 = $("span#data1").html();
@@ -53,7 +59,10 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
-
+    <tal:block tal:define="url1 context/absolute_url;
+                           curr_url python: url1+'/#' if not url1.endswith('/') else url1;">
+        <span style="display: none" id="curr_url" tal:content="curr_url"/>
+    </tal:block>
     <tal:block repeat="widget view/widgets/values">
         <div class="field" tal:condition="python:widget.__name__ not in ('IDublinCore.title', 'IDublinCore.description', 'title', 'description',)">
             <label tal:content="widget/label" />
