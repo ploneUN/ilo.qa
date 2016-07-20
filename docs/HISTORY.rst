@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.9  - july 20
+- fixed browserview error
+
 1.5.8 - july 20,2016
 -fixed portlet order janet after craig and added # for the qa facility view
 
