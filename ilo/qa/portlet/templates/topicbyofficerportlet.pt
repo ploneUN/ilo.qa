@@ -32,7 +32,7 @@
 			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
-      		<a class="tooltips large" tal:attributes="href string: ${absolute_url}/bytopic_view?topic1='${data/id}">
+      		<a class="tooltips large" tal:attributes="href string: ${absolute_url}/bytopic_view?topic1=${data/id}">
 			    <span>Show question on this topic</span>
 			    <b tal:content="data/title" />
 			  </a>
