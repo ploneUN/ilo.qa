@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.8 - july 20,2016
+-fixed portlet order janet after craig and added # for the qa facility view
+
 1.5.7 - july 13, 2016
 -fixed browser views
 
