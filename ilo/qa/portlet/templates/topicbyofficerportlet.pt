@@ -2,7 +2,7 @@
       tal:define="absolute_url context/absolute_url">
 
   <dl class="portlet" tal:define="url view/context/request/URL; 
-                                  brains view/officers_contents;" 
+                                  brains view/officers_contents2;" 
                       tal:condition="python: '/view' in url or '/bytopic_view' in url">
     <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 
