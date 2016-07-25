@@ -120,6 +120,41 @@ class Renderer(base.Renderer):
                 userImg = membership.getPersonalPortrait(user_id).absolute_url()
     
         return userImg
+    
+    
+    def officers_contents2(self):
+        context = self.context
+        catalog = self.catalog
+        path = '/'.join(context.getPhysicalPath())
+        results = {}
+        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
+                                                    portal_type='ilo.qa.topic',
+                                                    review_state='enabled')
+        for brain in brains:
+            obj = brain._unrestrictedGetObject()
+            if obj.officer:
+                officer = obj.officer.lower()
+                if officer not in results:
+                    results[officer] = {}
+                    results[officer]['name'] = officer
+                    results[officer]['officer_title'] = obj.officer_title
+                    results[officer]['officer_email'] = obj.officer_email
+                    results[officer]['uid'] = brain.UID
+                    results[officer]['data'] = [{'title':brain.Title,
+                                                 'id':brain.getId,
+                                                 'uid':brain.UID}]
+                else:
+                    results[officer]['data'].append({'title':brain.Title,
+                                                     'id':brain.getId,
+                                                     'uid':brain.UID})
+        officer_titles = ['Director', 'Senior Evaluation Officer', 'Communications and Knowledge Management Officer']
+        data = []
+        if results:
+            data = [results[val] for val in results]
+            data.sort(key=lambda x:officer_titles.index(x.get('officer_title')) if x.get('officer_title') in officer_titles else 99)
+        return data
+                    
+                    
 
 
 class AddForm(base.AddForm):
