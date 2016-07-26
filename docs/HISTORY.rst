@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.10 - july 26
+-fixed loading issue on ilo.qa
+
 1.5.9  - july 20
 - fixed browserview error
 
