@@ -30,6 +30,9 @@ from Products.CMFDefault.exceptions import EmailAddressInvalid
 from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
+from plone import api
+
+from z3c.relationfield.schema import RelationChoice
 
 
 # Interface class; used to define content-type schema.
@@ -43,6 +46,16 @@ def validateaddress(value):
     except EmailAddressInvalid:
         raise InvalidEmailAddress(value)
     return True
+
+class users(object):
+    grok.implements(IContextSourceBinder)
+    def __call__(self,context ):
+        results = []
+        users = context.portal_membership.listMembers()
+        for user in users:
+            fullname = user.getProperty('fullname')
+            results.append(SimpleTerm(value=user.id, token=user.id, title=fullname))
+        return SimpleVocabulary(results)
 
 class ITopic(form.Schema, IImageScaleTraversable):
     """
@@ -64,16 +77,24 @@ class ITopic(form.Schema, IImageScaleTraversable):
            required=True,
         )
 
-    officer = schema.TextLine(
-           title=_(u"Officer"),
-           required=True,
+    officer = schema.Choice(
+            source=users(),
+            title=u'officer',
+            required=False,
         )
+        
 
-    officer_email = schema.TextLine(
-           title=_(u"Officer Email"),
-           required=True,
-           constraint=validateaddress,
-        )
+
+    # officer = schema.TextLine(
+    #        title=_(u"Officer"),
+    #        required=True,
+    #     )
+
+    # officer_email = schema.TextLine(
+    #        title=_(u"Officer Email"),
+    #        required=True,
+    #        constraint=validateaddress,
+    #     )
 
     pass
 

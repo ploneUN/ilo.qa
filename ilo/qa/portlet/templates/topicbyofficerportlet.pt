@@ -2,25 +2,29 @@
       tal:define="absolute_url context/absolute_url">
 
   <dl class="portlet" tal:define="url view/context/request/URL; 
-                                  brains view/officers_contents2;" 
+                                  brains view/officers_contents;" 
                       tal:condition="python: '/view' in url or '/bytopic_view' in url">
     <dt class="portletHeader" tal:content="python:  view.contents().portlet_title"></dt>
 
 <!-- Officers -->
     <dd class="portletItem" tal:repeat="brain brains" tal:condition="brains">
-      <ul class="tbo-listing">
+      <ul class="tbo-listing" tal:define="name brain/name;
+                                          officer_details python: view.officer_details(name)">
         <li class="tbo-heading">
     		  <div class='tbo-left'>
-      			<h4 tal:condition="brain/officer_title" tal:content="python: ', '.join((brain['name'].title(),brain['officer_title']))"/>
+              <h4 tal:condition="not: officer_details/fullname" tal:content="name"/>
+              <h4 tal:content="officer_details/fullname"/>
+              <h4 tal:content="brain/officer_title"/>
+
             <span>Email: </span>
-      			<a class="tooltips large" tal:attributes="href string: ${absolute_url}/email_officer?id=${brain/uid}">
-			  <span>Send Private Question</span>
-			  <b tal:content="brain/officer_email" />
-			</a>
+      			<a class="tooltips large" tal:attributes="href string: ${absolute_url}/email_officer?id=${name}">
+			         <span>Send Private Question</span>
+                <b tal:content="officer_details/email"/>
+			       </a>
     		  </div>
     		  <div class="tbo-right">
             <a tal:attributes="href string: ${absolute_url}/++add++ilo.qa.question?officer=${brain/uid}">
-    			   <img width='100%' alt='' tal:attributes="src python: view.officer_photo(brain['officer_email'])"/>
+    			   <img width='100%' alt='' tal:attributes="src officer_details/image"/>
             </a>
     		  </div>
     		  <div style="display: block;clear: both"></div>

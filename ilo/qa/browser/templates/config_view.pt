@@ -43,7 +43,7 @@
                     <a tal:attributes="href brain/getURL" tal:content="brain/Title"/>
                 </td>
                <!--  <td tal:content="obj/officer_title"/> -->
-                <td tal:content="obj/officer"/>
+                <td tal:content="python: view.officer_details(obj.officer)"/>
                <!--  <td tal:content="obj/officer_email"/> -->
                 <td tal:content="brain/review_state"/>
               </tal:element>

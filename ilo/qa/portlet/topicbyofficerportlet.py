@@ -54,75 +54,23 @@ class Renderer(base.Renderer):
     @property
     def catalog(self):
         return getToolByName(self.context, 'portal_catalog')
-
-    def officers_contents(self):
-        context = self.context
-        catalog = self.catalog
-        path = '/'.join(context.getPhysicalPath())
-        results = []
-        gen_officer = 'General Officer'
-        brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
-                                                    portal_type='ilo.qa.topic',
-                                                    review_state='enabled')
-        # for brain in brains:
-        #     obj = brain._unrestrictedGetObject()
-        #     #if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
-        #     brain_dict =  {'name':obj.officer.lower(),
-        #                     'officer_title':obj.officer_title,
-        #                     'officer_email': obj.officer_email,
-        #                     'uid':brain.UID,
-        #                     'data': self.topics(obj.officer.lower(),brains)}
-           
-        #     if not any(d['name'].lower() == obj.officer.lower() for d in results) and obj.officer.lower() != gen_officer.lower():
-        #         if obj.officer_title != 'Director':
-        #             results.append(brain_dict)
-        #         else:
-        #             results.insert(0, brain_dict)
-
-        #     if obj.officer.lower() == gen_officer.lower():
-        #         general_officer.append(brain_dict)
-
-        # #results.sort(key=lambda x: ['Director', 'Sales','Officer'].index(x['officer_title']))
-        # return {'data': results, 
-        #         #'data': sorted(results, key=itemgetter('name')), 
-        #         'general_officer': general_officer}
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            brain_dict =  {'name':obj.officer.lower(),
-                            'officer_title':obj.officer_title,
-                            'officer_email': obj.officer_email,
-                            'uid':brain.UID,
-                            'data': self.topics(obj.officer.lower(),brains)}
-           
-            if not any(d['name'].lower() == obj.officer.lower() for d in results):
-                results.append(brain_dict)
-        officer_titles = ['Director', 'Senior Evaluation Officer', 'Communications and Knowledge Management Officer']
-        results.sort()
-        results.sort(key=lambda x: officer_titles.index(x.get('officer_title')) if x.get('officer_title') in officer_titles else 99)
-        return results
-
-    def topics(self, officer, brains):
-        topics = []
-        for brain in brains:
-            obj = brain._unrestrictedGetObject()
-            if obj.officer.lower() == officer :
-                topics.append({'title': brain.Title,
-                                'id': brain.getId,
-                                'uid':brain.UID})
-        return topics
         
-    def officer_photo(self, officer_email=None):
+    def officer_details(self, officer=None):
         membership = getToolByName(self.context, 'portal_membership')
-        userImg = membership.getPersonalPortrait().absolute_url()
-        for member in membership.listMembers():
-            if officer_email == member.getProperty('email'):
-                user_id = member.getUserName()
-                userImg = membership.getPersonalPortrait(user_id).absolute_url()
+        image = membership.getPersonalPortrait().absolute_url()
+        try:
+            name = membership.getMemberById(officer)
+            email = name.getProperty('email')
+            fullname = name.getProperty('fullname')
+            image = membership.getPersonalPortrait(officer).absolute_url()
+        except AttributeError:
+            email = ''
+            fullname = ''
+        return {'image': image,
+                'email': email,
+                'fullname': fullname}
     
-        return userImg
-    
-    
-    def officers_contents2(self):
+    def officers_contents(self):
         context = self.context
         catalog = self.catalog
         path = '/'.join(context.getPhysicalPath())
@@ -133,12 +81,11 @@ class Renderer(base.Renderer):
         for brain in brains:
             obj = brain._unrestrictedGetObject()
             if obj.officer:
-                officer = obj.officer.lower()
+                officer = obj.officer
                 if officer not in results:
                     results[officer] = {}
                     results[officer]['name'] = officer
                     results[officer]['officer_title'] = obj.officer_title
-                    results[officer]['officer_email'] = obj.officer_email
                     results[officer]['uid'] = brain.UID
                     results[officer]['data'] = [{'title':brain.Title,
                                                  'id':brain.getId,
@@ -154,9 +101,6 @@ class Renderer(base.Renderer):
             data.sort(key=lambda x:officer_titles.index(x.get('officer_title')) if x.get('officer_title') in officer_titles else 99)
         return data
                     
-                    
-
-
 class AddForm(base.AddForm):
     form_fields = form.Fields(IContentNavigation)
     # form_fields['item_title'].custom_widget = WYSIWYGWidget

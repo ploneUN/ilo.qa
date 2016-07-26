@@ -126,20 +126,21 @@ def _createObject(context, event):
     parent = context.aq_parent
     id = context.getId()
 
-    if context.topic:
-        brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
-        for brain in brains:
-            #if membership.getMemberById(brain.Creator).getProperty('email'):
-            #    topic_officer.append(membership.getMemberById(brain.Creator).getProperty('email'))
-            topic_officer.append(brain._unrestrictedGetObject().officer_email)
-            topics.append(brain.Title)
-    if topic_officer:
-        context.topic_officer = ','.join(topic_officer)
+    #error on officer_email
+    # if context.topic:
+    #     brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
+    #     for brain in brains:
+    #         #if membership.getMemberById(brain.Creator).getProperty('email'):
+    #         #    topic_officer.append(membership.getMemberById(brain.Creator).getProperty('email'))
+    #         topic_officer.append(brain._unrestrictedGetObject().officer_email)
+    #         topics.append(brain.Title)
+    # if topic_officer:
+    #     context.topic_officer = ','.join(topic_officer)
     
-    if membership.getMemberById(context.Creator()).getProperty('email'):
-        context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
-    if topics:
-        context.topics_str = '\n'.join(topics)
+    # if membership.getMemberById(context.Creator()).getProperty('email'):
+    #     context.question_creator = membership.getMemberById(context.Creator()).getProperty('email')
+    # if topics:
+    #     context.topics_str = '\n'.join(topics)
     
     object_ids = context.aq_parent.objectIds()
     title = idnormalizer.normalize(context.Title())
@@ -165,13 +166,14 @@ def _modifyObject(context, event):
     catalog = getToolByName(context, 'portal_catalog')
     topic_officer = []
     topics = []
-    if context.topic:
-        brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
-        for brain in brains:
-            topic_officer.append(brain._unrestrictedGetObject().officer_email)
-            topics.append(brain.Title)
-    if topic_officer:
-        context.topic_officer = ','.join(topic_officer)
+    #error on officer_email
+    # if context.topic:
+    #     brains = catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=context.topic)
+    #     for brain in brains:
+    #         topic_officer.append(brain._unrestrictedGetObject().officer_email)
+    #         topics.append(brain.Title)
+    # if topic_officer:
+    #     context.topic_officer = ','.join(topic_officer)
     context.reindexObject()
     return
 
