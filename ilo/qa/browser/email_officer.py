@@ -19,17 +19,29 @@ class email_officer(dexterity.DisplayForm):
     @property
     def catalog(self):
         return getToolByName(self.context, 'portal_catalog')
-    
+
+    @property
+    def membership(self):
+        return getToolByName(self.context, 'portal_membership')
+
+
+    def officer_details(self, officer=None):
+        membership = self.membership
+        name = membership.getMemberById(officer)
+        email = name.getProperty('email')
+        fullname = name.getProperty('fullname')
+        return {'email':email,
+                'fullname': fullname}
+
     def get_officer(self):
         results = {'officer':'', 'officer_email':''}
         if self.request:
             form = self.request.form
             if 'id' in form:
-                brains = self.catalog.unrestrictedSearchResults(portal_type='ilo.qa.topic', UID=form['id'])
-                for brain in brains:
-                    obj =  brain._unrestrictedGetObject()
-                    results['officer'] = obj.officer
-                    results['officer_email'] = obj.officer_email
+                officer = form['id']
+                results['officer'] = officer
+                results['officer_email'] = self.officer_details(officer)['email']
+                results['fullname'] = self.officer_details(officer)['fullname']
         return results
     
     def send_email(self):

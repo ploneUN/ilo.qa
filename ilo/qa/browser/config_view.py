@@ -15,6 +15,14 @@ class Index(dexterity.DisplayForm):
     def catalog(self):
     	return getToolByName(self.context, 'portal_catalog')
 
+    def officer_details(self, officer=None):
+        membership = getToolByName(self.context, 'portal_membership')
+        try:
+            name = membership.getMemberById(officer)
+            return name.getProperty('fullname')
+        except AttributeError:
+            return officer
+
     def contents(self):
         context = self.context
         catalog = self.catalog

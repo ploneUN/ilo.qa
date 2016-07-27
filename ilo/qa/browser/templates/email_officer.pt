@@ -36,7 +36,7 @@
         </dl>
         
         <div class="field">
-            <label tal:content="string: To: ${brain/officer}"></label>
+            <label tal:content="string: To: ${brain/fullname}"></label>
         </div>
         <div class="field">
             <label tal:content="string: From: ${view/auth_user}"/>
