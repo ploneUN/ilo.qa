@@ -55,6 +55,8 @@ class users(object):
         for user in users:
             fullname = user.getProperty('fullname')
             results.append(SimpleTerm(value=user.id, token=user.id, title=fullname))
+        if results:
+            results.sort(key=lambda ky: ky.title)
         return SimpleVocabulary(results)
 
 class ITopic(form.Schema, IImageScaleTraversable):
