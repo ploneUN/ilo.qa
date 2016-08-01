@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.12 - aug 1
+-changed labels
+
 1.5.11 - aug 1
 -fixed loading issue on ilo portlet
 
