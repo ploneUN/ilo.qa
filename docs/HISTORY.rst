@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.11 - aug 1
+-fixed loading issue on ilo portlet
+
 1.5.10 - july 26
 -fixed loading issue on ilo.qa
 

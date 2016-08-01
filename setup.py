@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.5.10'
+version = '1.5.11'
 
 setup(name='ilo.qa',
       version=version,
