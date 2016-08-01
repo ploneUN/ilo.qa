@@ -81,7 +81,7 @@ class ITopic(form.Schema, IImageScaleTraversable):
 
     officer = schema.Choice(
             source=users(),
-            title=u'officer',
+            title=u'Assigned Officer',
             required=False,
         )
         
