@@ -58,7 +58,7 @@ class email_officer(dexterity.DisplayForm):
                     msg['From'] = '%s <%s>' % (from_name, from_email)
                     msg.add_header('reply-to', from_email)
                     msg['To'] = '%s' % self.get_officer()['officer_email']
-                    msg['Subject'] = form['email_subject']
+                    msg['Subject'] = 'ILO QA: %s' % form['email_subject']
                     body= form['email_message'].encode('utf-8')
                     msg.attach(MIMEText(body, 'plain', 'utf-8'))
                     mailhost = self.context.MailHost
