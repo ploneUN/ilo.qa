@@ -34,7 +34,7 @@
      ILO Portal</property>
     <property name="recipients">{{ context.topic_officer }}</property>
     <property
-       name="subject">Question Received</property>
+       name="subject">ILO QA: Question Received</property>
    </action>
    <action type="collective.easytemplate.actions.Mail">
     <property name="source"/>
@@ -92,7 +92,7 @@
      ILO Portal</property>
     <property name="recipients">{{ context.question_creator }}</property>
     <property
-       name="subject">Answer Received</property>
+       name="subject">ILO QA: Answer Received</property>
    </action>
    <action type="collective.easytemplate.actions.Mail">
     <property name="source"/>
