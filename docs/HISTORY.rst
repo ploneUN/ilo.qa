@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.13 - sept 9
+- browser view changes and send private email functions
+
 1.5.12 - aug 1
 -changed labels
 
