@@ -74,7 +74,7 @@ class bytopic_view(dexterity.DisplayForm):
         context = self.context
         results = []
         path = '/'.join(context.getPhysicalPath())
-        for uid in uids:
+        for uid in uids or []:
             brains = catalog.unrestrictedSearchResults(path={'query': path, 'depth' : 2}, 
                                                         portal_type='ilo.qa.topic',
                                                         UID = uid)
