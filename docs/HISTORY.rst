@@ -1,5 +1,9 @@
 Changelog
 =========
+
+1.5.14 - sept 13
+-fixed browser view error
+
 1.5.13 - sept 9
 - browser view changes and send private email functions
 
