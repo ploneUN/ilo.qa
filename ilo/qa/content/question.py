@@ -230,3 +230,7 @@ class IQuestionAddForm(dexterity.AddForm):
                 elif type(topic_val) == list:
                     widgets['topic'].value = topic_val
             #widgets['topic'].mode = HIDDEN_MODE
+            
+    def updateActions(self):
+        super(IQuestionAddForm, self).updateActions()
+        self.actions['save'].title = u"Send"
