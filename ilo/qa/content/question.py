@@ -165,7 +165,6 @@ def _createObject(context, event):
     else:  
         parent.manage_renameObject(id, title)
     context.reindexObject()
-    import pdb; pdb.set_trace()
     return
 
 @grok.subscribe(IQuestion, IObjectModifiedEvent)
