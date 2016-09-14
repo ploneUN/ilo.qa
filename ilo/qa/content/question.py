@@ -83,7 +83,7 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     
     form.mode(IEditForm, topic='display')
     form.widget(topic=RadioFieldWidget)
-    #form.mode(IAddForm, topic='hidden')
+    form.mode(IAddForm, topic='hidden')
     topic = schema.List(
         title=u'Topic',
         required=False,
