@@ -14,9 +14,9 @@
       <metal:block use-macro="context/@@ploneform-macros/titlelessform" />
     </div>
    
-    <tal:block tal:define="form request/form" tal:condition="python: form.has_key('form.widgets.topic')">
+    <tal:block tal:define="form request/form" tal:condition="python: form.has_key('topics')">
        <b>Topic:</b>
-       <p tal:content="python: view.topic_uid(form['form.widgets.topic'])"/>
+       <p tal:content="python: view.topic_uid(form['topics'])"/>
     </tal:block>
 
   </tal:main-macro>
