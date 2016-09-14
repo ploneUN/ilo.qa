@@ -34,6 +34,8 @@ from plone.i18n.normalizer import idnormalizer
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import IEditForm
+from z3c.form import button
+from ilo.qa.interfaces import IButtonsSend
 
 
 # Interface class; used to define content-type schema.
@@ -188,6 +190,8 @@ class IQuestionAddForm(dexterity.AddForm):
     grok.name('ilo.qa.question')
     template = ViewPageTemplateFile('templates/questionadd.pt')
     form.wrap(False)
+    
+    buttons = button.Buttons(IButtonsSend)
 
     @property
     def catalog(self):
