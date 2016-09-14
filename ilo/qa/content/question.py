@@ -215,4 +215,11 @@ class IQuestionAddForm(dexterity.AddForm):
         super(IQuestionAddForm, self).updateWidgets()
         if self.request.form.has_key('form.widgets.topic'):
             widgets = self.widgets
+            form = self.context.REQUEST.form
+            if 'form.widgets.topic' in form:
+                topic_val = form['form.widgets.topic']
+                if type(topic_val) in [unicode, str]:
+                    widgets['topic'].value = [topic_val,]
+                elif type(topic_val) == list:
+                    widgets['topic'].value = topic_val
             #widgets['topic'].mode = HIDDEN_MODE
