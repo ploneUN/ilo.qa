@@ -33,7 +33,7 @@ from zope.app.container.interfaces import IObjectAddedEvent
 from plone.i18n.normalizer import idnormalizer
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.form.interfaces import HIDDEN_MODE
-from z3c.form.interfaces import IEditForm
+from z3c.form.interfaces import IEditForm, IAddForm
 from z3c.form import button
 from ilo.qa.interfaces import IButtonsSend
 from z3c.form.interfaces import IButtonForm, IHandlerForm
@@ -83,6 +83,7 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     
     form.mode(IEditForm, topic='display')
     form.widget(topic=RadioFieldWidget)
+    form.mode(IAddForm, topic='hidden')
     topic = schema.List(
         title=u'Topic',
         required=False,
@@ -215,4 +216,4 @@ class IQuestionAddForm(dexterity.AddForm):
         super(IQuestionAddForm, self).updateWidgets()
         if self.request.form.has_key('form.widgets.topic'):
             widgets = self.widgets
-            widgets['topic'].mode = HIDDEN_MODE
+            #widgets['topic'].mode = HIDDEN_MODE
