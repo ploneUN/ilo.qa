@@ -83,7 +83,7 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     
     form.mode(IEditForm, topic='display')
     form.widget(topic=RadioFieldWidget)
-    form.mode(IAddForm, topic='hidden')
+    #form.mode(IAddForm, topic='hidden')
     topic = schema.List(
         title=u'Topic',
         required=False,
@@ -113,6 +113,13 @@ class IQuestion(form.Schema, IImageScaleTraversable):
     pass
 
 alsoProvides(IQuestion, IFormFieldProvider)
+
+@form.default_value(field=IQuestion['topic'])
+def topic_val(self):
+    form = self.context.REQUEST.form
+    if 'topics' in form:
+        return form['topics']
+    return ''
 
 def is_number(s):
     try:
