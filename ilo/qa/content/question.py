@@ -8,7 +8,7 @@ from plone.autoform.interfaces import IFormFieldProvider
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from zope.interface import alsoProvides
 
-from zope.interface import invariant, Invalid
+from zope.interface import invariant, Invalid, implements
 
 from z3c.form import group, field
 
@@ -36,6 +36,7 @@ from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import IEditForm
 from z3c.form import button
 from ilo.qa.interfaces import IButtonsSend
+from z3c.form.interfaces import IButtonForm, IHandlerForm
 
 
 # Interface class; used to define content-type schema.
@@ -192,7 +193,11 @@ class IQuestionAddForm(dexterity.AddForm):
     template = ViewPageTemplateFile('templates/questionadd.pt')
     form.wrap(False)
     
-    buttons = button.Buttons(IButtonsSend)
+    #buttons = button.Buttons(IButtonsSend)
+    #
+    #@button.handler(IButtonsSend['save'])
+    #def send(self, action):
+    #    print "Question Successfully Created"
 
     @property
     def catalog(self):
