@@ -32,7 +32,7 @@
     		<li>
     		  <ul class="listing-btn">
       			<li class="button tiny list-btn" tal:repeat="data brain/data">
-			  <a class="tooltips" tal:attributes="href string: ${absolute_url}/++add++ilo.qa.question?form.widgets.topic=${data/uid}" >
+			  <a class="tooltips" tal:attributes="href string: ${absolute_url}/++add++ilo.qa.question?topics:list=${data/uid}" >
 			    <span>Add Question</span>
 			    <img src="++resource++ilo.qa/qadd.png" />
 			  </a>
