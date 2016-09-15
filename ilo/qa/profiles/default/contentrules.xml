@@ -21,14 +21,9 @@
      Topic: {{ context.topics_str }}
      Question: {{ context.title }}
      
-     To review the above question, visit:
+     To it on the portal, visit:
      
-     {{ context.absolute_url() }}
-     
-     To approve the post, click on the link below:
-     
-     {{ context.absolute_url() }}/content_status_modify?workflow_action=share_intranet
-     
+     {{ context.absolute_url() }}     
      
      -------------------------
      ILO Portal</property>
