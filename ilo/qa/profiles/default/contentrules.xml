@@ -76,7 +76,7 @@
        name="message">A site visitor has just submitted an answer to your question. Below are the details of the answer.
      
      Answer from: {{ context.answer_creator }}
-     Answer: {{ context.answer }}
+     Answer: {{ view("iloqa_view", "stripped_answer") }}
      
      
      To review the above answer, visit:
