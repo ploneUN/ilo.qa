@@ -17,6 +17,7 @@
 
     <include package=".behavior"/>
     <include package=".portlet"/>
+    <include package=".browser"/>
 
     <browser:resourceDirectory 
         name="ilo.qa"
