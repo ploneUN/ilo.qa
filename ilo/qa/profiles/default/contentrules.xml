@@ -52,7 +52,7 @@
      
      -------------------------
      ILO Portal
-     http://http://eval.ilo.org</property>
+     http://eval.ilo.org</property>
     <property name="recipients">{{ context.question_creator }}</property>
     <property name="subject">Question Received</property>
    </action>
