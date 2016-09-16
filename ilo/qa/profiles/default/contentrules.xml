@@ -78,9 +78,9 @@
      
      {{ context.absolute_url() }}
      
-     To approve the post, click on the link below:
+     To it on the portal, visit:
      
-     {{ context.absolute_url() }}/content_status_modify?workflow_action=internally_publish
+     {{ context.absolute_url() }}  
      
      
      -------------------------
