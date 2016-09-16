@@ -78,10 +78,6 @@
      
      {{ context.absolute_url() }}
      
-     To it on the portal, visit:
-     
-     {{ context.absolute_url() }}  
-     
      
      -------------------------
      ILO Portal</property>
