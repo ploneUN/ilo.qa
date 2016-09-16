@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.16v2 - sept 16
+-removed redundant message
+
 1.5.16 - sept 16
 -changed workflow email message
 
