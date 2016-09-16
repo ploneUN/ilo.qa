@@ -1,5 +1,8 @@
 Changelog
 =========
+1.5.16 - sept 16
+-changed workflow email message
+
 1.5.15 -sept 15
 -changes on ilo.qa questions and views
 
